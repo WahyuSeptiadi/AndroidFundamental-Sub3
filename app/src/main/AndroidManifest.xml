@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.wahyu.githubapi">
+
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.VIBRATE" />
+
+    <permission
+        android:name="com.wahyu.githubapi.READ_DATABASE"
+        android:protectionLevel="normal" />
+    <permission
+        android:name="com.wahyu.githubapi.WRITE_DATABASE"
+        android:protectionLevel="normal" />
+
+    <application
+        android:hardwareAccelerated="true"
+        android:icon="@mipmap/ic_githubnew_round"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_githubnew_round"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme"
+        tools:ignore="AllowBackup">
+        <service
+            android:name="com.wahyu.githubapi.widget.StackWidgetService"
+            android:permission="android.permission.BIND_REMOTEVIEWS" />
+
+        <receiver android:name=".widget.ImageFavoriteWidget">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
+
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/image_favorite_widget_info" />
+        </receiver>
+
+        <provider
+            android:name=".provider.MyContentProvider"
+            android:authorities="com.wahyu.githubapi"
+            android:enabled="true"
+            android:exported="true"
+            tools:replace="exported"
+            android:readPermission="com.wahyu.githubapi.READ_DATABASE"
+            android:writePermission="com.wahyu.githubapi.WRITE_DATABASE" />
+
+        <receiver
+            android:name=".alarm.AlarmReceiver"
+            android:enabled="true"
+            android:exported="true"
+            android:permission="@string/todo"
+            tools:ignore="ManifestResource" />
+
+        <activity android:name=".view.SetReminderActivity" />
+        <activity android:name=".view.FavoriteActivity" />
+        <activity android:name=".view.DetailActivity" />
+        <activity
+            android:name=".view.SearchActivity"
+            android:launchMode="singleTask" />
+        <activity android:name=".view.SplashScreenActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+    </application>
+
+</manifest>
