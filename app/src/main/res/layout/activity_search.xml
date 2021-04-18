@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".view.search.SearchActivity">
@@ -19,10 +18,10 @@
         <androidx.appcompat.widget.Toolbar
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="#2196F3"
+            android:background="@color/colorPrimaryDark"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:titleTextColor="#fff" />
+            app:titleTextColor="@color/colorWhite" />
 
         <TextView
             android:layout_width="match_parent"
@@ -30,7 +29,7 @@
             android:layout_centerVertical="true"
             android:text="@string/search"
             android:textAlignment="center"
-            android:textColor="#fff"
+            android:textColor="@color/colorWhite"
             android:textSize="18sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -39,23 +38,23 @@
             android:id="@+id/imgLanguage"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:visibility="invisible"
             android:layout_alignParentEnd="true"
             android:layout_centerVertical="true"
             android:layout_marginEnd="56dp"
             android:contentDescription="@string/todo"
-            android:src="@drawable/ic_language" />
+            android:src="@drawable/ic_language"
+            android:visibility="invisible" />
 
         <ImageView
             android:id="@+id/imgReminder"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:visibility="invisible"
             android:layout_alignParentEnd="true"
             android:layout_centerVertical="true"
             android:layout_marginEnd="16dp"
             android:contentDescription="@string/todo"
-            android:src="@drawable/ic_reminder_on" />
+            android:src="@drawable/ic_reminder_on"
+            android:visibility="invisible" />
 
         <ImageView
             android:id="@+id/imgSetting"
@@ -69,7 +68,7 @@
     </RelativeLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/seaching"
+        android:id="@+id/searching"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="5dp"
@@ -87,10 +86,10 @@
             android:layout_width="5dp"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
+            android:contentDescription="@string/todo"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            android:contentDescription="@string/todo" />
+            app:layout_constraintTop_toTopOf="parent" />
 
         <EditText
             android:id="@+id/editTextSearch"
@@ -125,12 +124,12 @@
         android:id="@+id/tv_message"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textStyle="bold"
         android:textColor="#FF0000"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/topBarSearching"/>
+        app:layout_constraintTop_toBottomOf="@+id/topBarSearching" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_search"
@@ -138,7 +137,7 @@
         android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/seaching"
+        app:layout_constraintTop_toBottomOf="@+id/searching"
         tools:listitem="@layout/item_user_list" />
 
     <ProgressBar
@@ -156,12 +155,14 @@
         android:id="@+id/fab_favorite"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="16dp"
+        android:backgroundTint="@color/colorPrimaryDark"
+        android:contentDescription="@string/todo"
         android:src="@drawable/ic_favorite_filled"
         app:borderWidth="1dp"
         app:elevation="5dp"
         app:fabSize="normal"
-        android:layout_marginEnd="16dp"
-        android:layout_marginBottom="16dp"
         app:layout_anchor="@id/rv_search"
         app:layout_anchorGravity="bottom|right|end"
         app:layout_constraintBottom_toBottomOf="parent"

@@ -20,12 +20,12 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.viewpager.widget.ViewPager;
 
 import com.google.android.material.tabs.TabLayout;
-import com.kevin.provider.view.search.SearchActivity;
-import com.squareup.picasso.Picasso;
 import com.kevin.provider.R;
+import com.kevin.provider.helper.BaseConst;
 import com.kevin.provider.view.follower.FollowersFragment;
 import com.kevin.provider.view.following.FollowingFragment;
-import com.kevin.provider.helper.BaseConst;
+import com.kevin.provider.view.search.SearchActivity;
+import com.squareup.picasso.Picasso;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 import de.mateware.snacky.Snacky;
@@ -37,9 +37,7 @@ public class DetailActivity extends AppCompatActivity {
     private TextView username, name, repository, follower, following, company, location;
 
     @SuppressLint("StaticFieldLeak")
-//    => Hindari penggunaan suppress karena akan menyebabkan kode yang kurang baik tidak akan terdeteksi
     private static Context mContext;
-//    => Sebaiknya context tidak dibuat static karena akan mengakibatkan memory leaks
     private static boolean count;
 
     @Override
@@ -72,7 +70,6 @@ public class DetailActivity extends AppCompatActivity {
         detailViewModel = new ViewModelProvider(this,
                 new ViewModelProvider.NewInstanceFactory()).get(DetailViewModel.class);
         detailViewModel.setDetailUser(username);
-
 
         if (checkInternet()) {
             if (count) {

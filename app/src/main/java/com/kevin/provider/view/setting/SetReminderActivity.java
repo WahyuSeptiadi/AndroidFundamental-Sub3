@@ -82,54 +82,47 @@ public class SetReminderActivity extends AppCompatActivity implements View.OnCli
         setMessage.setAnimation(slide_left);
         btnDefTime.setAnimation(slide_bottom2);
         detailTime.setAnimation(slide_bottom1);
-
     }
 
     @Override
     public void onClick(View view) {
-        boolean aktifReminder = sharedPreferences.getBoolean("button", false);
+        boolean activeReminder = sharedPreferences.getBoolean("button", false);
 
-        switch (view.getId()) {
-            case R.id.setTimeReminder:
-                if (aktifReminder) {
-                    Toasty.warning(this, getResources().getText(R.string.toast_turn_off_reminder), Toasty.LENGTH_SHORT, true).show();
-                } else {
-                    TimePickerFragment timePickerFragmentRepeat = new TimePickerFragment();
-                    timePickerFragmentRepeat.show(getSupportFragmentManager(), TIME_PICKER_REPEAT_TAG);
-                    et_messageTime.setText(MESSAGE_DEFAULT);
-                }
-                break;
-            case R.id.setReminderON:
-                repeatTime = detailTime.getText().toString();
-                repeatMessage = et_messageTime.getText().toString();
-                if (TextUtils.isEmpty(repeatMessage)) {
-                    Toasty.error(this, getResources().getText(R.string.input_message), Toasty.LENGTH_SHORT, true).show();
-                } else {
-                    alarmReceiver.setRepeatingAlarm(this, AlarmReceiver.TYPE_REPEATING, repeatTime, repeatMessage);
-                    setAlarmPref(repeatTime, repeatMessage, true);
-                }
-                break;
-            case R.id.setReminderOFF:
-                detailTime.setText(TIME_RESET);
-                et_messageTime.setText(MESSAGE_RESET);
+        if (view.getId() == R.id.setTimeReminder) {
+            if (activeReminder) {
+                Toasty.warning(this, getResources().getText(R.string.toast_turn_off_reminder), Toasty.LENGTH_SHORT, true).show();
+            } else {
+                TimePickerFragment timePickerFragmentRepeat = new TimePickerFragment();
+                timePickerFragmentRepeat.show(getSupportFragmentManager(), TIME_PICKER_REPEAT_TAG);
+                et_messageTime.setText(MESSAGE_DEFAULT);
+            }
+        } else if (view.getId() == R.id.setReminderON) {
+            repeatTime = detailTime.getText().toString();
+            repeatMessage = et_messageTime.getText().toString();
+            if (TextUtils.isEmpty(repeatMessage)) {
+                Toasty.error(this, getResources().getText(R.string.input_message), Toasty.LENGTH_SHORT, true).show();
+            } else {
+                alarmReceiver.setRepeatingAlarm(this, AlarmReceiver.TYPE_REPEATING, repeatTime, repeatMessage);
+                setAlarmPref(repeatTime, repeatMessage, true);
+            }
+        } else if (view.getId() == R.id.setReminderOFF) {
+            detailTime.setText(TIME_RESET);
+            et_messageTime.setText(MESSAGE_RESET);
 
-                alarmReceiver.cancelAlarm(this);
-                setAlarmPref(repeatTime, repeatMessage, false);
-                break;
-            case R.id.btnDefaultTime:
-                if (aktifReminder) {
-                    Toasty.warning(this, getResources().getText(R.string.toast_turn_off_reminder), Toasty.LENGTH_SHORT, true).show();
-                } else {
-                    detailTime.setText(TIME_DEFAULT);
-                    et_messageTime.setText(MESSAGE_DEFAULT);
-                }
-                break;
-            case R.id.btnBack:
-                Intent toFav = new Intent(SetReminderActivity.this, SearchActivity.class);
-                startActivity(toFav);
+            alarmReceiver.cancelAlarm(this);
+            setAlarmPref(repeatTime, repeatMessage, false);
+        } else if (view.getId() == R.id.btnDefaultTime) {
+            if (activeReminder) {
+                Toasty.warning(this, getResources().getText(R.string.toast_turn_off_reminder), Toasty.LENGTH_SHORT, true).show();
+            } else {
+                detailTime.setText(TIME_DEFAULT);
+                et_messageTime.setText(MESSAGE_DEFAULT);
+            }
+        } else if (view.getId() == R.id.btnBack) {
+            Intent toFav = new Intent(SetReminderActivity.this, SearchActivity.class);
+            startActivity(toFav);
 
-                finish();
-                break;
+            finish();
         }
     }
 

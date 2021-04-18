@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
@@ -12,28 +11,31 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:visibility="visible">
+
         <androidx.appcompat.widget.Toolbar
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="#2196F3"
-            app:titleTextColor="#fff" />
+            android:background="@color/colorPrimaryDark"
+            app:titleTextColor="@color/colorWhite" />
+
         <ImageView
             android:id="@+id/btnBack"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
             android:layout_marginStart="10dp"
-            android:src="@drawable/ic_back"
-            android:contentDescription="@string/todo" />
+            android:contentDescription="@string/todo"
+            android:src="@drawable/ic_back" />
+
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
             android:layout_marginTop="13dp"
             android:text="@string/str_favorite_user"
             android:textAlignment="center"
-            android:layout_centerVertical="true"
-            android:textColor="#fff"
-            android:textSize="18sp"/>
+            android:textColor="@color/colorWhite"
+            android:textSize="18sp" />
     </RelativeLayout>
 
     <androidx.recyclerview.widget.RecyclerView
@@ -42,15 +44,11 @@
         android:layout_height="wrap_content"
         tools:listitem="@layout/item_favorite_list" />
 
-    <androidx.viewpager.widget.ViewPager
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
-
     <ProgressBar
         android:id="@+id/progress_favorite"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:max="100"
-        android:visibility="visible"/>
+        android:visibility="visible" />
 
 </LinearLayout>

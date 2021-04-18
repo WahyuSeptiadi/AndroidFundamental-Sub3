@@ -6,5 +6,6 @@ import java.util.ArrayList;
 
 interface FavoriteLoadCallback {
     void preExecute();
+
     void postExecute(ArrayList<FavoriteModel> favMod);
 }

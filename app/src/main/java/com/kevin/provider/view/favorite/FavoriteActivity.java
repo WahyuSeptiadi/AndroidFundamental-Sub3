@@ -17,9 +17,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.kevin.provider.data.local.FavoriteModel;
 import com.kevin.provider.R;
 import com.kevin.provider.data.local.DatabaseContract;
+import com.kevin.provider.data.local.FavoriteModel;
 import com.kevin.provider.data.local.MappingHelper;
 import com.kevin.provider.view.search.SearchActivity;
 
@@ -58,11 +58,11 @@ public class FavoriteActivity extends AppCompatActivity implements FavoriteLoadC
         getContentResolver().registerContentObserver(DatabaseContract.FavColumns.CONTENT_URI, true, myObserver);
 
         // Safe OrientationState
-        if (savedInstanceState == null){
+        if (savedInstanceState == null) {
             new LoadFavAsync(this, this).execute();
-        }else {
+        } else {
             ArrayList<FavoriteModel> favoriteModelArrayList = savedInstanceState.getParcelableArrayList(EXTRA_STATE);
-            if (favoriteModelArrayList != null){
+            if (favoriteModelArrayList != null) {
                 favListAdapter.setFavoriteModelArrayList(favoriteModelArrayList);
             }
             progressBar.setVisibility(View.GONE);
@@ -92,9 +92,9 @@ public class FavoriteActivity extends AppCompatActivity implements FavoriteLoadC
         //setProgressbar GONE, setelah selesai di load
         progressBar.setVisibility(View.GONE);
 
-        if (favMod.size() > 0){
+        if (favMod.size() > 0) {
             favListAdapter.setFavoriteModelArrayList(favMod);
-        }else {
+        } else {
             favListAdapter.setFavoriteModelArrayList(new ArrayList<>());
             Snacky.builder()
                     .setView(recyclerView)
@@ -146,6 +146,7 @@ public class FavoriteActivity extends AppCompatActivity implements FavoriteLoadC
             super(handler);
             this.context = context;
         }
+
         @Override
         public void onChange(boolean selfChange) {
             super.onChange(selfChange);

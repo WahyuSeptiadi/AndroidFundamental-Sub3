@@ -86,7 +86,6 @@ public class FollowersListAdapter extends RecyclerView.Adapter<FollowersListAdap
         }
 
         holder.borderFavList.setOnClickListener(new CustomOnItemClickListener(position, (view, position1) -> {
-//            Sebaiknya gunakan if statemnent untuk pengecekan nilai null
             if (cursor != null) {
                 cursor.close();
             }
@@ -96,10 +95,8 @@ public class FollowersListAdapter extends RecyclerView.Adapter<FollowersListAdap
 
             String now = String.valueOf(mInfo_Users.get(position).getId());
 
-//            Penamaan sebuah fungsi atau variable sebaiknya menggunakan format camelCase.
-
-            for (FavoriteModel favlist : list) {
-                cekIdUser = favlist.getIduser().equals(now);
+            for (FavoriteModel favList : list) {
+                cekIdUser = favList.getIduser().equals(now);
                 if (cekIdUser) {
                     break;
                 }
@@ -162,7 +159,6 @@ public class FollowersListAdapter extends RecyclerView.Adapter<FollowersListAdap
         private final CircleImageView imgAvatar;
         private final TextView username;
         private final TextView typeUser;
-        private final TextView idUser;
         private final ImageView fillFavList;
         private final ImageView borderFavList;
         private final CardView item;
@@ -173,7 +169,6 @@ public class FollowersListAdapter extends RecyclerView.Adapter<FollowersListAdap
             imgAvatar = itemView.findViewById(R.id.civ_search);
             username = itemView.findViewById(R.id.usernameValue_listSearch);
             typeUser = itemView.findViewById(R.id.typeUserValue_listSearch);
-            idUser = itemView.findViewById(R.id.idUserValue_listSearch);
             item = itemView.findViewById(R.id.cardListSearch);
             fillFavList = itemView.findViewById(R.id.addToFavList);
             borderFavList = itemView.findViewById(R.id.borderFavList);
@@ -185,7 +180,6 @@ public class FollowersListAdapter extends RecyclerView.Adapter<FollowersListAdap
                     .into(imgAvatar);
             username.setText(userResultResponse.getLogin());
             typeUser.setText(String.valueOf(userResultResponse.getType()));
-            idUser.setText(String.valueOf(userResultResponse.getId()));
         }
     }
 

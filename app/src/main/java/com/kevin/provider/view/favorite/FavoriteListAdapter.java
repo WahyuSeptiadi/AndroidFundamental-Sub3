@@ -17,12 +17,12 @@ import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.kevin.provider.helper.CustomOnItemClickListener;
-import com.squareup.picasso.Picasso;
-import com.kevin.provider.data.local.FavoriteModel;
 import com.kevin.provider.R;
-import com.kevin.provider.view.detail.DetailActivity;
+import com.kevin.provider.data.local.FavoriteModel;
 import com.kevin.provider.helper.BaseConst;
+import com.kevin.provider.helper.CustomOnItemClickListener;
+import com.kevin.provider.view.detail.DetailActivity;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
@@ -32,7 +32,7 @@ import es.dmoral.toasty.Toasty;
 import static android.content.Context.MODE_PRIVATE;
 import static com.kevin.provider.data.local.DatabaseContract.FavColumns.CONTENT_URI;
 
-public class FavoriteListAdapter extends RecyclerView.Adapter<FavoriteListAdapter.ViewHolder>{
+public class FavoriteListAdapter extends RecyclerView.Adapter<FavoriteListAdapter.ViewHolder> {
 
     public final ArrayList<FavoriteModel> favoriteModelArrayList = new ArrayList<>();
     private final Activity activity;
@@ -43,7 +43,7 @@ public class FavoriteListAdapter extends RecyclerView.Adapter<FavoriteListAdapte
         this.activity = activity1;
     }
 
-    public ArrayList<FavoriteModel> getFavoriteModelArrayList(){
+    public ArrayList<FavoriteModel> getFavoriteModelArrayList() {
         return favoriteModelArrayList;
     }
 
@@ -89,7 +89,6 @@ public class FavoriteListAdapter extends RecyclerView.Adapter<FavoriteListAdapte
         private final CircleImageView imgAvatar;
         private final TextView username;
         private final TextView typeUser;
-        private final TextView idUser;
         private final ImageView deleteFromFavList;
         private final CardView item;
 
@@ -99,7 +98,6 @@ public class FavoriteListAdapter extends RecyclerView.Adapter<FavoriteListAdapte
             imgAvatar = itemView.findViewById(R.id.civ_search);
             username = itemView.findViewById(R.id.usernameValue_listSearch);
             typeUser = itemView.findViewById(R.id.typeUserValue_listSearch);
-            idUser = itemView.findViewById(R.id.idUserValue_listSearch);
             item = itemView.findViewById(R.id.cardListSearch);
             deleteFromFavList = itemView.findViewById(R.id.deleteFromFavList);
         }
@@ -110,11 +108,10 @@ public class FavoriteListAdapter extends RecyclerView.Adapter<FavoriteListAdapte
                     .into(imgAvatar);
             username.setText(favoritebind.getUsername());
             typeUser.setText(String.valueOf(favoritebind.getTypeuser()));
-            idUser.setText(String.valueOf(favoritebind.getIduser()));
         }
     }
 
-    public void setFavoriteModelArrayList(ArrayList<FavoriteModel> listFav){
+    public void setFavoriteModelArrayList(ArrayList<FavoriteModel> listFav) {
         this.favoriteModelArrayList.clear();
         this.favoriteModelArrayList.addAll(listFav);
         notifyDataSetChanged();
@@ -129,7 +126,7 @@ public class FavoriteListAdapter extends RecyclerView.Adapter<FavoriteListAdapte
         alertDialogBuilder
                 .setMessage(dialogMessage)
                 .setCancelable(false)
-                .setPositiveButton(activity.getResources().getString(R.string.positif_btn), (dialog, id) -> {
+                .setPositiveButton(activity.getResources().getString(R.string.positive_btn), (dialog, id) -> {
 
                     //DELETE form FavoriteList
                     uriWithId = Uri.parse(CONTENT_URI + "/" + idUserDel);
@@ -137,7 +134,7 @@ public class FavoriteListAdapter extends RecyclerView.Adapter<FavoriteListAdapte
                     Toasty.success(activity, activity.getResources().getString(R.string.success_delete), Toast.LENGTH_SHORT, true).show();
 
                 })
-                .setNegativeButton(activity.getResources().getString(R.string.negatif_btn), (dialog, id) -> dialog.cancel());
+                .setNegativeButton(activity.getResources().getString(R.string.negative_btn), (dialog, id) -> dialog.cancel());
         AlertDialog alertDialog = alertDialogBuilder.create();
         alertDialog.show();
     }

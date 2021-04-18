@@ -27,15 +27,15 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.kevin.provider.view.follower.FollowersListAdapter;
 import com.kevin.provider.R;
 import com.kevin.provider.view.favorite.FavoriteActivity;
+import com.kevin.provider.view.follower.FollowersListAdapter;
 import com.kevin.provider.view.setting.SetReminderActivity;
 
 import de.mateware.snacky.Snacky;
 import es.dmoral.toasty.Toasty;
 
-public class SearchActivity extends AppCompatActivity{
+public class SearchActivity extends AppCompatActivity {
 
     private RecyclerView recyclerView;
     private FollowersListAdapter adapter;
@@ -66,7 +66,7 @@ public class SearchActivity extends AppCompatActivity{
         progressBar = findViewById(R.id.progress_circular);
         progressBar.setProgress(0);
         FloatingActionButton fab = findViewById(R.id.fab_favorite);
-        searching = findViewById(R.id.seaching);
+        searching = findViewById(R.id.searching);
 
         setRecyclerView();
 
@@ -76,9 +76,9 @@ public class SearchActivity extends AppCompatActivity{
         imgSettings.setAnimation(shake);
 
         searchViewModel = new ViewModelProvider(this,
-                          new ViewModelProvider.NewInstanceFactory()).get(SearchViewModel.class);
+                new ViewModelProvider.NewInstanceFactory()).get(SearchViewModel.class);
 
-        if (savedInstanceState != null){
+        if (savedInstanceState != null) {
             String data = savedInstanceState.getString("key");
 
             searchViewModel.setSearchData(data);
@@ -101,7 +101,7 @@ public class SearchActivity extends AppCompatActivity{
 
             @Override
             public void onScrollStateChanged(@NonNull RecyclerView recyclerView, int newState) {
-                if (newState == RecyclerView.SCROLL_STATE_IDLE){
+                if (newState == RecyclerView.SCROLL_STATE_IDLE) {
                     fab.show();
                     searching.setVisibility(View.GONE);
                 }
@@ -116,8 +116,8 @@ public class SearchActivity extends AppCompatActivity{
         });
 
         btnSearch.setOnClickListener(v -> {
-            if (checkInternet()){
-                if (count){
+            if (checkInternet()) {
+                if (count) {
                     Snacky.builder()
                             .setView(recyclerView)
                             .setIcon(R.drawable.ic_signal_on)
@@ -126,10 +126,10 @@ public class SearchActivity extends AppCompatActivity{
                             .setDuration(Snacky.LENGTH_LONG)
                             .success().show();
                     count = false;
-                }else {
+                } else {
                     searchData();
                 }
-            }else{
+            } else {
                 Snacky.builder()
                         .setView(recyclerView)
                         .setIcon(R.drawable.ic_signal_off)
@@ -178,10 +178,10 @@ public class SearchActivity extends AppCompatActivity{
     @Override
     protected void onRestart() {
         super.onRestart();
-        if (checkInternet()){
+        if (checkInternet()) {
             getData();
             progressBar.setVisibility(View.GONE);
-        }else{
+        } else {
             Snacky.builder()
                     .setView(recyclerView)
                     .setIcon(R.drawable.ic_signal_on)
@@ -192,29 +192,29 @@ public class SearchActivity extends AppCompatActivity{
         }
     }
 
-    private void searchData(){
-        if (TextUtils.isEmpty(et_username.getText().toString())){
-            Toasty.error(this, getResources().getString(R.string.toast_enterkey), Toast.LENGTH_SHORT, true).show();
+    private void searchData() {
+        if (TextUtils.isEmpty(et_username.getText().toString())) {
+            Toasty.error(this, getResources().getString(R.string.toast_enter_key), Toast.LENGTH_SHORT, true).show();
             progressBar.setVisibility(View.GONE);
-        }else{
+        } else {
             Toasty.info(this, getResources().getString(R.string.toast_searching), Toast.LENGTH_SHORT, true).show();
             searchViewModel.setSearchData(et_username.getText().toString());
             getData();
         }
     }
 
-    private void getData(){
+    private void getData() {
         progressBar.setVisibility(View.VISIBLE);
         message.setVisibility(View.INVISIBLE);
         searchViewModel.getSearchData().observe(this, git_user -> {
-            if (git_user.getTotal_count() > 0){
+            if (git_user.getTotal_count() > 0) {
                 adapter.setData(git_user.getItems());
 
                 recyclerView.setAdapter(adapter);
 
                 message.setVisibility(View.INVISIBLE);
                 progressBar.setVisibility(View.GONE);
-            }else{
+            } else {
                 adapter.clearList(git_user.getItems());
 
                 progressBar.setVisibility(View.GONE);
@@ -225,7 +225,7 @@ public class SearchActivity extends AppCompatActivity{
         });
     }
 
-    private void setRecyclerView(){
+    private void setRecyclerView() {
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setHasFixedSize(true);
         recyclerView.smoothScrollToPosition(0);
@@ -233,10 +233,10 @@ public class SearchActivity extends AppCompatActivity{
         adapter.notifyDataSetChanged();
     }
 
-    public boolean checkInternet(){
+    public boolean checkInternet() {
         boolean connectStatus;
-        ConnectivityManager ConnectionManager=(ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
-        NetworkInfo networkInfo=ConnectionManager.getActiveNetworkInfo();
+        ConnectivityManager ConnectionManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo networkInfo = ConnectionManager.getActiveNetworkInfo();
         connectStatus = networkInfo != null && networkInfo.isConnected();
 
         return connectStatus;

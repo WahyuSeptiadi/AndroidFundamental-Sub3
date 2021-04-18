@@ -13,14 +13,14 @@
     <string name="tab_followers">Pengikut</string>
     <string name="tab_following">Mengikuti</string>
     <string name="str_message">Data tidak ditemukan</string>
-    <string name="str_followersnull">Belum memiliki pengikut</string>
-    <string name="str_followingnull">Belum ingin mengikuti</string>
-    <string name="str_iduser">idPengguna</string>
-    <string name="str_typeuser">tipePengguna</string>
+    <string name="str_follower_null">Belum memiliki pengikut</string>
+    <string name="str_following_null">Belum ingin mengikuti</string>
+    <string name="str_id_user">idPengguna</string>
+    <string name="str_type_user">tipePengguna</string>
     <string name="str_null">belum diatur</string>
     <string name="str_location">Lokasi : </string>
     <string name="toast_searching">Tolong tunggu, sedang mencari. .</string>
-    <string name="toast_enterkey">Tolong, masukkan kata kunci !</string>
+    <string name="toast_enter_key">Tolong, masukkan kata kunci !</string>
     <string name="loading">. . .</string>
     <string name="str_favorite_user">Favorit pengguna</string>
     <string name="str_set_reminder">Atur Pengingat</string>
@@ -34,8 +34,8 @@
     <string name="input_message">Tolong, masukkan pesan!</string>
     <string name="msg_delete_user">Apakah yakin ingin menghapus item ini dari daftar pengguna kesukaan anda?</string>
     <string name="ttl_delete_user">HAPUS PENGGUNA</string>
-    <string name="positif_btn">Ya, tentu</string>
-    <string name="negatif_btn">Batal cuy</string>
+    <string name="positive_btn">Ya, tentu</string>
+    <string name="negative_btn">Batal cuy</string>
     <string name="success_delete">Data berhasil dihapus</string>
     <string name="success_add">Berhasil ditambah ke daftar favorit</string>
     <string name="not_yet">Belum ada pengguna yang ditambahkan</string>
@@ -47,6 +47,4 @@
     <string name="not_fav">kosong</string>
     <string name="user_favorite">Pengguna Favorite No.</string>
     <string name="other_add">Pengguna telah ditambah oleh Customer</string>
-
-
 </resources>

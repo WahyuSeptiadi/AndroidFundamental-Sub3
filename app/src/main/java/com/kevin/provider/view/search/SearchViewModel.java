@@ -8,9 +8,9 @@ import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
 import com.kevin.provider.BuildConfig;
+import com.kevin.provider.data.remote.ApiService;
 import com.kevin.provider.data.remote.Network;
 import com.kevin.provider.data.remote.response.UserListResponse;
-import com.kevin.provider.data.remote.ApiService;
 
 import java.util.Objects;
 
@@ -21,11 +21,11 @@ import retrofit2.Response;
 public class SearchViewModel extends ViewModel {
     private final MutableLiveData<UserListResponse> searchUser = new MutableLiveData<>();
 
-    public void setSearchData(String username){
+    public void setSearchData(String username) {
         loadJSON(username);
     }
 
-    public LiveData<UserListResponse> getSearchData(){
+    public LiveData<UserListResponse> getSearchData() {
         return searchUser;
     }
 
@@ -37,13 +37,12 @@ public class SearchViewModel extends ViewModel {
         callAsync.enqueue(new Callback<UserListResponse>() {
             @Override
             public void onResponse(@NonNull Call<UserListResponse> call, @NonNull Response<UserListResponse> response) {
-                if(response.body() != null) {
+                if (response.body() != null) {
                     UserListResponse git = response.body();
-                    Log.e("SUKSES SEARCH", String.valueOf(response.body()));
+                    Log.e("SUCCESS SEARCH", String.valueOf(response.body()));
                     searchUser.setValue(git);
-                }else{
-                    assert response.body() != null;
-                    Log.e("ERROR SEARCH", String.valueOf(response.body()));
+                } else {
+                    Log.e("ERROR SEARCH", "response body = null");
                 }
             }
 

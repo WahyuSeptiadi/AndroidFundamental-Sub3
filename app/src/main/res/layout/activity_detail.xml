@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.coordinatorlayout.widget.CoordinatorLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".view.detail.DetailActivity">
@@ -11,168 +10,171 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/topBarDetail"
-        android:background="#F52196F3">
+        android:background="@color/colorPrimaryDark">
 
         <com.google.android.material.appbar.CollapsingToolbarLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:fitsSystemWindows="true"
-            app:expandedTitleMarginStart="72dp"
-            app:layout_scrollFlags="scroll|exitUntilCollapsed"
             android:layout_below="@+id/topBarDetail"
-            app:contentScrim="@color/colorPrimary">
+            android:fitsSystemWindows="true"
+            app:contentScrim="@color/colorPrimaryDark"
+            app:expandedTitleMarginStart="72dp"
+            app:layout_scrollFlags="scroll|exitUntilCollapsed">
 
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:visibility="visible"
                 android:layout_below="@+id/topBarDetail"
-                android:background="#2196F3">
+                android:background="@color/colorPrimaryDark"
+                android:visibility="visible">
+
                 <androidx.appcompat.widget.Toolbar
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="#2196F3"
+                    android:background="@color/colorPrimaryDark"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:titleTextColor="#fff" />
+                    app:titleTextColor="@color/colorWhite" />
 
                 <ImageView
                     android:id="@+id/btnBack"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="13dp"
                     android:layout_marginStart="10dp"
+                    android:layout_marginTop="13dp"
+                    android:contentDescription="@string/todo"
                     android:src="@drawable/ic_back"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    android:contentDescription="@string/todo" />
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
-                    android:id="@+id/textView2"
+                    android:id="@+id/titlePage"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="13dp"
                     android:text="@string/detail"
                     android:textAlignment="center"
-                    android:textColor="#fff"
+                    android:textColor="@color/colorWhite"
                     android:textSize="18sp"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <de.hdodenhof.circleimageview.CircleImageView
                     android:id="@+id/imgAvatar"
-                    android:layout_width="110dp"
-                    android:layout_height="110dp"
-                    android:src="@mipmap/ic_loading_round"
-                    android:layout_centerHorizontal="true"
-                    android:layout_below="@+id/textView2"
-                    android:layout_margin="10dp"/>
+                    android:layout_width="120dp"
+                    android:layout_height="120dp"
+                    android:layout_below="@+id/titlePage"
+                    android:layout_marginStart="30dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginEnd="20dp"
+                    android:src="@drawable/loading" />
+
                 <TextView
                     android:id="@+id/nameValue"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_centerHorizontal="true"
+                    android:layout_below="@+id/titlePage"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_toEndOf="@+id/imgAvatar"
                     android:text="@string/loading"
-                    android:textColor="#000"
-                    android:textStyle="bold"
+                    android:textColor="@color/colorWhite"
                     android:textSize="18sp"
-                    android:layout_below="@+id/imgAvatar"/>
+                    android:textStyle="bold" />
+
                 <TextView
                     android:id="@+id/usernameValue"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_below="@+id/nameValue"
+                    android:layout_marginStart="10dp"
                     android:layout_marginBottom="10dp"
-                    android:layout_centerHorizontal="true"
+                    android:layout_toEndOf="@+id/imgAvatar"
                     android:text="@string/loading"
-                    android:layout_below="@+id/nameValue"/>
+                    android:textColor="@color/colorPrimary" />
+
+                <TextView
+                    android:id="@+id/locationValue"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/usernameValue"
+                    android:layout_marginStart="10dp"
+                    android:layout_toEndOf="@id/imgAvatar"
+                    android:text="@string/loading"
+                    android:textColor="@color/colorPrimary" />
+
+                <TextView
+                    android:id="@+id/companyValue"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/locationValue"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginBottom="30dp"
+                    android:layout_toEndOf="@id/imgAvatar"
+                    android:text="@string/loading"
+                    android:textColor="@color/colorPrimary" />
 
                 <LinearLayout
                     android:id="@+id/ll_counting"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_below="@+id/companyValue"
                     android:layout_centerHorizontal="true"
-                    android:layout_marginBottom="3dp"
-                    android:layout_below="@+id/usernameValue"
+                    android:layout_marginBottom="20dp"
                     android:orientation="horizontal">
+
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textColor="#000"
-                        android:text="@string/str_repository"/>
+                        android:text="@string/str_repository"
+                        android:textColor="@color/colorWhite" />
+
                     <TextView
                         android:id="@+id/repositoryValue"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="5dp"
                         android:layout_marginEnd="5dp"
-                        android:text="@string/loading"/>
+                        android:text="@string/loading"
+                        android:textColor="@color/colorPrimary"
+                        android:textSize="20sp"
+                        android:textStyle="bold" />
+
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textColor="#000"
-                        android:text="@string/str_followers"/>
+                        android:text="@string/str_followers"
+                        android:textColor="@color/colorWhite" />
+
                     <TextView
                         android:id="@+id/followerValue"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="5dp"
                         android:layout_marginEnd="5dp"
-                        android:text="@string/loading"/>
+                        android:text="@string/loading"
+                        android:textColor="@color/colorPrimary"
+                        android:textSize="20sp"
+                        android:textStyle="bold" />
+
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textColor="#000"
-                        android:text="@string/str_following"/>
+                        android:text="@string/str_following"
+                        android:textColor="@color/colorWhite" />
+
                     <TextView
                         android:id="@+id/followingValue"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="5dp"
-                        android:text="@string/loading"/>
+                        android:text="@string/loading"
+                        android:textColor="@color/colorPrimary"
+                        android:textSize="20sp"
+                        android:textStyle="bold" />
                 </LinearLayout>
 
-                <LinearLayout
-                    android:id="@+id/ll_location"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:layout_marginBottom="3dp"
-                    android:layout_centerHorizontal="true"
-                    android:layout_below="@+id/ll_counting">
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textColor="#000"
-                        android:text="@string/str_location"/>
-                    <TextView
-                        android:id="@+id/locationValue"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="5dp"
-                        android:layout_marginEnd="5dp"
-                        android:text="@string/loading"/>
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:layout_marginBottom="10dp"
-                    android:layout_centerHorizontal="true"
-                    android:layout_below="@+id/ll_location">
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textColor="#000"
-                        android:text="@string/str_company"/>
-                    <TextView
-                        android:id="@+id/companyValue"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="5dp"
-                        android:text="@string/loading"/>
-                </LinearLayout>
             </RelativeLayout>
         </com.google.android.material.appbar.CollapsingToolbarLayout>
 
@@ -180,21 +182,21 @@
             android:id="@+id/tabLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:tabTextColor="#03A9F4"
-            app:tabSelectedTextColor="#fff"
-            app:tabIndicatorColor="#fff"/>
+            app:tabIndicatorColor="@color/colorPrimary"
+            app:tabSelectedTextColor="@color/colorPrimary"
+            app:tabTextColor="@color/colorWhite" />
     </com.google.android.material.appbar.AppBarLayout>
 
     <androidx.core.widget.NestedScrollView
-        android:fillViewport="true"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:fillViewport="true"
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
         <androidx.viewpager.widget.ViewPager
             android:id="@+id/vp_profile"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
-        </androidx.viewpager.widget.ViewPager>
+            android:layout_height="match_parent" />
     </androidx.core.widget.NestedScrollView>
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

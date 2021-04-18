@@ -1,15 +1,16 @@
 package com.kevin.provider.view.follower;
 
 import android.util.Log;
+
 import androidx.annotation.NonNull;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
 import com.kevin.provider.BuildConfig;
+import com.kevin.provider.data.remote.ApiService;
 import com.kevin.provider.data.remote.Network;
 import com.kevin.provider.data.remote.response.UserResultResponse;
-import com.kevin.provider.data.remote.ApiService;
 
 import java.util.List;
 import java.util.Objects;
@@ -21,7 +22,7 @@ import retrofit2.Response;
 public class FollowersViewModel extends ViewModel {
     private final MutableLiveData<List<UserResultResponse>> searchUserInfo = new MutableLiveData<>();
 
-    public LiveData<List<UserResultResponse>> getFollowersData(){
+    public LiveData<List<UserResultResponse>> getFollowersData() {
         return searchUserInfo;
     }
 
@@ -33,11 +34,10 @@ public class FollowersViewModel extends ViewModel {
         callAsync.enqueue(new Callback<List<UserResultResponse>>() {
             @Override
             public void onResponse(@NonNull Call<List<UserResultResponse>> call, @NonNull Response<List<UserResultResponse>> response) {
-                if(response.body() != null) {
+                if (response.body() != null) {
                     searchUserInfo.setValue(response.body());
-                }else{
-                    assert response.body() != null;
-                    Log.e("ERROR FOLLOWERS", String.valueOf(response.body()));
+                } else {
+                    Log.e("ERROR FOLLOWERS", "response body = null");
                 }
             }
 
