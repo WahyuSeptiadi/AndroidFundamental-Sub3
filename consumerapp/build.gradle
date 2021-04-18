@@ -5,7 +5,7 @@ def GITHUB_TOKEN = '"' + GithubToken + '"' ?: '"Define your Github API Key!"'
 
 android {
     compileSdkVersion 30
-    buildToolsVersion "29.0.3"
+    buildToolsVersion "30.0.3"
 
     defaultConfig {
         applicationId 'com.kevin.git.consumer'
@@ -19,7 +19,6 @@ android {
             type.buildConfigField STRING, 'GithubToken', GITHUB_TOKEN
         }
     }
-
     buildTypes {
         release {
             minifyEnabled false

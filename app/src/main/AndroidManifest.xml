@@ -23,6 +23,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="AllowBackup">
+
         <service
             android:name="com.kevin.provider.helper.widget.StackWidgetService"
             android:permission="android.permission.BIND_REMOTEVIEWS" />
@@ -31,7 +32,6 @@
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
             </intent-filter>
-
             <meta-data
                 android:name="android.appwidget.provider"
                 android:resource="@xml/image_favorite_widget_info" />
@@ -58,11 +58,9 @@
         <activity android:name="com.kevin.provider.view.detail.DetailActivity" />
         <activity
             android:name="com.kevin.provider.view.search.SearchActivity"
-            android:launchMode="singleTask" />
-        <activity android:name="com.kevin.provider.view.SplashScreenActivity">
+            android:launchMode="singleTask">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
