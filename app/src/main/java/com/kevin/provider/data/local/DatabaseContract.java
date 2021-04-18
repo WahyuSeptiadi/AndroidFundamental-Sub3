@@ -1,4 +1,4 @@
-package com.kevin.consumer.data.local;
+package com.kevin.provider.data.local;
 
 import android.net.Uri;
 import android.provider.BaseColumns;

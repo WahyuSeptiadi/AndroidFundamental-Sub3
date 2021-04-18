@@ -1,4 +1,4 @@
-package com.kevin.consumer;
+package com.kevin.provider;
 
 import android.content.Context;
 
@@ -22,6 +22,6 @@ public class ExampleInstrumentedTest {
     public void useAppContext() {
         // Context of the app under test.
         Context appContext = InstrumentationRegistry.getInstrumentation().getTargetContext();
-        assertEquals("com.kevin.consumer", appContext.getPackageName());
+        assertEquals("com.kevin.provider", appContext.getPackageName());
     }
 }
