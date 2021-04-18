@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".view.FavoriteActivity">
+    tools:context=".view.favorite.FavoriteActivity">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -40,7 +40,7 @@
         android:id="@+id/rv_favorite"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        tools:listitem="@layout/row_favorite_list" />
+        tools:listitem="@layout/item_favorite_list" />
 
     <androidx.viewpager.widget.ViewPager
         android:layout_width="match_parent"

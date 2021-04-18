@@ -7,6 +7,7 @@ import android.view.View;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.kevin.git.R;
+import com.kevin.git.view.search.SearchActivity;
 
 import gr.net.maroulis.library.EasySplashScreen;
 

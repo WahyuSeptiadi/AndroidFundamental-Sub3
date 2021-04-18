@@ -24,10 +24,10 @@
         android:theme="@style/AppTheme"
         tools:ignore="AllowBackup">
         <service
-            android:name="com.kevin.git.widget.StackWidgetService"
+            android:name="com.kevin.git.helper.widget.StackWidgetService"
             android:permission="android.permission.BIND_REMOTEVIEWS" />
 
-        <receiver android:name="com.kevin.git.widget.ImageFavoriteWidget">
+        <receiver android:name="com.kevin.git.helper.widget.ImageFavoriteWidget">
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
             </intent-filter>
@@ -38,7 +38,7 @@
         </receiver>
 
         <provider
-            android:name="com.kevin.git.provider.MyContentProvider"
+            android:name="com.kevin.git.helper.provider.MyContentProvider"
             android:authorities="com.kevin.git"
             android:enabled="true"
             android:exported="true"
@@ -47,17 +47,17 @@
             tools:replace="exported" />
 
         <receiver
-            android:name="com.kevin.git.alarm.AlarmReceiver"
+            android:name="com.kevin.git.helper.alarm.AlarmReceiver"
             android:enabled="true"
             android:exported="true"
             android:permission="@string/todo"
             tools:ignore="ManifestResource" />
 
-        <activity android:name="com.kevin.git.view.SetReminderActivity" />
-        <activity android:name="com.kevin.git.view.FavoriteActivity" />
-        <activity android:name="com.kevin.git.view.DetailActivity" />
+        <activity android:name="com.kevin.git.view.setting.SetReminderActivity" />
+        <activity android:name="com.kevin.git.view.favorite.FavoriteActivity" />
+        <activity android:name="com.kevin.git.view.detail.DetailActivity" />
         <activity
-            android:name="com.kevin.git.view.SearchActivity"
+            android:name="com.kevin.git.view.search.SearchActivity"
             android:launchMode="singleTask" />
         <activity android:name="com.kevin.git.view.SplashScreenActivity">
             <intent-filter>
