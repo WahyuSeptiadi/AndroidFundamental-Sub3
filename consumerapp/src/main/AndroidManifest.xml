@@ -20,7 +20,7 @@
         tools:ignore="AllowBackup">
 
         <receiver
-            android:name="com.kevin.consumer.alarm.AlarmReceiver"
+            android:name="com.kevin.consumer.helper.alarm.AlarmReceiver"
             android:enabled="true"
             android:exported="true"
             android:permission="@string/todo"
@@ -32,11 +32,11 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="com.kevin.consumer.view.DetailActivity" />
+        <activity android:name="com.kevin.consumer.view.detail.DetailActivity" />
         <activity
-            android:name="com.kevin.consumer.view.FavoriteActivity"
+            android:name="com.kevin.consumer.view.favorite.FavoriteActivity"
             android:launchMode="singleTask" />
-        <activity android:name="com.kevin.consumer.view.SetReminderActivity" />
+        <activity android:name="com.kevin.consumer.view.setting.SetReminderActivity" />
     </application>
 
 </manifest>

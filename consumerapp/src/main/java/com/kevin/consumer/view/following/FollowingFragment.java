@@ -1,4 +1,4 @@
-package com.kevin.git.view.following;
+package com.kevin.consumer.view.following;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -12,8 +12,8 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.kevin.git.R;
-import com.kevin.git.helper.BaseConst;
+import com.kevin.consumer.R;
+import com.kevin.consumer.helper.BaseConst;
 
 import java.util.Objects;
 

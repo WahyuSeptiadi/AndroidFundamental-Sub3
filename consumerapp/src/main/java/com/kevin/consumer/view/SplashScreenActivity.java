@@ -7,6 +7,7 @@ import android.view.View;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.kevin.consumer.R;
+import com.kevin.consumer.view.favorite.FavoriteActivity;
 
 import gr.net.maroulis.library.EasySplashScreen;
 
