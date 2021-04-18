@@ -81,43 +81,21 @@
         app:layout_constraintTop_toBottomOf="@+id/topBarSearching"
         app:layout_constraintVertical_bias="0.0">
 
-        <ImageView
-            android:id="@+id/BLOCK"
-            android:layout_width="5dp"
-            android:layout_height="wrap_content"
-            android:layout_margin="10dp"
-            android:contentDescription="@string/todo"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
         <EditText
             android:id="@+id/editTextSearch"
-            android:layout_width="700dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
             android:autofillHints=""
             android:background="@android:color/transparent"
             android:hint="@string/hint_searching"
-            android:inputType="textAutoComplete"
+            android:imeOptions="actionSearch"
+            android:inputType="text"
+            android:textAlignment="center"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/BLOCK"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.75" />
 
-        <ImageView
-            android:id="@+id/btnCari"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentStart="true"
-            android:layout_marginTop="5dp"
-            android:layout_marginEnd="5dp"
-            android:background="@drawable/bg_round"
-            android:contentDescription="@string/todo"
-            android:padding="5dp"
-            android:src="@drawable/ic_search_white"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <TextView
@@ -135,6 +113,7 @@
         android:id="@+id/rv_search"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/searching"

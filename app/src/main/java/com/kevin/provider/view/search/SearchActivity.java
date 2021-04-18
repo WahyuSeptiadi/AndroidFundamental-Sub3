@@ -12,6 +12,7 @@ import android.text.TextUtils;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -21,7 +22,6 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -29,7 +29,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.kevin.provider.R;
 import com.kevin.provider.view.favorite.FavoriteActivity;
-import com.kevin.provider.view.follower.FollowersListAdapter;
 import com.kevin.provider.view.setting.SetReminderActivity;
 
 import de.mateware.snacky.Snacky;
@@ -38,11 +37,10 @@ import es.dmoral.toasty.Toasty;
 public class SearchActivity extends AppCompatActivity {
 
     private RecyclerView recyclerView;
-    private FollowersListAdapter adapter;
-    private EditText et_username;
+    private SearchListAdapter adapter;
+    private EditText etUsername;
     private SearchViewModel searchViewModel;
     private ProgressBar progressBar;
-    private ConstraintLayout searching;
 
     private TextView message;
     private ImageView imgLanguage, imgSettings, imgReminder;
@@ -55,8 +53,7 @@ public class SearchActivity extends AppCompatActivity {
         setContentView(R.layout.activity_search);
 
         recyclerView = findViewById(R.id.rv_search);
-        ImageView btnSearch = findViewById(R.id.btnCari);
-        et_username = findViewById(R.id.editTextSearch);
+        etUsername = findViewById(R.id.editTextSearch);
         message = findViewById(R.id.tv_message);
 
         imgLanguage = findViewById(R.id.imgLanguage);
@@ -66,7 +63,6 @@ public class SearchActivity extends AppCompatActivity {
         progressBar = findViewById(R.id.progress_circular);
         progressBar.setProgress(0);
         FloatingActionButton fab = findViewById(R.id.fab_favorite);
-        searching = findViewById(R.id.searching);
 
         setRecyclerView();
 
@@ -82,7 +78,7 @@ public class SearchActivity extends AppCompatActivity {
             String data = savedInstanceState.getString("key");
 
             searchViewModel.setSearchData(data);
-            getData();
+            getDataUser();
             progressBar.setVisibility(View.GONE);
         }
 
@@ -103,47 +99,54 @@ public class SearchActivity extends AppCompatActivity {
             public void onScrollStateChanged(@NonNull RecyclerView recyclerView, int newState) {
                 if (newState == RecyclerView.SCROLL_STATE_IDLE) {
                     fab.show();
-                    searching.setVisibility(View.GONE);
                 }
                 // cek if rv in bottom last list
                 if (!recyclerView.canScrollVertically(1)) {
                     fab.hide();
-                    searching.setVisibility(View.VISIBLE);
                 }
 
                 super.onScrollStateChanged(recyclerView, newState);
             }
         });
 
-        btnSearch.setOnClickListener(v -> {
-            if (checkInternet()) {
-                if (count) {
-                    Snacky.builder()
-                            .setView(recyclerView)
-                            .setIcon(R.drawable.ic_signal_on)
-                            .centerText()
-                            .setText(getResources().getString(R.string.msg_internet_on))
-                            .setDuration(Snacky.LENGTH_LONG)
-                            .success().show();
-                    count = false;
-                } else {
-                    searchData();
-                }
-            } else {
-                Snacky.builder()
-                        .setView(recyclerView)
-                        .setIcon(R.drawable.ic_signal_off)
-                        .centerText()
-                        .setText(getResources().getString(R.string.msg_internet_off))
-                        .setDuration(Snacky.LENGTH_LONG)
-                        .error().show();
-                count = true;
-            }
+        etUsername.setOnEditorActionListener((v, actionId, event) -> {
+            if (actionId == EditorInfo.IME_ACTION_SEARCH) {
+                String username = etUsername.getText().toString();
 
-            // autohide after search keyword
-            InputMethodManager imm = (InputMethodManager) this.getSystemService(Activity.INPUT_METHOD_SERVICE);
-            assert imm != null;
-            imm.toggleSoftInput(InputMethodManager.HIDE_IMPLICIT_ONLY, 0);
+                if (TextUtils.isEmpty(username)) {
+                    Toast.makeText(this, getResources().getString(R.string.toast_enter_key), Toast.LENGTH_SHORT).show();
+                    progressBar.setVisibility(View.GONE);
+                } else {
+                    searchViewModel.setSearchData(username);
+                    if (checkInternet()) {
+                        if (count) {
+                            Snacky.builder()
+                                    .setView(recyclerView)
+                                    .setIcon(R.drawable.ic_signal_on)
+                                    .centerText()
+                                    .setText(getResources().getString(R.string.msg_internet_on))
+                                    .setDuration(Snacky.LENGTH_LONG)
+                                    .success().show();
+                            count = false;
+                        } else {
+                            searchData();
+                        }
+                    } else {
+                        Snacky.builder()
+                                .setView(recyclerView)
+                                .setIcon(R.drawable.ic_signal_off)
+                                .centerText()
+                                .setText(getResources().getString(R.string.msg_internet_off))
+                                .setDuration(Snacky.LENGTH_LONG)
+                                .error().show();
+                        count = true;
+                    }
+                }
+
+                hideSoftKeyboard();
+                return true;
+            }
+            return false;
         });
 
         imgLanguage.setOnClickListener(v -> {
@@ -172,14 +175,14 @@ public class SearchActivity extends AppCompatActivity {
     @Override
     public void onSaveInstanceState(@NonNull Bundle outState) {
         super.onSaveInstanceState(outState);
-        outState.putString("key", et_username.getText().toString());
+        outState.putString("key", etUsername.getText().toString());
     }
 
     @Override
     protected void onRestart() {
         super.onRestart();
         if (checkInternet()) {
-            getData();
+            getDataUser();
             progressBar.setVisibility(View.GONE);
         } else {
             Snacky.builder()
@@ -192,18 +195,27 @@ public class SearchActivity extends AppCompatActivity {
         }
     }
 
+    private void hideSoftKeyboard() {
+        InputMethodManager imm = (InputMethodManager) this.getSystemService(Activity.INPUT_METHOD_SERVICE);
+        View view = this.getCurrentFocus();
+        if (view == null) {
+            view = new View(this);
+        }
+        imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
+    }
+
     private void searchData() {
-        if (TextUtils.isEmpty(et_username.getText().toString())) {
+        if (TextUtils.isEmpty(etUsername.getText().toString())) {
             Toasty.error(this, getResources().getString(R.string.toast_enter_key), Toast.LENGTH_SHORT, true).show();
             progressBar.setVisibility(View.GONE);
         } else {
             Toasty.info(this, getResources().getString(R.string.toast_searching), Toast.LENGTH_SHORT, true).show();
-            searchViewModel.setSearchData(et_username.getText().toString());
-            getData();
+            searchViewModel.setSearchData(etUsername.getText().toString());
+            getDataUser();
         }
     }
 
-    private void getData() {
+    private void getDataUser() {
         progressBar.setVisibility(View.VISIBLE);
         message.setVisibility(View.INVISIBLE);
         searchViewModel.getSearchData().observe(this, git_user -> {
@@ -221,7 +233,7 @@ public class SearchActivity extends AppCompatActivity {
                 message.setText(R.string.str_message);
                 message.setVisibility(View.VISIBLE);
             }
-            et_username.setText("");
+            etUsername.setText("");
         });
     }
 
@@ -229,7 +241,7 @@ public class SearchActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setHasFixedSize(true);
         recyclerView.smoothScrollToPosition(0);
-        adapter = new FollowersListAdapter(SearchActivity.this);
+        adapter = new SearchListAdapter(SearchActivity.this);
         adapter.notifyDataSetChanged();
     }
 
