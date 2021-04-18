@@ -1,40 +1,42 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="com.wahyu.consumerapp">
+    package="com.kevin.consumer">
 
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.WAKE_LOCK" />
     <uses-permission android:name="android.permission.VIBRATE" />
-    <uses-permission android:name="com.wahyu.githubapi.READ_DATABASE"/>
-    <uses-permission android:name="com.wahyu.githubapi.WRITE_DATABASE"/>
+    <uses-permission android:name="com.kevin.git.READ_DATABASE" />
+    <uses-permission android:name="com.kevin.git.WRITE_DATABASE" />
 
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/ic_gitlab_round"
+        android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_gitlab_round"
+        android:roundIcon="@mipmap/ic_launcher"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="AllowBackup">
 
         <receiver
-            android:name=".alarm.AlarmReceiver"
+            android:name="com.kevin.consumer.alarm.AlarmReceiver"
             android:enabled="true"
             android:exported="true"
             android:permission="@string/todo"
             tools:ignore="ManifestResource" />
 
-        <activity android:name=".view.SplashScreenActivity">
+        <activity android:name="com.kevin.consumer.view.SplashScreenActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".view.DetailActivity"/>
-        <activity android:name=".view.FavoriteActivity" android:launchMode="singleTask"/>
-        <activity android:name=".view.SetReminderActivity"/>
+        <activity android:name="com.kevin.consumer.view.DetailActivity" />
+        <activity
+            android:name="com.kevin.consumer.view.FavoriteActivity"
+            android:launchMode="singleTask" />
+        <activity android:name="com.kevin.consumer.view.SetReminderActivity" />
     </application>
 
 </manifest>

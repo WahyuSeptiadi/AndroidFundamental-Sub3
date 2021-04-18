@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="com.wahyu.githubapi">
+    package="com.kevin.git">
 
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.INTERNET" />
@@ -9,25 +9,25 @@
     <uses-permission android:name="android.permission.VIBRATE" />
 
     <permission
-        android:name="com.wahyu.githubapi.READ_DATABASE"
+        android:name="com.kevin.git.READ_DATABASE"
         android:protectionLevel="normal" />
     <permission
-        android:name="com.wahyu.githubapi.WRITE_DATABASE"
+        android:name="com.kevin.git.WRITE_DATABASE"
         android:protectionLevel="normal" />
 
     <application
         android:hardwareAccelerated="true"
-        android:icon="@mipmap/ic_githubnew_round"
+        android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_githubnew_round"
+        android:roundIcon="@mipmap/ic_launcher"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="AllowBackup">
         <service
-            android:name="com.wahyu.githubapi.widget.StackWidgetService"
+            android:name="com.kevin.git.widget.StackWidgetService"
             android:permission="android.permission.BIND_REMOTEVIEWS" />
 
-        <receiver android:name=".widget.ImageFavoriteWidget">
+        <receiver android:name="com.kevin.git.widget.ImageFavoriteWidget">
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
             </intent-filter>
@@ -38,28 +38,28 @@
         </receiver>
 
         <provider
-            android:name=".provider.MyContentProvider"
-            android:authorities="com.wahyu.githubapi"
+            android:name="com.kevin.git.provider.MyContentProvider"
+            android:authorities="com.kevin.git"
             android:enabled="true"
             android:exported="true"
-            android:readPermission="com.wahyu.githubapi.READ_DATABASE"
-            android:writePermission="com.wahyu.githubapi.WRITE_DATABASE"
+            android:readPermission="com.kevin.git.READ_DATABASE"
+            android:writePermission="com.kevin.git.WRITE_DATABASE"
             tools:replace="exported" />
 
         <receiver
-            android:name=".alarm.AlarmReceiver"
+            android:name="com.kevin.git.alarm.AlarmReceiver"
             android:enabled="true"
             android:exported="true"
             android:permission="@string/todo"
             tools:ignore="ManifestResource" />
 
-        <activity android:name=".view.SetReminderActivity" />
-        <activity android:name=".view.FavoriteActivity" />
-        <activity android:name=".view.DetailActivity" />
+        <activity android:name="com.kevin.git.view.SetReminderActivity" />
+        <activity android:name="com.kevin.git.view.FavoriteActivity" />
+        <activity android:name="com.kevin.git.view.DetailActivity" />
         <activity
-            android:name=".view.SearchActivity"
+            android:name="com.kevin.git.view.SearchActivity"
             android:launchMode="singleTask" />
-        <activity android:name=".view.SplashScreenActivity">
+        <activity android:name="com.kevin.git.view.SplashScreenActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
