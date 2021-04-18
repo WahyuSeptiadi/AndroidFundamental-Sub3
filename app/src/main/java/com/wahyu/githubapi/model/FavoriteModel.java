@@ -3,11 +3,6 @@ package com.wahyu.githubapi.model;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-/**
- * Created by wahyu_septiadi on 03, July 2020.
- * Visit My GitHub --> https://github.com/WahyuSeptiadi
- */
-
 public class FavoriteModel implements Parcelable {
     private int id;
     private final String avatar;

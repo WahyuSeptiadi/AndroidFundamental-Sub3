@@ -24,11 +24,6 @@ import java.util.Objects;
 
 import static com.wahyu.githubapi.localDatabase.contract.DatabaseContract.FavColumns.CONTENT_URI;
 
-/**
- * Created by wahyu_septiadi on 07, July 2020.
- * Visit My GitHub --> https://github.com/WahyuSeptiadi
- */
-
 class StackRemoteViewsFactory implements RemoteViewsService.RemoteViewsFactory {
     private final List<Bitmap> mWidgetItems = new ArrayList<>();
     private final Context mContext;

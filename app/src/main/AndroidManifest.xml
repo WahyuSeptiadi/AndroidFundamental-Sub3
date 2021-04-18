@@ -42,9 +42,9 @@
             android:authorities="com.wahyu.githubapi"
             android:enabled="true"
             android:exported="true"
-            tools:replace="exported"
             android:readPermission="com.wahyu.githubapi.READ_DATABASE"
-            android:writePermission="com.wahyu.githubapi.WRITE_DATABASE" />
+            android:writePermission="com.wahyu.githubapi.WRITE_DATABASE"
+            tools:replace="exported" />
 
         <receiver
             android:name=".alarm.AlarmReceiver"

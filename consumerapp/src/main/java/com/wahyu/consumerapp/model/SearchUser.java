@@ -4,11 +4,6 @@ import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
 
-/**
- * Created by wahyu_septiadi on 28, June 2020.
- * Visit My GitHub --> https://github.com/WahyuSeptiadi
- */
-
 public class SearchUser {
     @SerializedName("total_count")
     long total_count;

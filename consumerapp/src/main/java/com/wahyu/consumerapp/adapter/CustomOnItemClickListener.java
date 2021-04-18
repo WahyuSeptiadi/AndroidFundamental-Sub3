@@ -2,11 +2,6 @@ package com.wahyu.consumerapp.adapter;
 
 import android.view.View;
 
-/**
- * Created by wahyu_septiadi on 03, July 2020.
- * Visit My GitHub --> https://github.com/WahyuSeptiadi
- */
-
 class CustomOnItemClickListener implements View.OnClickListener {
 
     private final int position;

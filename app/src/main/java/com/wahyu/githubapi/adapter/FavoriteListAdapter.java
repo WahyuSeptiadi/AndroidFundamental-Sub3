@@ -31,11 +31,6 @@ import es.dmoral.toasty.Toasty;
 import static android.content.Context.MODE_PRIVATE;
 import static com.wahyu.githubapi.localDatabase.contract.DatabaseContract.FavColumns.CONTENT_URI;
 
-/**
- * Created by wahyu_septiadi on 03, July 2020.
- * Visit My GitHub --> https://github.com/WahyuSeptiadi
- */
-
 public class FavoriteListAdapter extends RecyclerView.Adapter<FavoriteListAdapter.ViewHolder>{
 
     public final ArrayList<FavoriteModel> favoriteModelArrayList = new ArrayList<>();

@@ -10,11 +10,6 @@ import com.wahyu.consumerapp.R;
 
 import gr.net.maroulis.library.EasySplashScreen;
 
-/**
- * Created by wahyu_septiadi on 30, June 2020.
- * Visit My GitHub --> https://github.com/WahyuSeptiadi
- */
-
 public class SplashScreenActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {

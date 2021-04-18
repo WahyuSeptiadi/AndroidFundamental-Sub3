@@ -11,11 +11,6 @@ import static android.provider.BaseColumns._ID;
 import static com.wahyu.githubapi.localDatabase.contract.DatabaseContract.FavColumns.IDUSER;
 import static com.wahyu.githubapi.localDatabase.contract.DatabaseContract.TABLE_NAME;
 
-/**
- * Created by wahyu_septiadi on 03, July 2020.
- * Visit My GitHub --> https://github.com/WahyuSeptiadi
- */
-
 public class FavoriteHelper {
     private static final String DATABASE_TABLE = TABLE_NAME;
     private static DatabaseHelper dataBaseHelper;

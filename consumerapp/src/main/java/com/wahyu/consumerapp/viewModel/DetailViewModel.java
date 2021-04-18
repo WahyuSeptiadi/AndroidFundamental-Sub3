@@ -18,11 +18,6 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-/**
- * Created by wahyu_septiadi on 29, June 2020.
- * Visit My GitHub --> https://github.com/WahyuSeptiadi
- */
-
 public class DetailViewModel extends ViewModel {
     private final MutableLiveData<UserDetails> detailUser = new MutableLiveData<>();
 
@@ -33,7 +28,7 @@ public class DetailViewModel extends ViewModel {
     public void setDetailUser(String username) {
         GithubService gitService = ServiceGenerator.build().create(GithubService.class);
 
-        Call<UserDetails> callAsync = gitService.getUserDetail(username, BuildConfig.APIGithub2);
+        Call<UserDetails> callAsync = gitService.getUserDetail(username, BuildConfig.GithubToken);
 
         callAsync.enqueue(new Callback<UserDetails>() {
             @Override

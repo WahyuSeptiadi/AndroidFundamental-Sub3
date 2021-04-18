@@ -3,11 +3,6 @@ package com.wahyu.consumerapp.localDatabase.contract;
 import android.net.Uri;
 import android.provider.BaseColumns;
 
-/**
- * Created by wahyu_septiadi on 03, July 2020.
- * Visit My GitHub --> https://github.com/WahyuSeptiadi
- */
-
 public class DatabaseContract {
 
     public static final String AUTHORITY = "com.wahyu.githubapi";

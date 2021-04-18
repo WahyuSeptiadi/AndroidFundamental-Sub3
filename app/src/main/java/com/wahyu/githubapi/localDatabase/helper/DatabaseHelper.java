@@ -6,11 +6,6 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 import com.wahyu.githubapi.localDatabase.contract.DatabaseContract;
 
-/**
- * Created by wahyu_septiadi on 03, July 2020.
- * Visit My GitHub --> https://github.com/WahyuSeptiadi
- */
-
 public class DatabaseHelper extends SQLiteOpenHelper {
 
     public static final String DATABASE_NAME = "dbfavorite";

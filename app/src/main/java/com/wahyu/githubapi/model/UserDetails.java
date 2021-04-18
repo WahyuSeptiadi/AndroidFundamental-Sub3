@@ -2,11 +2,6 @@ package com.wahyu.githubapi.model;
 
 import com.google.gson.annotations.SerializedName;
 
-/**
- * Created by wahyu_septiadi on 28, June 2020.
- * Visit My GitHub --> https://github.com/WahyuSeptiadi
- */
-
 public class UserDetails {
     @SerializedName("login")
     String login;

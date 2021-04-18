@@ -7,11 +7,6 @@ import com.wahyu.githubapi.localDatabase.contract.DatabaseContract;
 
 import java.util.ArrayList;
 
-/**
- * Created by wahyu_septiadi on 05, July 2020.
- * Visit My GitHub --> https://github.com/WahyuSeptiadi
- */
-
 public class MappingHelper {
 
     public static ArrayList<FavoriteModel> mapCursorToArrayList(Cursor dataCursor) {

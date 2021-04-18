@@ -41,11 +41,6 @@ import static com.wahyu.githubapi.localDatabase.contract.DatabaseContract.FavCol
 import static com.wahyu.githubapi.localDatabase.contract.DatabaseContract.FavColumns.TYPEUSER;
 import static com.wahyu.githubapi.localDatabase.contract.DatabaseContract.FavColumns.USERNAME;
 
-/**
- * Created by wahyu_septiadi on 28, June 2020.
- * Visit My GitHub --> https://github.com/WahyuSeptiadi
- */
-
 public class DetailSearchListAdapter extends RecyclerView.Adapter<DetailSearchListAdapter.ViewHolder> {
 //    => Penamaan class sebaiknya diperjelas
 

@@ -40,11 +40,6 @@ import static com.wahyu.consumerapp.localDatabase.contract.DatabaseContract.FavC
 import static com.wahyu.consumerapp.localDatabase.contract.DatabaseContract.FavColumns.TYPEUSER;
 import static com.wahyu.consumerapp.localDatabase.contract.DatabaseContract.FavColumns.USERNAME;
 
-/**
- * Created by wahyu_septiadi on 28, June 2020.
- * Visit My GitHub --> https://github.com/WahyuSeptiadi
- */
-
 public class DetailListAdapter extends RecyclerView.Adapter<DetailListAdapter.ViewHolder> {
 //    => Penamaan class sebaiknya diperjelas
 

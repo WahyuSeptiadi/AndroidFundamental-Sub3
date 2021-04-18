@@ -10,11 +10,6 @@ import androidx.fragment.app.DialogFragment;
 
 import java.util.Calendar;
 
-/**
- * Created by wahyu_septiadi on 03, July 2020.
- * Visit My GitHub --> https://github.com/WahyuSeptiadi
- */
-
 public class TimePickerFragment extends DialogFragment implements TimePickerDialog.OnTimeSetListener {
     DialogTimeListener mListener;
 

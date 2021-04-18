@@ -18,11 +18,6 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-/**
- * Created by wahyu_septiadi on 29, June 2020.
- * Visit My GitHub --> https://github.com/WahyuSeptiadi
- */
-
 public class FollowersViewModel extends ViewModel {
     private final MutableLiveData<List<SearchUserInfo>> searchUserInfo = new MutableLiveData<>();
 
@@ -33,7 +28,7 @@ public class FollowersViewModel extends ViewModel {
     public void setFollowersData(String username) {
         GithubService gitService = ServiceGenerator.build().create(GithubService.class);
 
-        Call<List<SearchUserInfo>> callAsync = gitService.getUserFollowers(username, BuildConfig.APIGithub1);
+        Call<List<SearchUserInfo>> callAsync = gitService.getUserFollowers(username, BuildConfig.GithubToken);
 
         callAsync.enqueue(new Callback<List<SearchUserInfo>>() {
             @Override

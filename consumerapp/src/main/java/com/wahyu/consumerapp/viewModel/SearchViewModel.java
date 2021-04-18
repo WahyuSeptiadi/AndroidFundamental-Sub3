@@ -18,11 +18,6 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-/**
- * Created by wahyu_septiadi on 28, June 2020.
- * Visit My GitHub --> https://github.com/WahyuSeptiadi
- */
-
 public class SearchViewModel extends ViewModel {
     private final MutableLiveData<SearchUser> searchUser = new MutableLiveData<>();
 
@@ -37,7 +32,7 @@ public class SearchViewModel extends ViewModel {
     public void loadJSON(String username) {
         GithubService gitService = ServiceGenerator.build().create(GithubService.class);
 
-        Call<SearchUser> callAsync = gitService.cariUser(username, BuildConfig.APIGithub2);
+        Call<SearchUser> callAsync = gitService.cariUser(username, BuildConfig.GithubToken);
 
         callAsync.enqueue(new Callback<SearchUser>() {
             @Override
