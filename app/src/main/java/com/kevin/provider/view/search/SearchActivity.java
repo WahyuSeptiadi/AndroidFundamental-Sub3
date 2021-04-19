@@ -1,6 +1,5 @@
 package com.kevin.provider.view.search;
 
-import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
@@ -46,7 +45,6 @@ public class SearchActivity extends AppCompatActivity {
     private ImageView imgLanguage, imgSettings, imgReminder;
     private static boolean count;
 
-    @SuppressLint("ResourceAsColor")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

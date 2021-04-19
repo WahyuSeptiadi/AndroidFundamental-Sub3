@@ -76,16 +76,16 @@ public class FollowingListAdapter extends RecyclerView.Adapter<FollowingListAdap
         }));
 
         SharedPreferences sharedPreferences = activity.getSharedPreferences("fav", MODE_PRIVATE);
-        boolean cek = sharedPreferences.getBoolean("fav"+ mInfo_Users.get(position).getId(), false);
+        boolean cek = sharedPreferences.getBoolean("fav" + mInfo_Users.get(position).getId(), false);
         holder.borderFavList.setVisibility(View.VISIBLE);
-        if (cek){
+        if (cek) {
             holder.fillFavList.setVisibility(View.VISIBLE);
-        }else{
+        } else {
             holder.fillFavList.setVisibility(View.GONE);
         }
 
         holder.borderFavList.setOnClickListener(new CustomOnItemClickListener(position, (view, position1) -> {
-            if (cursor != null){
+            if (cursor != null) {
                 cursor.close();
             }
 
@@ -96,38 +96,38 @@ public class FollowingListAdapter extends RecyclerView.Adapter<FollowingListAdap
 
             for (FavoriteModel favlist : list) {
                 cekIdUser = favlist.getIduser().equals(now);
-                if (cekIdUser){
+                if (cekIdUser) {
                     break;
                 }
             }
 
-            if (cekIdUser){
-                if (holder.borderFavList.getVisibility() == View.VISIBLE && holder.fillFavList.getVisibility() == View.VISIBLE){
+            if (cekIdUser) {
+                if (holder.borderFavList.getVisibility() == View.VISIBLE && holder.fillFavList.getVisibility() == View.VISIBLE) {
                     Toasty.error(activity, activity.getResources().getString(R.string.user_already),
                             Toast.LENGTH_SHORT, true).show();
-                }else if(holder.borderFavList.getVisibility() == View.VISIBLE){
+                } else if (holder.borderFavList.getVisibility() == View.VISIBLE) {
                     Toasty.warning(activity, activity.getResources().getString(R.string.other_add),
-                    Toast.LENGTH_SHORT, true).show();
+                            Toast.LENGTH_SHORT, true).show();
                     holder.fillFavList.setVisibility(View.VISIBLE);
-                }else if (holder.fillFavList.getVisibility() == View.GONE){
+                } else if (holder.fillFavList.getVisibility() == View.GONE) {
                     holder.fillFavList.setVisibility(View.VISIBLE);
-                }else{
+                } else {
                     holder.fillFavList.setVisibility(View.VISIBLE);
                 }
                 SharedPreferences.Editor editor = activity.getSharedPreferences("fav", MODE_PRIVATE).edit();
                 editor.putBoolean("fav" + mInfo_Users.get(position).getId(), true);
                 editor.apply();
-            }else{
-                if(holder.borderFavList.getVisibility() == View.VISIBLE && holder.fillFavList.getVisibility() == View.VISIBLE){
+            } else {
+                if (holder.borderFavList.getVisibility() == View.VISIBLE && holder.fillFavList.getVisibility() == View.VISIBLE) {
                     Toasty.success(activity, activity.getResources().getString(R.string.add_again),
-                    Toast.LENGTH_LONG, true).show();
-                }else if(holder.borderFavList.getVisibility() == View.VISIBLE && holder.fillFavList.getVisibility() == View.GONE){
+                            Toast.LENGTH_LONG, true).show();
+                } else if (holder.borderFavList.getVisibility() == View.VISIBLE && holder.fillFavList.getVisibility() == View.GONE) {
                     Snacky.builder()
-                        .setView(view)
-                        .centerText()
-                        .setText(activity.getResources().getString(R.string.success_add))
-                        .setDuration(Snacky.LENGTH_SHORT)
-                        .success().show();
+                            .setView(view)
+                            .centerText()
+                            .setText(activity.getResources().getString(R.string.success_add))
+                            .setDuration(Snacky.LENGTH_SHORT)
+                            .success().show();
                 }
 
                 ContentValues values = new ContentValues();
@@ -157,7 +157,6 @@ public class FollowingListAdapter extends RecyclerView.Adapter<FollowingListAdap
         private final CircleImageView imgAvatar;
         private final TextView username;
         private final TextView typeUser;
-        private final TextView idUser;
         private final ImageView fillFavList;
         private final ImageView borderFavList;
         private final CardView item;
@@ -168,9 +167,8 @@ public class FollowingListAdapter extends RecyclerView.Adapter<FollowingListAdap
             imgAvatar = itemView.findViewById(R.id.civ_search);
             username = itemView.findViewById(R.id.usernameValue_listSearch);
             typeUser = itemView.findViewById(R.id.typeUserValue_listSearch);
-            idUser = itemView.findViewById(R.id.idUserValue_listSearch);
             item = itemView.findViewById(R.id.cardListSearch);
-            fillFavList = itemView.findViewById(R.id.filledFavList);
+            fillFavList = itemView.findViewById(R.id.addToFavList);
             borderFavList = itemView.findViewById(R.id.borderFavList);
         }
 
@@ -180,16 +178,15 @@ public class FollowingListAdapter extends RecyclerView.Adapter<FollowingListAdap
                     .into(imgAvatar);
             username.setText(userResultResponse.getLogin());
             typeUser.setText(String.valueOf(userResultResponse.getType()));
-            idUser.setText(String.valueOf(userResultResponse.getId()));
         }
     }
 
-    public void setData(List<UserResultResponse> infoUser){
+    public void setData(List<UserResultResponse> infoUser) {
         this.mInfo_Users = infoUser;
         notifyDataSetChanged();
     }
 
-    public void clearList(List<UserResultResponse> clearListUser){
+    public void clearList(List<UserResultResponse> clearListUser) {
         this.mInfo_Users = clearListUser;
         this.mInfo_Users.clear();
         notifyDataSetChanged();

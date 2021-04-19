@@ -20,9 +20,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.kevin.consumer.data.local.FavoriteModel;
 import com.kevin.consumer.R;
 import com.kevin.consumer.data.local.DatabaseContract;
+import com.kevin.consumer.data.local.FavoriteModel;
 import com.kevin.consumer.data.local.MappingHelper;
 import com.kevin.consumer.view.setting.SetReminderActivity;
 
@@ -70,11 +70,11 @@ public class FavoriteActivity extends AppCompatActivity implements LoadFavCallba
         getContentResolver().registerContentObserver(DatabaseContract.FavColumns.CONTENT_URI, true, myObserver);
 
         // Safe OrientationState
-        if (savedInstanceState == null){
+        if (savedInstanceState == null) {
             new LoadFavAsync(this, this).execute();
-        }else {
+        } else {
             ArrayList<FavoriteModel> favoriteModelArrayList = savedInstanceState.getParcelableArrayList(EXTRA_STATE);
-            if (favoriteModelArrayList != null){
+            if (favoriteModelArrayList != null) {
                 favoriteListAdapter.setFavoriteModelArrayList(favoriteModelArrayList);
             }
             progressBar.setVisibility(View.GONE);
@@ -118,12 +118,11 @@ public class FavoriteActivity extends AppCompatActivity implements LoadFavCallba
 
     @Override
     public void postExecute(ArrayList<FavoriteModel> favMod) {
-        //setProgressbar GONE, setelah selesai di load
         progressBar.setVisibility(View.GONE);
 
-        if (favMod.size() > 0){
+        if (favMod.size() > 0) {
             favoriteListAdapter.setFavoriteModelArrayList(favMod);
-        }else {
+        } else {
             favoriteListAdapter.setFavoriteModelArrayList(new ArrayList<>());
             Snacky.builder()
                     .setView(recyclerView)
@@ -175,6 +174,7 @@ public class FavoriteActivity extends AppCompatActivity implements LoadFavCallba
             super(handler);
             this.context = context;
         }
+
         @Override
         public void onChange(boolean selfChange) {
             super.onChange(selfChange);

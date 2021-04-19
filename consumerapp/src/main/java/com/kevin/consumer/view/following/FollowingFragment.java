@@ -49,15 +49,15 @@ public class FollowingFragment extends Fragment {
         return view;
     }
 
-    private void getData(){
+    private void getData() {
         followingViewModel.getFollowingData().observe(Objects.requireNonNull(getActivity()), git_user -> {
-            if (git_user.isEmpty()){
+            if (git_user.isEmpty()) {
                 adapter.clearList(git_user);
 
                 progressBar.setVisibility(View.GONE);
-                message.setText(R.string.str_followingnull);
+                message.setText(R.string.str_following_null);
                 message.setVisibility(View.VISIBLE);
-            }else{
+            } else {
                 adapter.setData(git_user);
                 recyclerView.setAdapter(adapter);
 
@@ -66,7 +66,7 @@ public class FollowingFragment extends Fragment {
         });
     }
 
-    private void setRecyclerView(){
+    private void setRecyclerView() {
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         recyclerView.setHasFixedSize(true);
         recyclerView.smoothScrollToPosition(0);

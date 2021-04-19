@@ -8,9 +8,9 @@ import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
 import com.kevin.consumer.BuildConfig;
-import com.kevin.consumer.data.remote.response.UserDetailResponse;
-import com.kevin.consumer.data.remote.ServiceGenerator;
 import com.kevin.consumer.data.remote.GithubService;
+import com.kevin.consumer.data.remote.ServiceGenerator;
+import com.kevin.consumer.data.remote.response.UserDetailResponse;
 
 import java.util.Objects;
 
@@ -21,7 +21,7 @@ import retrofit2.Response;
 public class DetailViewModel extends ViewModel {
     private final MutableLiveData<UserDetailResponse> detailUser = new MutableLiveData<>();
 
-    public LiveData<UserDetailResponse> getDetailUser(){
+    public LiveData<UserDetailResponse> getDetailUser() {
         return detailUser;
     }
 
@@ -34,13 +34,12 @@ public class DetailViewModel extends ViewModel {
             @Override
             public void onResponse(@NonNull Call<UserDetailResponse> call, @NonNull Response<UserDetailResponse> response) {
 
-                if(response.body() != null) {
+                if (response.body() != null) {
                     UserDetailResponse git = response.body();
-                    Log.e("SUKSES DETAIL", String.valueOf(response.body()));
+                    Log.e("SUCCESS DETAIL", String.valueOf(response.body()));
                     detailUser.setValue(git);
-                }else{
-                    assert response.body() != null;
-                    Log.e("ERROR DETAIL", String.valueOf(response.body()));
+                } else {
+                    Log.e("ERROR DETAIL", "NULL");
                 }
             }
 

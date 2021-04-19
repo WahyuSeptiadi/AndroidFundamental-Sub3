@@ -24,8 +24,7 @@ public class FollowersFragment extends Fragment {
     private FollowersViewModel followersViewModel;
     private ProgressBar progressBar;
 
-    //buat cek
-    TextView message;
+    private TextView message;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -45,20 +44,20 @@ public class FollowersFragment extends Fragment {
         //setData
         followersViewModel.setFollowersData(username);
 
-        getData();
+        getDataUser();
 
         return view;
     }
 
-    private void getData(){
+    private void getDataUser() {
         followersViewModel.getFollowersData().observe((Objects.requireNonNull(getActivity())), git_user -> {
-            if (git_user.isEmpty()){
+            if (git_user.isEmpty()) {
                 adapter.clearList(git_user);
 
                 progressBar.setVisibility(View.GONE);
-                message.setText(R.string.str_followersnull);
+                message.setText(R.string.str_follower_null);
                 message.setVisibility(View.VISIBLE);
-            }else{
+            } else {
                 adapter.setData(git_user);
                 recyclerView.setAdapter(adapter);
 
@@ -67,7 +66,7 @@ public class FollowersFragment extends Fragment {
         });
     }
 
-    private void setRecyclerView(){
+    private void setRecyclerView() {
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         recyclerView.setHasFixedSize(true);
         recyclerView.smoothScrollToPosition(0);

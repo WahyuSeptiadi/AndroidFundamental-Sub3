@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
@@ -12,41 +11,44 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:visibility="visible">
+
         <androidx.appcompat.widget.Toolbar
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="#2196F3"
+            android:background="@color/colorPrimaryDark"
             app:titleTextColor="#fff" />
+
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
             android:layout_marginTop="13dp"
             android:text="@string/str_favorite_user"
             android:textAlignment="center"
-            android:layout_centerVertical="true"
             android:textColor="#fff"
-            android:textSize="18sp"/>
+            android:textSize="18sp" />
+
         <ImageView
             android:id="@+id/imgLanguage"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:visibility="invisible"
             android:layout_alignParentEnd="true"
             android:layout_centerVertical="true"
             android:layout_marginEnd="56dp"
             android:contentDescription="@string/todo"
-            android:src="@drawable/ic_language" />
+            android:src="@drawable/ic_language"
+            android:visibility="invisible" />
 
         <ImageView
             android:id="@+id/imgReminder"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:visibility="invisible"
             android:layout_alignParentEnd="true"
             android:layout_centerVertical="true"
             android:layout_marginEnd="16dp"
             android:contentDescription="@string/todo"
-            android:src="@drawable/ic_reminder_on" />
+            android:src="@drawable/ic_reminder_on"
+            android:visibility="invisible" />
 
         <ImageView
             android:id="@+id/imgSetting"
@@ -64,10 +66,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         tools:listitem="@layout/item_favorite_list" />
-
-    <androidx.viewpager.widget.ViewPager
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
 
     <ProgressBar
         android:id="@+id/progress_favorite"

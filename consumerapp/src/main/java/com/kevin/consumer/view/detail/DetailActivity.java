@@ -20,12 +20,12 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.viewpager.widget.ViewPager;
 
 import com.google.android.material.tabs.TabLayout;
-import com.kevin.consumer.view.favorite.FavoriteActivity;
-import com.squareup.picasso.Picasso;
 import com.kevin.consumer.R;
+import com.kevin.consumer.helper.BaseConst;
+import com.kevin.consumer.view.favorite.FavoriteActivity;
 import com.kevin.consumer.view.follower.FollowersFragment;
 import com.kevin.consumer.view.following.FollowingFragment;
-import com.kevin.consumer.helper.BaseConst;
+import com.squareup.picasso.Picasso;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 import de.mateware.snacky.Snacky;
@@ -45,7 +45,6 @@ public class DetailActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail);
 
-        //setComponent
         ImageView btnBack = findViewById(R.id.btnBack);
         imgAvatarDetail = findViewById(R.id.imgAvatar);
         username = findViewById(R.id.usernameValue);
@@ -56,7 +55,6 @@ public class DetailActivity extends AppCompatActivity {
         company = findViewById(R.id.companyValue);
         location = findViewById(R.id.locationValue);
 
-        // for tabLayout
         mContext = getBaseContext();
 
         SectionPagerAdapter mSection = new SectionPagerAdapter(getSupportFragmentManager());
@@ -68,12 +66,12 @@ public class DetailActivity extends AppCompatActivity {
 
         String username = getIntent().getStringExtra(BaseConst.DATA_KEY);
         detailViewModel = new ViewModelProvider(this,
-                          new ViewModelProvider.NewInstanceFactory()).get(DetailViewModel.class);
+                new ViewModelProvider.NewInstanceFactory()).get(DetailViewModel.class);
         detailViewModel.setDetailUser(username);
 
 
-        if (checkInternet()){
-            if (count){
+        if (checkInternet()) {
+            if (count) {
                 Snacky.builder()
                         .setView(mViewPager)
                         .setIcon(R.drawable.ic_signal_on)
@@ -83,10 +81,10 @@ public class DetailActivity extends AppCompatActivity {
                         .success().show();
                 getData();
                 count = false;
-            }else{
+            } else {
                 getData();
             }
-        }else{
+        } else {
             Snacky.builder()
                     .setView(mViewPager)
                     .setIcon(R.drawable.ic_signal_off)
@@ -119,24 +117,24 @@ public class DetailActivity extends AppCompatActivity {
             follower.setText(String.valueOf(git_user.getFollowers()));
             following.setText(String.valueOf(git_user.getFollowing()));
 
-            if(git_user.getName() == null){
+            if (git_user.getName() == null) {
                 name.setText(R.string.str_null);
-            }else{
+            } else {
                 name.setText(git_user.getName());
             }
 
-            if(git_user.getLocation() == null && git_user.getCompany() == null){
+            if (git_user.getLocation() == null && git_user.getCompany() == null) {
                 location.setText(R.string.str_null);
                 company.setText(R.string.str_null);
-            }else if (git_user.getCompany() == null || git_user.getLocation() == null){
-                if (git_user.getCompany() == null){
+            } else if (git_user.getCompany() == null || git_user.getLocation() == null) {
+                if (git_user.getCompany() == null) {
                     company.setText(R.string.str_null);
                     location.setText(git_user.getLocation());
-                }else if (git_user.getLocation() == null){
+                } else if (git_user.getLocation() == null) {
                     location.setText(R.string.str_null);
                     company.setText(git_user.getCompany());
                 }
-            }else{
+            } else {
                 company.setText(git_user.getCompany());
                 location.setText(git_user.getLocation());
             }
@@ -144,8 +142,8 @@ public class DetailActivity extends AppCompatActivity {
     }
 
     @Override
-    public boolean onCreateOptionsMenu(Menu menu){
-        getMenuInflater().inflate(R.menu.tablayout_detail, menu);
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.tab_layout_detail, menu);
         return true;
     }
 
@@ -164,11 +162,11 @@ public class DetailActivity extends AppCompatActivity {
         @Override
         public Fragment getItem(int position) {
             Fragment fragment = null;
-            switch (position){
-                case 0 :
+            switch (position) {
+                case 0:
                     fragment = new FollowersFragment();
                     break;
-                case 1 :
+                case 1:
                     fragment = new FollowingFragment();
                     break;
             }
@@ -183,20 +181,20 @@ public class DetailActivity extends AppCompatActivity {
 
         @Override
         public CharSequence getPageTitle(int position) {
-            switch (position){
-                case 0 :
+            switch (position) {
+                case 0:
                     return mContext.getResources().getString(R.string.tab_followers);
-                case 1 :
+                case 1:
                     return mContext.getResources().getString(R.string.tab_following);
             }
             return null;
         }
     }
 
-    public boolean checkInternet(){
+    public boolean checkInternet() {
         boolean connectStatus;
-        ConnectivityManager ConnectionManager=(ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
-        NetworkInfo networkInfo=ConnectionManager.getActiveNetworkInfo();
+        ConnectivityManager ConnectionManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo networkInfo = ConnectionManager.getActiveNetworkInfo();
         connectStatus = networkInfo != null && networkInfo.isConnected();
 
         return connectStatus;

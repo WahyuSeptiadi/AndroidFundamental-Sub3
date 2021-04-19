@@ -161,8 +161,8 @@ public class SetReminderActivity extends AppCompatActivity implements View.OnCli
         detailTime.setText(sharedPreferences.getString("time", TIME_RESET));
         et_messageTime.setText(sharedPreferences.getString("message", MESSAGE_RESET));
 
-        boolean aktifReminder = sharedPreferences.getBoolean("button", false);
-        if (aktifReminder) {
+        boolean activeReminder = sharedPreferences.getBoolean("button", false);
+        if (activeReminder) {
             setON.setVisibility(View.INVISIBLE);
             setOFF.setVisibility(View.VISIBLE);
             et_messageTime.setEnabled(false);

@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:layout_centerVertical="true"
     android:orientation="vertical"
-    tools:context=".view.search.SearchActivity">
+    tools:context=".view.setting.SetReminderActivity">
 
     <RelativeLayout
         android:layout_width="match_parent"
