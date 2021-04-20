@@ -7,23 +7,23 @@ public class FavoriteModel implements Parcelable {
     private int id;
     private final String avatar;
     private String username;
-    private final String typeuser;
-    private final String iduser;
+    private final String userType;
+    private final String userId;
 
-    public FavoriteModel(int id, String avatar, String username, String typeuser, String iduser) {
+    public FavoriteModel(int id, String avatar, String username, String userType, String userId) {
         this.id = id;
         this.avatar = avatar;
         this.username = username;
-        this.typeuser = typeuser;
-        this.iduser = iduser;
+        this.userType = userType;
+        this.userId = userId;
     }
 
     protected FavoriteModel(Parcel in) {
         id = in.readInt();
         avatar = in.readString();
         username = in.readString();
-        typeuser = in.readString();
-        iduser = in.readString();
+        userType = in.readString();
+        userId = in.readString();
     }
 
     public static final Creator<FavoriteModel> CREATOR = new Creator<FavoriteModel>() {
@@ -58,12 +58,12 @@ public class FavoriteModel implements Parcelable {
         this.username = username;
     }
 
-    public String getTypeuser() {
-        return typeuser;
+    public String getUserType() {
+        return userType;
     }
 
-    public String getIduser() {
-        return iduser;
+    public String getUserId() {
+        return userId;
     }
 
     @Override
@@ -76,7 +76,7 @@ public class FavoriteModel implements Parcelable {
         parcel.writeInt(id);
         parcel.writeString(avatar);
         parcel.writeString(username);
-        parcel.writeString(typeuser);
-        parcel.writeString(iduser);
+        parcel.writeString(userType);
+        parcel.writeString(userId);
     }
 }

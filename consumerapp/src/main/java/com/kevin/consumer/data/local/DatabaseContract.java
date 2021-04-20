@@ -12,11 +12,12 @@ public class DatabaseContract {
     }
 
     public static final String TABLE_NAME = "favorite";
+
     public static final class FavColumns implements BaseColumns {
         public static final String AVATAR = "avatar";
-        public static final String USERNAME = "username";
-        public static final String TYPEUSER = "typeuser";
-        public static final String IDUSER = "iduser";
+        public static final String USERNAME = "user_name";
+        public static final String TYPE_USER = "user_type";
+        public static final String ID_USER = "user_id";
 
         public static final Uri CONTENT_URI = new Uri.Builder().scheme(SCHEME)
                 .authority(AUTHORITY)

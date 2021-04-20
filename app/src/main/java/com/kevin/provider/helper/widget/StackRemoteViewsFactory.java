@@ -10,8 +10,8 @@ import android.os.Bundle;
 import android.widget.RemoteViews;
 import android.widget.RemoteViewsService;
 
-import com.kevin.provider.data.local.FavoriteModel;
 import com.kevin.provider.R;
+import com.kevin.provider.data.local.FavoriteModel;
 import com.kevin.provider.data.local.MappingHelper;
 
 import java.io.IOException;
@@ -40,7 +40,7 @@ class StackRemoteViewsFactory implements RemoteViewsService.RemoteViewsFactory {
 
     @Override
     public void onDataSetChanged() {
-        if (cursor != null){
+        if (cursor != null) {
             cursor.close();
         }
         final long identityToken = Binder.clearCallingIdentity();
@@ -48,8 +48,8 @@ class StackRemoteViewsFactory implements RemoteViewsService.RemoteViewsFactory {
         cursor = mContext.getContentResolver().query(CONTENT_URI, null, null, null, null);
         ArrayList<FavoriteModel> list = MappingHelper.mapCursorToArrayList(Objects.requireNonNull(cursor));
 
-        for (FavoriteModel favlist : list) {
-            mWidgetItems.add(getBitmapFromURL(favlist.getAvatar()));
+        for (FavoriteModel favList : list) {
+            mWidgetItems.add(getBitmapFromURL(favList.getAvatar()));
         }
         Binder.restoreCallingIdentity(identityToken);
     }

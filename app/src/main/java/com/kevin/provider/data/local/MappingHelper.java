@@ -8,13 +8,13 @@ public class MappingHelper {
 
     public static ArrayList<FavoriteModel> mapCursorToArrayList(Cursor dataCursor) {
         ArrayList<FavoriteModel> favoriteModelArrayList = new ArrayList<>();
-        while(dataCursor.moveToNext()){
+        while (dataCursor.moveToNext()) {
             int id = dataCursor.getInt(dataCursor.getColumnIndexOrThrow(DatabaseContract.FavColumns._ID));
             String avatar = dataCursor.getString(dataCursor.getColumnIndexOrThrow(DatabaseContract.FavColumns.AVATAR));
             String username = dataCursor.getString(dataCursor.getColumnIndexOrThrow(DatabaseContract.FavColumns.USERNAME));
-            String typeuser = dataCursor.getString(dataCursor.getColumnIndexOrThrow(DatabaseContract.FavColumns.TYPEUSER));
-            String iduser = dataCursor.getString(dataCursor.getColumnIndexOrThrow(DatabaseContract.FavColumns.IDUSER));
-            favoriteModelArrayList.add(new FavoriteModel(id, avatar, username, typeuser, iduser));
+            String userType = dataCursor.getString(dataCursor.getColumnIndexOrThrow(DatabaseContract.FavColumns.TYPE_USER));
+            String userId = dataCursor.getString(dataCursor.getColumnIndexOrThrow(DatabaseContract.FavColumns.ID_USER));
+            favoriteModelArrayList.add(new FavoriteModel(id, avatar, username, userType, userId));
         }
         return favoriteModelArrayList;
     }

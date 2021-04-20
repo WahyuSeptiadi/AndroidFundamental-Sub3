@@ -30,8 +30,8 @@
     <string name="input_message">Please, input message!</string>
     <string name="msg_delete_user">Are you sure you want to delete this item from your favorite user list?</string>
     <string name="ttl_delete_user">DELETE USER</string>
-    <string name="positive_btn">Yes, Sure</string>
-    <string name="negative_btn">Cancel cuy</string>
+    <string name="positive_btn">Yes</string>
+    <string name="negative_btn">No</string>
     <string name="success_delete">Data successfully deleted</string>
     <string name="success_add">Successfully added to favorites list</string>
     <string name="not_yet">No users have been added yet</string>

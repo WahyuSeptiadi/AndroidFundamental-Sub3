@@ -6,7 +6,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 public class DatabaseHelper extends SQLiteOpenHelper {
 
-    public static final String DATABASE_NAME = "dbfavorite";
+    public static final String DATABASE_NAME = "Favorite.db";
     private static final int DATABASE_VERSION = 1;
     private static final String SQL_CREATE_TABLE_FAVORITE = String.format("CREATE TABLE %s"
                     + " (%s INTEGER PRIMARY KEY AUTOINCREMENT,"
@@ -18,8 +18,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             DatabaseContract.FavColumns._ID,
             DatabaseContract.FavColumns.AVATAR,
             DatabaseContract.FavColumns.USERNAME,
-            DatabaseContract.FavColumns.TYPEUSER,
-            DatabaseContract.FavColumns.IDUSER
+            DatabaseContract.FavColumns.TYPE_USER,
+            DatabaseContract.FavColumns.ID_USER
     );
 
     public DatabaseHelper(Context context) {

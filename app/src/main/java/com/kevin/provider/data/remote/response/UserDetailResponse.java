@@ -4,23 +4,35 @@ import com.google.gson.annotations.SerializedName;
 
 public class UserDetailResponse {
     @SerializedName("login")
-    String login;
+    private final String login;
     @SerializedName("id")
-    long id;
+    private long id;
     @SerializedName("avatar_url")
-    String avatar_url;
+    private final String avatar_url;
     @SerializedName("name")
-    String name;
+    private final String name;
     @SerializedName("company")
-    String company;
+    private final String company;
     @SerializedName("location")
-    String location;
+    private final String location;
     @SerializedName("public_repos")
-    int public_repos;
+    private final int public_repos;
     @SerializedName("followers")
-    int followers;
+    private final int followers;
     @SerializedName("following")
-    int following;
+    private final int following;
+
+    public UserDetailResponse(String login, long id, String avatar_url, String name, String company, String location, int public_repos, int followers, int following) {
+        this.login = login;
+        this.id = id;
+        this.avatar_url = avatar_url;
+        this.name = name;
+        this.company = company;
+        this.location = location;
+        this.public_repos = public_repos;
+        this.followers = followers;
+        this.following = following;
+    }
 
     public String getLogin() {
         return login;

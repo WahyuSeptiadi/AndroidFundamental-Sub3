@@ -37,8 +37,8 @@ import es.dmoral.toasty.Toasty;
 import static android.content.Context.MODE_PRIVATE;
 import static com.kevin.consumer.data.local.DatabaseContract.FavColumns.AVATAR;
 import static com.kevin.consumer.data.local.DatabaseContract.FavColumns.CONTENT_URI;
-import static com.kevin.consumer.data.local.DatabaseContract.FavColumns.IDUSER;
-import static com.kevin.consumer.data.local.DatabaseContract.FavColumns.TYPEUSER;
+import static com.kevin.consumer.data.local.DatabaseContract.FavColumns.ID_USER;
+import static com.kevin.consumer.data.local.DatabaseContract.FavColumns.TYPE_USER;
 import static com.kevin.consumer.data.local.DatabaseContract.FavColumns.USERNAME;
 
 public class FollowersListAdapter extends RecyclerView.Adapter<FollowersListAdapter.ViewHolder> {
@@ -94,8 +94,8 @@ public class FollowersListAdapter extends RecyclerView.Adapter<FollowersListAdap
 
             String now = String.valueOf(mInfo_Users.get(position).getId());
 
-            for (FavoriteModel favlist : list) {
-                cekIdUser = favlist.getIduser().equals(now);
+            for (FavoriteModel favList : list) {
+                cekIdUser = favList.getUserId().equals(now);
                 if (cekIdUser) {
                     break;
                 }
@@ -133,8 +133,8 @@ public class FollowersListAdapter extends RecyclerView.Adapter<FollowersListAdap
                 ContentValues values = new ContentValues();
                 values.put(AVATAR, mInfo_Users.get(position).getAvatarUrl());
                 values.put(USERNAME, mInfo_Users.get(position).getLogin());
-                values.put(TYPEUSER, mInfo_Users.get(position).getType());
-                values.put(IDUSER, mInfo_Users.get(position).getId());
+                values.put(TYPE_USER, mInfo_Users.get(position).getType());
+                values.put(ID_USER, mInfo_Users.get(position).getId());
 
                 activity.getContentResolver().insert(CONTENT_URI, values);
 

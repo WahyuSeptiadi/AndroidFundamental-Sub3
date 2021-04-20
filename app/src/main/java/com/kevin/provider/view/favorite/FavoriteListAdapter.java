@@ -71,11 +71,11 @@ public class FavoriteListAdapter extends RecyclerView.Adapter<FavoriteListAdapte
         }));
 
         holder.deleteFromFavList.setOnClickListener(new CustomOnItemClickListener(position, (view, position1) -> {
-            String idUserDelete = favoriteModelArrayList.get(position).getIduser();
+            String idUserDelete = favoriteModelArrayList.get(position).getUserId();
             showAlertDialogDELETE(idUserDelete);
 
             SharedPreferences.Editor editor = activity.getSharedPreferences("fav", MODE_PRIVATE).edit();
-            editor.putBoolean("fav" + favoriteModelArrayList.get(position).getIduser(), false);
+            editor.putBoolean("fav" + favoriteModelArrayList.get(position).getUserId(), false);
             editor.apply();
         }));
     }
@@ -102,12 +102,12 @@ public class FavoriteListAdapter extends RecyclerView.Adapter<FavoriteListAdapte
             deleteFromFavList = itemView.findViewById(R.id.deleteFromFavList);
         }
 
-        public void bind(FavoriteModel favoritebind) {
-            Picasso.get().load(favoritebind.getAvatar())
+        public void bind(FavoriteModel bind) {
+            Picasso.get().load(bind.getAvatar())
                     .placeholder(R.drawable.ic_profile)
                     .into(imgAvatar);
-            username.setText(favoritebind.getUsername());
-            typeUser.setText(String.valueOf(favoritebind.getTypeuser()));
+            username.setText(bind.getUsername());
+            typeUser.setText(String.valueOf(bind.getUserType()));
         }
     }
 

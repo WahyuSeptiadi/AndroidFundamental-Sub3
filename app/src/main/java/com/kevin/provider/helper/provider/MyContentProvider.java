@@ -17,16 +17,14 @@ import static com.kevin.provider.data.local.DatabaseContract.FavColumns.CONTENT_
 import static com.kevin.provider.data.local.DatabaseContract.TABLE_NAME;
 
 public class MyContentProvider extends ContentProvider {
-    private static final int FAV = 1; //mengambil semua data
-    private static final int FAV_ID = 2; // mengambil data sesuai id
+    private static final int FAV = 1;
+    private static final int FAV_ID = 2;
 
     private FavoriteHelper favoriteHelper;
 
     private static final UriMatcher sUriMatcher = new UriMatcher(UriMatcher.NO_MATCH);
     static {
-        // content://com.kevin.git/favorite BUAT NAMBAH DATA
         sUriMatcher.addURI(AUTHORITY, TABLE_NAME, FAV);
-        // content://com.kevin.git/favorite/id BUAT HAPUS DATA byId (FAV_ID)
         sUriMatcher.addURI(AUTHORITY,
                 TABLE_NAME + "/#",
                 FAV_ID);
@@ -44,11 +42,9 @@ public class MyContentProvider extends ContentProvider {
                         String[] selectionArgs, String sortOrder) {
         Cursor cursor;
         switch (sUriMatcher.match(uri)){
-            // content://com.kevin.git/favorite
             case FAV :
                 cursor = favoriteHelper.queryAll();
                 break;
-            // content://com.kevin.git/favorite/id ---> cuma diambil id nya
             case FAV_ID :
                 cursor = favoriteHelper.queryById(selection);
                 break;

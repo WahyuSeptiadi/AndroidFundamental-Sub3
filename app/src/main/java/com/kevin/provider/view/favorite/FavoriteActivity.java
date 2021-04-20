@@ -89,7 +89,7 @@ public class FavoriteActivity extends AppCompatActivity implements FavoriteLoadC
 
     @Override
     public void postExecute(ArrayList<FavoriteModel> favMod) {
-        //setProgressbar GONE, setelah selesai di load
+
         progressBar.setVisibility(View.GONE);
 
         if (favMod.size() > 0) {

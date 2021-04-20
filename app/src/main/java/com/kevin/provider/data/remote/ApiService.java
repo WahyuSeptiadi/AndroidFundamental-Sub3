@@ -17,7 +17,7 @@ public interface ApiService {
     Call<UserDetailResponse> getUserDetail(@Path("username") String username, @Header("Authorization") String token);
 
     @GET("search/users")
-    Call<UserListResponse> cariUser(@Query("q") String username, @Header("Authorization") String token);
+    Call<UserListResponse> searchUser(@Query("q") String username, @Header("Authorization") String token);
 
     @GET("/users/{username}/followers")
     Call<List<UserResultResponse>> getUserFollowers(@Path("username") String username, @Header("Authorization") String token);

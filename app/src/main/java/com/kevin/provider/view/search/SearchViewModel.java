@@ -32,7 +32,7 @@ public class SearchViewModel extends ViewModel {
     public void loadJSON(String username) {
         ApiService gitService = Network.build().create(ApiService.class);
 
-        Call<UserListResponse> callAsync = gitService.cariUser(username, BuildConfig.GithubToken);
+        Call<UserListResponse> callAsync = gitService.searchUser(username, BuildConfig.GithubToken);
 
         callAsync.enqueue(new Callback<UserListResponse>() {
             @Override

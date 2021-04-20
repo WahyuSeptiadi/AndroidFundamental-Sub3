@@ -30,8 +30,8 @@
     <string name="input_message">Tolong, masukkan pesan!</string>
     <string name="msg_delete_user">Apakah yakin ingin menghapus item ini dari daftar pengguna kesukaan anda?</string>
     <string name="ttl_delete_user">HAPUS PENGGUNA</string>
-    <string name="positive_btn">Ya, tentu</string>
-    <string name="negative_btn">Batal cuy</string>
+    <string name="positive_btn">Iya</string>
+    <string name="negative_btn">Tidak</string>
     <string name="success_delete">Data berhasil dihapus</string>
     <string name="success_add">Berhasil ditambah ke daftar favorit</string>
     <string name="not_yet">Belum ada pengguna yang ditambahkan</string>

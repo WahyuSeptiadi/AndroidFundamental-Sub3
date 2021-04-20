@@ -24,6 +24,20 @@
       <entry_point TYPE="field" FQNAME="com.wahyu.consumerapp.model.UserDetails public_repos" />
       <entry_point TYPE="field" FQNAME="com.wahyu.githubapi.model.SearchUser total_count" />
       <entry_point TYPE="field" FQNAME="com.wahyu.consumerapp.model.SearchUser total_count" />
+      <entry_point TYPE="field" FQNAME="com.kevin.provider.data.remote.response.UserDetailResponse avatar_url" />
+      <entry_point TYPE="field" FQNAME="com.kevin.provider.data.remote.response.UserDetailResponse company" />
+      <entry_point TYPE="field" FQNAME="com.kevin.provider.data.remote.response.UserDetailResponse followers" />
+      <entry_point TYPE="field" FQNAME="com.kevin.provider.data.remote.response.UserDetailResponse following" />
+      <entry_point TYPE="field" FQNAME="com.kevin.provider.data.remote.response.UserListResponse items" />
+      <entry_point TYPE="field" FQNAME="com.kevin.consumer.data.remote.response.UserListResponse items" />
+      <entry_point TYPE="field" FQNAME="com.kevin.provider.data.remote.response.UserDetailResponse location" />
+      <entry_point TYPE="field" FQNAME="com.kevin.provider.data.remote.response.UserDetailResponse login" />
+      <entry_point TYPE="field" FQNAME="com.kevin.provider.data.remote.response.UserDetailResponse name" />
+      <entry_point TYPE="field" FQNAME="com.kevin.provider.data.remote.response.UserDetailResponse public_repos" />
+      <entry_point TYPE="field" FQNAME="com.kevin.provider.data.remote.response.UserListResponse total_count" />
+      <entry_point TYPE="field" FQNAME="com.kevin.consumer.data.remote.response.UserListResponse total_count" />
+      <entry_point TYPE="field" FQNAME="com.kevin.provider.data.local.FavoriteModel CREATOR" />
+      <entry_point TYPE="field" FQNAME="com.kevin.consumer.data.local.FavoriteModel CREATOR" />
     </entry_points>
     <pattern value="com.wahyu.githubapi.ExampleUnitTest" method="addition_isCorrect" />
     <pattern value="com.wahyu.consumerapp.ExampleUnitTest" method="addition_isCorrect" />
@@ -80,6 +94,62 @@
     <pattern value="com.wahyu.consumerapp.ExampleInstrumentedTest" method="useAppContext" />
     <pattern value="com.wahyu.consumerapp.model.UserDetails" />
     <pattern value="com.wahyu.githubapi.model.UserDetails" />
+    <pattern value="com.kevin.consumer.data.remote.response.UserDetailResponse" method="getId" />
+    <pattern value="com.kevin.consumer.data.remote.response.UserDetailResponse" method="setId" />
+    <pattern value="com.kevin.consumer.data.remote.response.UserDetailResponse" method="UserDetailResponse" />
+    <pattern value="com.kevin.consumer.data.local.DatabaseContract" method="DatabaseContract" />
+    <pattern value="com.kevin.provider.data.local.DatabaseContract" />
+    <pattern value="com.kevin.provider.data.local.DatabaseContract" method="DatabaseContract" />
+    <pattern value="com.kevin.consumer.data.local.FavoriteModel" />
+    <pattern value="com.kevin.provider.data.local.FavoriteModel" />
+    <pattern value="com.kevin.provider.data.local.FavoriteModel" method="getId" />
+    <pattern value="com.kevin.consumer.data.local.FavoriteModel" method="getId" />
+    <pattern value="com.kevin.provider.data.remote.response.UserDetailResponse" method="getId" />
+    <pattern value="com.kevin.consumer.data.remote.response.UserListResponse" method="getItems" />
+    <pattern value="com.kevin.consumer.data.remote.response.UserListResponse" method="getTotal_count" />
+    <pattern value="com.kevin.consumer.data.remote.response.UserListResponse" />
+    <pattern value="com.kevin.provider.data.local.FavoriteModel" method="setId" />
+    <pattern value="com.kevin.consumer.data.local.FavoriteModel" method="setId" />
+    <pattern value="com.kevin.provider.data.remote.response.UserDetailResponse" method="setId" />
+    <pattern value="com.kevin.provider.data.remote.response.UserResultResponse" method="setId" />
+    <pattern value="com.kevin.consumer.data.remote.response.UserResultResponse" method="setId" />
+    <pattern value="com.kevin.provider.data.local.FavoriteModel" method="setUsername" />
+    <pattern value="com.kevin.consumer.data.local.FavoriteModel" method="setUsername" />
+    <pattern value="com.kevin.provider.data.remote.response.UserDetailResponse" />
+    <pattern value="com.kevin.provider.data.remote.response.UserListResponse" />
+    <pattern value="com.kevin.consumer.data.remote.response.UserResultResponse" />
+    <pattern value="com.kevin.provider.data.remote.response.UserResultResponse" />
+    <pattern value="com.kevin.provider.data.remote.response.UserResultResponse" method="UserResultResponse" />
+    <pattern value="com.kevin.consumer.data.remote.response.UserResultResponse" method="UserResultResponse" />
+    <pattern value="com.kevin.consumer.ExampleUnitTest" method="addition_isCorrect" />
+    <pattern value="com.kevin.provider.ExampleUnitTest" method="addition_isCorrect" />
+    <pattern value="com.kevin.consumer.helper.alarm.AlarmReceiver" />
+    <pattern value="com.kevin.provider.helper.alarm.AlarmReceiver" />
+    <pattern value="com.kevin.provider.helper.alarm.AlarmReceiver" method="AlarmReceiver" />
+    <pattern value="com.kevin.consumer.helper.alarm.AlarmReceiver" method="AlarmReceiver" />
+    <pattern value="com.kevin.consumer.data.local.DatabaseContract" />
+    <pattern value="com.kevin.consumer.view.detail.DetailActivity" />
+    <pattern value="com.kevin.provider.view.detail.DetailActivity" />
+    <pattern value="com.kevin.consumer.ExampleInstrumentedTest" />
+    <pattern value="com.kevin.provider.ExampleInstrumentedTest" />
+    <pattern value="com.kevin.consumer.ExampleUnitTest" />
+    <pattern value="com.kevin.provider.ExampleUnitTest" />
+    <pattern value="com.kevin.consumer.view.favorite.FavoriteActivity" />
+    <pattern value="com.kevin.provider.view.favorite.FavoriteActivity" />
+    <pattern value="com.kevin.provider.helper.widget.ImageFavoriteWidget" />
+    <pattern value="com.kevin.provider.helper.provider.MyContentProvider" />
+    <pattern value="com.kevin.provider.view.search.SearchActivity" />
+    <pattern value="com.kevin.provider.view.setting.SetReminderActivity" />
+    <pattern value="com.kevin.consumer.view.setting.SetReminderActivity" />
+    <pattern value="com.kevin.provider.helper.widget.StackWidgetService" />
+    <pattern value="com.kevin.consumer.helper.alarm.TimePickerFragment" />
+    <pattern value="com.kevin.provider.helper.alarm.TimePickerFragment" />
+    <pattern value="com.kevin.provider.helper.alarm.TimePickerFragment" method="TimePickerFragment" />
+    <pattern value="com.kevin.consumer.helper.alarm.TimePickerFragment" method="TimePickerFragment" />
+    <pattern value="com.kevin.consumer.ExampleInstrumentedTest" method="useAppContext" />
+    <pattern value="com.kevin.provider.ExampleInstrumentedTest" method="useAppContext" />
+    <pattern value="com.kevin.consumer.data.remote.response.UserDetailResponse" />
+    <pattern value="com.kevin.provider.data.remote.response.UserDetailResponse" method="UserDetailResponse" />
   </component>
   <component name="ProjectRootManager" version="2" languageLevel="JDK_1_8" default="true" project-jdk-name="1.8" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
