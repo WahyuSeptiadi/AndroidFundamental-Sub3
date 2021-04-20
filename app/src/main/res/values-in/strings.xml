@@ -2,8 +2,6 @@
     <string name="search">Cari Pengguna</string>
     <string name="detail">Rincian Pengguna</string>
     <string name="app_name">Penyedia Github</string>
-    <string name="copyright">Hak Cipta Tahun 2020</string>
-    <string name="str_company">Perusahaan : </string>
     <string name="todo">lakukan</string>
     <string name="hint_searching">masukkan nama pengguna</string>
     <string name="str_username">nama pengguna</string>
@@ -15,10 +13,8 @@
     <string name="str_message">Data tidak ditemukan</string>
     <string name="str_follower_null">Belum memiliki pengikut</string>
     <string name="str_following_null">Belum ingin mengikuti</string>
-    <string name="str_id_user">idPengguna</string>
     <string name="str_type_user">tipePengguna</string>
     <string name="str_null">belum diatur</string>
-    <string name="str_location">Lokasi : </string>
     <string name="toast_searching">Tolong tunggu, sedang mencari. .</string>
     <string name="toast_enter_key">Tolong, masukkan kata kunci !</string>
     <string name="loading">. . .</string>

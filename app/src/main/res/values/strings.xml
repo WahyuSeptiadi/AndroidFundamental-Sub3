@@ -2,8 +2,6 @@
     <string name="search">Search User</string>
     <string name="detail">Detail User</string>
     <string name="app_name">Github Provider</string>
-    <string name="copyright">Copyright 2020</string>
-    <string name="str_company">Company : </string>
     <string name="todo">todo</string>
     <string name="hint_searching">enter username</string>
     <string name="str_username">username</string>
@@ -15,10 +13,8 @@
     <string name="str_message">Data Not Found</string>
     <string name="str_follower_null">Has no Followers</string>
     <string name="str_following_null">Never Following</string>
-    <string name="str_id_user">idUser</string>
     <string name="str_type_user">typeUser</string>
     <string name="str_null">Not Set</string>
-    <string name="str_location">Location : </string>
     <string name="toast_searching">Please wait, searching user. .</string>
     <string name="toast_enter_key">Please, Enter Keyword !</string>
     <string name="loading">. . .</string>
