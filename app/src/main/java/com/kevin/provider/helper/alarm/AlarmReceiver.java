@@ -1,5 +1,6 @@
 package com.kevin.provider.helper.alarm;
 
+import android.app.Activity;
 import android.app.AlarmManager;
 import android.app.Notification;
 import android.app.NotificationChannel;
@@ -25,7 +26,7 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Locale;
 
-import es.dmoral.toasty.Toasty;
+import de.mateware.snacky.Snacky;
 
 import static android.content.Context.MODE_PRIVATE;
 
@@ -35,7 +36,10 @@ public class AlarmReceiver extends BroadcastReceiver {
     public static final String EXTRA_TYPE = "type";
     private final int ID_REPEATING = 1;
 
-    public AlarmReceiver() {
+    private final Activity activity;
+
+    public AlarmReceiver(Activity activity) {
+        this.activity = activity;
     }
 
     @Override
@@ -43,7 +47,13 @@ public class AlarmReceiver extends BroadcastReceiver {
         String message = intent.getStringExtra(EXTRA_MESSAGE);
         String title = TYPE_REPEATING;
 
-        Toasty.info(context, title + " : " + message, Toasty.LENGTH_SHORT, true).show();
+        Snacky.builder()
+                .setActivity(activity)
+                .centerText()
+                .setText(title + " : " + message)
+                .setDuration(Snacky.LENGTH_LONG)
+                .info().show();
+
         showAlarmNotification(context, title, message);
     }
 
@@ -123,12 +133,17 @@ public class AlarmReceiver extends BroadcastReceiver {
             alarmManager.setInexactRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), AlarmManager.INTERVAL_DAY, pendingIntent);
 
             SharedPreferences sharedPreferences = context.getSharedPreferences("repeat", Context.MODE_PRIVATE);
-            sharedPreferences.getBoolean("type"+ type, false);
-            sharedPreferences.getBoolean("time"+ time, false);
-            sharedPreferences.getBoolean("message"+ message, false);
+            sharedPreferences.getBoolean("type" + type, false);
+            sharedPreferences.getBoolean("time" + time, false);
+            sharedPreferences.getBoolean("message" + message, false);
         }
 
-        Toasty.success(context, context.getResources().getText(R.string.toast_repeat), Toasty.LENGTH_SHORT, true).show();
+        Snacky.builder()
+                .setActivity(activity)
+                .centerText()
+                .setText(context.getResources().getText(R.string.toast_repeat))
+                .setDuration(Snacky.LENGTH_LONG)
+                .success().show();
     }
 
     public void cancelAlarm(Context context) {
@@ -142,6 +157,11 @@ public class AlarmReceiver extends BroadcastReceiver {
             alarmManager.cancel(pendingIntent);
         }
 
-        Toasty.warning(context, context.getResources().getText(R.string.toast_cancel), Toasty.LENGTH_SHORT, true).show();
+        Snacky.builder()
+                .setActivity(activity)
+                .centerText()
+                .setText(context.getResources().getText(R.string.toast_cancel))
+                .setDuration(Snacky.LENGTH_LONG)
+                .info().show();
     }
 }

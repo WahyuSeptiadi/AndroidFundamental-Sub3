@@ -51,7 +51,7 @@
             android:enabled="true"
             android:exported="true"
             android:permission="@string/todo"
-            tools:ignore="ManifestResource" />
+            tools:ignore="Instantiatable,ManifestResource" />
 
         <activity android:name="com.kevin.provider.view.setting.SetReminderActivity" />
         <activity android:name="com.kevin.provider.view.favorite.FavoriteActivity" />

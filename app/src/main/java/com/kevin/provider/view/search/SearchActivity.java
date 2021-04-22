@@ -17,7 +17,6 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -31,7 +30,6 @@ import com.kevin.provider.view.favorite.FavoriteActivity;
 import com.kevin.provider.view.setting.SetReminderActivity;
 
 import de.mateware.snacky.Snacky;
-import es.dmoral.toasty.Toasty;
 
 public class SearchActivity extends AppCompatActivity {
 
@@ -98,7 +96,6 @@ public class SearchActivity extends AppCompatActivity {
                 if (newState == RecyclerView.SCROLL_STATE_IDLE) {
                     fab.show();
                 }
-                // cek if rv in bottom last list
                 if (!recyclerView.canScrollVertically(1)) {
                     fab.hide();
                 }
@@ -112,7 +109,12 @@ public class SearchActivity extends AppCompatActivity {
                 String username = etUsername.getText().toString();
 
                 if (TextUtils.isEmpty(username)) {
-                    Toast.makeText(this, getResources().getString(R.string.toast_enter_key), Toast.LENGTH_SHORT).show();
+                    Snacky.builder()
+                            .setView(recyclerView)
+                            .centerText()
+                            .setText(getResources().getString(R.string.toast_enter_key))
+                            .setDuration(Snacky.LENGTH_LONG)
+                            .warning().show();
                     progressBar.setVisibility(View.GONE);
                 } else {
                     searchViewModel.setSearchData(username);
@@ -204,10 +206,20 @@ public class SearchActivity extends AppCompatActivity {
 
     private void searchData() {
         if (TextUtils.isEmpty(etUsername.getText().toString())) {
-            Toasty.error(this, getResources().getString(R.string.toast_enter_key), Toast.LENGTH_SHORT, true).show();
+            Snacky.builder()
+                    .setView(recyclerView)
+                    .centerText()
+                    .setText(getResources().getString(R.string.toast_enter_key))
+                    .setDuration(Snacky.LENGTH_LONG)
+                    .warning().show();
             progressBar.setVisibility(View.GONE);
         } else {
-            Toasty.info(this, getResources().getString(R.string.toast_searching), Toast.LENGTH_SHORT, true).show();
+            Snacky.builder()
+                    .setView(recyclerView)
+                    .centerText()
+                    .setText(getResources().getString(R.string.toast_searching))
+                    .setDuration(Snacky.LENGTH_LONG)
+                    .info().show();
             searchViewModel.setSearchData(etUsername.getText().toString());
             getDataUser();
         }

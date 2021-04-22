@@ -11,7 +11,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
@@ -32,7 +31,6 @@ import java.util.Objects;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 import de.mateware.snacky.Snacky;
-import es.dmoral.toasty.Toasty;
 
 import static android.content.Context.MODE_PRIVATE;
 import static com.kevin.consumer.data.local.DatabaseContract.FavColumns.AVATAR;
@@ -103,11 +101,19 @@ public class FollowingListAdapter extends RecyclerView.Adapter<FollowingListAdap
 
             if (cekIdUser) {
                 if (holder.borderFavList.getVisibility() == View.VISIBLE && holder.fillFavList.getVisibility() == View.VISIBLE) {
-                    Toasty.error(activity, activity.getResources().getString(R.string.user_already),
-                            Toast.LENGTH_SHORT, true).show();
+                    Snacky.builder()
+                            .setActivity(activity)
+                            .centerText()
+                            .setText(activity.getResources().getText(R.string.user_already))
+                            .setDuration(Snacky.LENGTH_LONG)
+                            .error().show();
                 } else if (holder.borderFavList.getVisibility() == View.VISIBLE) {
-                    Toasty.warning(activity, activity.getResources().getString(R.string.other_add),
-                            Toast.LENGTH_SHORT, true).show();
+                    Snacky.builder()
+                            .setActivity(activity)
+                            .centerText()
+                            .setText(activity.getResources().getText(R.string.other_add))
+                            .setDuration(Snacky.LENGTH_LONG)
+                            .warning().show();
                     holder.fillFavList.setVisibility(View.VISIBLE);
                 } else if (holder.fillFavList.getVisibility() == View.GONE) {
                     holder.fillFavList.setVisibility(View.VISIBLE);
@@ -119,8 +125,12 @@ public class FollowingListAdapter extends RecyclerView.Adapter<FollowingListAdap
                 editor.apply();
             } else {
                 if (holder.borderFavList.getVisibility() == View.VISIBLE && holder.fillFavList.getVisibility() == View.VISIBLE) {
-                    Toasty.success(activity, activity.getResources().getString(R.string.add_again),
-                            Toast.LENGTH_LONG, true).show();
+                    Snacky.builder()
+                            .setActivity(activity)
+                            .centerText()
+                            .setText(activity.getResources().getText(R.string.add_again))
+                            .setDuration(Snacky.LENGTH_LONG)
+                            .success().show();
                 } else if (holder.borderFavList.getVisibility() == View.VISIBLE && holder.fillFavList.getVisibility() == View.GONE) {
                     Snacky.builder()
                             .setView(view)

@@ -24,7 +24,7 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Locale;
 
-import es.dmoral.toasty.Toasty;
+import de.mateware.snacky.Snacky;
 
 public class SetReminderActivity extends AppCompatActivity implements View.OnClickListener, TimePickerFragment.DialogTimeListener {
 
@@ -67,7 +67,7 @@ public class SetReminderActivity extends AppCompatActivity implements View.OnCli
         MESSAGE_DEFAULT = getBaseContext().getResources().getString(R.string.msg_default);
 
         getAlarmPref();
-        alarmReceiver = new AlarmReceiver();
+        alarmReceiver = new AlarmReceiver(SetReminderActivity.this);
 
         //set ANIMATION
         Animation slide_left = AnimationUtils.loadAnimation(this, android.R.anim.slide_in_left);
@@ -90,7 +90,12 @@ public class SetReminderActivity extends AppCompatActivity implements View.OnCli
 
         if (view.getId() == R.id.setTimeReminder) {
             if (activeReminder) {
-                Toasty.warning(this, getResources().getText(R.string.toast_turn_off_reminder), Toasty.LENGTH_SHORT, true).show();
+                Snacky.builder()
+                        .setView(view)
+                        .centerText()
+                        .setText(getResources().getString(R.string.toast_turn_off_reminder))
+                        .setDuration(Snacky.LENGTH_LONG)
+                        .warning().show();
             } else {
                 TimePickerFragment timePickerFragmentRepeat = new TimePickerFragment();
                 timePickerFragmentRepeat.show(getSupportFragmentManager(), TIME_PICKER_REPEAT_TAG);
@@ -100,7 +105,12 @@ public class SetReminderActivity extends AppCompatActivity implements View.OnCli
             repeatTime = detailTime.getText().toString();
             repeatMessage = et_messageTime.getText().toString();
             if (TextUtils.isEmpty(repeatMessage)) {
-                Toasty.error(this, getResources().getText(R.string.input_message), Toasty.LENGTH_SHORT, true).show();
+                Snacky.builder()
+                        .setView(view)
+                        .centerText()
+                        .setText(getResources().getString(R.string.input_message))
+                        .setDuration(Snacky.LENGTH_LONG)
+                        .error().show();
             } else {
                 alarmReceiver.setRepeatingAlarm(this, AlarmReceiver.TYPE_REPEATING, repeatTime, repeatMessage);
                 setAlarmPref(repeatTime, repeatMessage, true);
@@ -113,7 +123,12 @@ public class SetReminderActivity extends AppCompatActivity implements View.OnCli
             setAlarmPref(repeatTime, repeatMessage, false);
         } else if (view.getId() == R.id.btnDefaultTime) {
             if (activeReminder) {
-                Toasty.warning(this, getResources().getText(R.string.toast_turn_off_reminder), Toasty.LENGTH_SHORT, true).show();
+                Snacky.builder()
+                        .setView(view)
+                        .centerText()
+                        .setText(getResources().getString(R.string.toast_turn_off_reminder))
+                        .setDuration(Snacky.LENGTH_LONG)
+                        .warning().show();
             } else {
                 detailTime.setText(TIME_DEFAULT);
                 et_messageTime.setText(MESSAGE_DEFAULT);

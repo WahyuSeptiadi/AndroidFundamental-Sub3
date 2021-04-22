@@ -11,7 +11,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
@@ -27,7 +26,7 @@ import com.squareup.picasso.Picasso;
 import java.util.ArrayList;
 
 import de.hdodenhof.circleimageview.CircleImageView;
-import es.dmoral.toasty.Toasty;
+import de.mateware.snacky.Snacky;
 
 import static android.content.Context.MODE_PRIVATE;
 import static com.kevin.provider.data.local.DatabaseContract.FavColumns.CONTENT_URI;
@@ -131,7 +130,12 @@ public class FavoriteListAdapter extends RecyclerView.Adapter<FavoriteListAdapte
                     //DELETE form FavoriteList
                     uriWithId = Uri.parse(CONTENT_URI + "/" + idUserDel);
                     activity.getContentResolver().delete(uriWithId, null, null);
-                    Toasty.success(activity, activity.getResources().getString(R.string.success_delete), Toast.LENGTH_SHORT, true).show();
+                    Snacky.builder()
+                            .setActivity(activity)
+                            .centerText()
+                            .setText(activity.getResources().getString(R.string.success_delete))
+                            .setDuration(Snacky.LENGTH_LONG)
+                            .success().show();
 
                 })
                 .setNegativeButton(activity.getResources().getString(R.string.negative_btn), (dialog, id) -> dialog.cancel());
