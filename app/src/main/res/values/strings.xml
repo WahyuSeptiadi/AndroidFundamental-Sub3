@@ -22,8 +22,6 @@
     <string name="str_message_notification">input message notification</string>
     <string name="toast_repeat">Repeating alarm set up</string>
     <string name="toast_cancel">Repeating alarm canceled</string>
-    <string name="toast_turn_off_reminder">Please, turn off notification first!</string>
-    <string name="msg_default">Check the person you liked</string>
     <string name="input_message">Please, input message!</string>
     <string name="msg_delete_user">Are you sure you want to delete this item from your favorite user list?</string>
     <string name="ttl_delete_user">DELETE USER</string>

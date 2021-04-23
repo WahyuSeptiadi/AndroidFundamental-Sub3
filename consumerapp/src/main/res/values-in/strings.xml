@@ -18,8 +18,6 @@
     <string name="str_message_notification">masukkan pesan pengingat</string>
     <string name="toast_repeat">pengingat telah diatur</string>
     <string name="toast_cancel">pengingat dibatalkan</string>
-    <string name="toast_turn_off_reminder">Tolong, matikan pengingat dahulu!</string>
-    <string name="msg_default">Cek orang yang kamu sukai</string>
     <string name="input_message">Tolong, masukkan pesan!</string>
     <string name="msg_delete_user">Apakah yakin ingin menghapus item ini dari daftar pengguna kesukaan anda?</string>
     <string name="user_already">Hapus dahulu di daftar favorite</string>
