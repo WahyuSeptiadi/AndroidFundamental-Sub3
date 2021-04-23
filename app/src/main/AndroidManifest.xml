@@ -23,22 +23,35 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="AllowBackup">
+        <receiver
+            android:name=".helper.alarm.AlertReceiver"
+            android:enabled="false"
+            android:exported="false" />
+        <receiver
+            android:name=".helper.alarm.MyAlarmReceiver"
+            android:enabled="true"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="android.intent.action.TIME_SET" />
+            </intent-filter>
+        </receiver>
 
         <service
-            android:name="com.kevin.provider.helper.widget.StackWidgetService"
+            android:name=".helper.widget.StackWidgetService"
             android:permission="android.permission.BIND_REMOTEVIEWS" />
 
-        <receiver android:name="com.kevin.provider.helper.widget.ImageFavoriteWidget">
+        <receiver android:name=".helper.widget.ImageFavoriteWidget">
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
             </intent-filter>
+
             <meta-data
                 android:name="android.appwidget.provider"
                 android:resource="@xml/image_favorite_widget_info" />
         </receiver>
 
         <provider
-            android:name="com.kevin.provider.helper.provider.MyContentProvider"
+            android:name=".helper.provider.MyContentProvider"
             android:authorities="com.kevin.provider"
             android:enabled="true"
             android:exported="true"
@@ -47,20 +60,21 @@
             tools:replace="exported" />
 
         <receiver
-            android:name="com.kevin.provider.helper.alarm.AlarmReceiver"
+            android:name=".helper.alarm.AlarmReceiver"
             android:enabled="true"
             android:exported="true"
             android:permission="@string/todo"
             tools:ignore="Instantiatable,ManifestResource" />
 
-        <activity android:name="com.kevin.provider.view.setting.SetReminderActivity" />
-        <activity android:name="com.kevin.provider.view.favorite.FavoriteActivity" />
-        <activity android:name="com.kevin.provider.view.detail.DetailActivity" />
+        <activity android:name=".view.setting.SetReminderActivity" />
+        <activity android:name=".view.favorite.FavoriteActivity" />
+        <activity android:name=".view.detail.DetailActivity" />
         <activity
-            android:name="com.kevin.provider.view.search.SearchActivity"
+            android:name=".view.search.SearchActivity"
             android:launchMode="singleTask">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>

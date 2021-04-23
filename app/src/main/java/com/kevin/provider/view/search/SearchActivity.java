@@ -6,7 +6,6 @@ import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
-import android.provider.Settings;
 import android.text.TextUtils;
 import android.view.View;
 import android.view.animation.Animation;
@@ -40,7 +39,7 @@ public class SearchActivity extends AppCompatActivity {
     private ProgressBar progressBar;
 
     private TextView message;
-    private ImageView imgLanguage, imgSettings, imgReminder;
+    private ImageView imgSettings;
     private static boolean count;
 
     @Override
@@ -52,8 +51,6 @@ public class SearchActivity extends AppCompatActivity {
         etUsername = findViewById(R.id.editTextSearch);
         message = findViewById(R.id.tv_message);
 
-        imgLanguage = findViewById(R.id.imgLanguage);
-        imgReminder = findViewById(R.id.imgReminder);
         imgSettings = findViewById(R.id.imgSetting);
 
         progressBar = findViewById(R.id.progress_circular);
@@ -149,26 +146,8 @@ public class SearchActivity extends AppCompatActivity {
             return false;
         });
 
-        imgLanguage.setOnClickListener(v -> {
-            Intent mIntent = new Intent(Settings.ACTION_LOCALE_SETTINGS);
-            startActivity(mIntent);
-            imgReminder.setVisibility(View.INVISIBLE);
-            imgLanguage.setVisibility(View.INVISIBLE);
-            imgSettings.setVisibility(View.VISIBLE);
-        });
-
-        imgReminder.setOnClickListener(v -> {
-            Intent toReminder = new Intent(SearchActivity.this, SetReminderActivity.class);
-            startActivity(toReminder);
-            imgLanguage.setVisibility(View.INVISIBLE);
-            imgReminder.setVisibility(View.INVISIBLE);
-            imgSettings.setVisibility(View.VISIBLE);
-        });
-
         imgSettings.setOnClickListener(view -> {
-            imgLanguage.setVisibility(View.VISIBLE);
-            imgReminder.setVisibility(View.VISIBLE);
-            imgSettings.setVisibility(View.INVISIBLE);
+            startActivity(new Intent(this, SetReminderActivity.class));
         });
     }
 
