@@ -23,18 +23,6 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="AllowBackup">
-        <receiver
-            android:name=".helper.alarm.AlertReceiver"
-            android:enabled="false"
-            android:exported="false" />
-        <receiver
-            android:name=".helper.alarm.MyAlarmReceiver"
-            android:enabled="true"
-            android:exported="false">
-            <intent-filter>
-                <action android:name="android.intent.action.TIME_SET" />
-            </intent-filter>
-        </receiver>
 
         <service
             android:name=".helper.widget.StackWidgetService"
@@ -62,9 +50,7 @@
         <receiver
             android:name=".helper.alarm.AlarmReceiver"
             android:enabled="true"
-            android:exported="true"
-            android:permission="@string/todo"
-            tools:ignore="Instantiatable,ManifestResource" />
+            android:exported="false" />
 
         <activity android:name=".view.setting.SetReminderActivity" />
         <activity android:name=".view.favorite.FavoriteActivity" />
