@@ -15,16 +15,13 @@
     <string name="str_following_null">Never Following</string>
     <string name="str_type_user">typeUser</string>
     <string name="str_null">Not Set</string>
-    <string name="toast_searching">Please wait, searching user. .</string>
     <string name="toast_enter_key">Please, Enter Keyword !</string>
     <string name="loading">. . .</string>
     <string name="str_favorite_user">Favorite User</string>
     <string name="str_set_reminder">Set Reminder at</string>
-    <string name="set_time">00:00</string>
     <string name="str_message_notification">input message notification</string>
     <string name="toast_repeat">Repeating alarm set up</string>
     <string name="toast_cancel">Repeating alarm canceled</string>
-    <string name="set_default_time">Set Default Time</string>
     <string name="toast_turn_off_reminder">Please, turn off notification first!</string>
     <string name="msg_default">Check the person you liked</string>
     <string name="input_message">Please, input message!</string>
@@ -39,7 +36,7 @@
     <string name="user_already">Delete it first in the favorites list</string>
     <string name="msg_internet_off">Please turn on your internet data !</string>
     <string name="add_again">User successfully added again :)</string>
-    <string name="appwidget_text">GITHUB API</string>
+    <string name="appwidget_text">MY IDOL\'S</string>
     <string name="not_fav">Blank</string>
     <string name="user_favorite">User Favorite No.</string>
     <string name="other_add">User have been added by Consumer</string>

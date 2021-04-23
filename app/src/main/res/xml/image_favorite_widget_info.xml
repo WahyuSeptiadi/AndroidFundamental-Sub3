@@ -4,6 +4,6 @@
     android:initialLayout="@layout/image_favorite_widget"
     android:minWidth="110dp"
     android:minHeight="110dp"
-    android:previewImage="@drawable/github"
+    android:previewImage="@drawable/octocat"
     android:updatePeriodMillis="0"
     android:widgetCategory="home_screen" />

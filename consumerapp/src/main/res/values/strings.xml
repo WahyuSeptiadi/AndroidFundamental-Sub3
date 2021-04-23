@@ -15,11 +15,9 @@
     <string name="loading">. . .</string>
     <string name="str_favorite_user">Favorite User</string>
     <string name="str_set_reminder">Set Reminder</string>
-    <string name="set_time">00:00</string>
     <string name="str_message_notification">input message notification</string>
     <string name="toast_repeat">Repeating alarm set up</string>
     <string name="toast_cancel">Repeating alarm canceled</string>
-    <string name="set_default_time">Set Default Time</string>
     <string name="toast_turn_off_reminder">Please, turn off notification first!</string>
     <string name="msg_default">Check the person you liked</string>
     <string name="input_message">Please, input message!</string>

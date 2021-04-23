@@ -15,16 +15,13 @@
     <string name="str_following_null">Belum ingin mengikuti</string>
     <string name="str_type_user">tipePengguna</string>
     <string name="str_null">belum diatur</string>
-    <string name="toast_searching">Tolong tunggu, sedang mencari. .</string>
     <string name="toast_enter_key">Tolong, masukkan kata kunci !</string>
     <string name="loading">. . .</string>
     <string name="str_favorite_user">Favorit pengguna</string>
     <string name="str_set_reminder">Atur Pengingat pada</string>
-    <string name="set_time">00:00</string>
     <string name="str_message_notification">masukkan pesan pengingat</string>
     <string name="toast_repeat">pengingat telah diatur</string>
     <string name="toast_cancel">pengingat dibatalkan</string>
-    <string name="set_default_time">waktu standar</string>
     <string name="toast_turn_off_reminder">Tolong, matikan pengingat dahulu!</string>
     <string name="msg_default">Cek orang yang kamu sukai</string>
     <string name="input_message">Tolong, masukkan pesan!</string>
@@ -39,7 +36,7 @@
     <string name="add_again">User berhasil ditambahkan kembali :)</string>
     <string name="msg_internet_on">Data internetmu telah kembali :)</string>
     <string name="msg_internet_off">Tolong hidupkan data internet anda!</string>
-    <string name="appwidget_text">GITHUB API</string>
+    <string name="appwidget_text">MY IDOL\'S</string>
     <string name="not_fav">kosong</string>
     <string name="user_favorite">Pengguna Favorite No.</string>
     <string name="other_add">Pengguna telah ditambah oleh Customer</string>
