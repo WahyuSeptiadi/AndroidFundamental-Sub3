@@ -67,7 +67,7 @@ class StackRemoteViewsFactory implements RemoteViewsService.RemoteViewsFactory {
     @Override
     public RemoteViews getViewAt(int position) {
         RemoteViews rv = new RemoteViews(mContext.getPackageName(), R.layout.item_widget_list);
-        rv.setImageViewBitmap(R.id.imageView, mWidgetItems.get(position));
+        rv.setImageViewBitmap(R.id.img_widget, mWidgetItems.get(position));
 
         Bundle extras = new Bundle();
         extras.putInt(ImageFavoriteWidget.EXTRA_ITEM, position);
@@ -75,7 +75,7 @@ class StackRemoteViewsFactory implements RemoteViewsService.RemoteViewsFactory {
         Intent fillInIntent = new Intent();
         fillInIntent.putExtras(extras);
 
-        rv.setOnClickFillInIntent(R.id.imageView, fillInIntent);
+        rv.setOnClickFillInIntent(R.id.img_widget, fillInIntent);
         return rv;
     }
 

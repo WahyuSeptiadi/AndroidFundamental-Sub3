@@ -24,7 +24,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/usernameValue_listSearch"
+            android:id="@+id/tv_username_value_list"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
@@ -37,7 +37,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/typeUserValue_listSearch"
+            android:id="@+id/tv_type_user_value_list"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
@@ -45,10 +45,10 @@
             android:text="@string/str_type_user"
             android:textColor="#000"
             app:layout_constraintStart_toEndOf="@+id/civ_search"
-            app:layout_constraintTop_toBottomOf="@+id/usernameValue_listSearch" />
+            app:layout_constraintTop_toBottomOf="@+id/tv_username_value_list" />
 
         <ImageView
-            android:id="@+id/deleteFromFavList"
+            android:id="@+id/img_delete_from_favorite"
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:layout_marginEnd="16dp"

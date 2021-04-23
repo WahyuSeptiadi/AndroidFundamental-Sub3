@@ -19,7 +19,7 @@
             app:titleTextColor="@color/colorWhite" />
 
         <ImageView
-            android:id="@+id/btnBack"
+            android:id="@+id/img_btn_back"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
@@ -28,7 +28,7 @@
             android:src="@drawable/ic_back" />
 
         <TextView
-            android:id="@+id/set_manual_time"
+            android:id="@+id/txt_set_manual_time"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
@@ -94,7 +94,7 @@
     </LinearLayout>
 
     <RelativeLayout
-        android:id="@+id/setMessage"
+        android:id="@+id/relative_set_message"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="58dp"
@@ -129,7 +129,7 @@
             android:layout_toEndOf="@+id/fl_message">
 
             <ImageView
-                android:id="@+id/setReminderON"
+                android:id="@+id/img_set_reminder_on"
                 android:layout_width="45dp"
                 android:layout_height="45dp"
                 android:layout_marginEnd="5dp"
@@ -139,7 +139,7 @@
                 android:src="@drawable/ic_reminder_on" />
 
             <ImageView
-                android:id="@+id/setReminderOFF"
+                android:id="@+id/img_set_reminder_off"
                 android:layout_width="45dp"
                 android:layout_height="45dp"
                 android:background="@drawable/bg_round_gray"

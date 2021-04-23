@@ -41,7 +41,6 @@ public class FollowersFragment extends Fragment {
         followersViewModel = new ViewModelProvider(this,
                 new ViewModelProvider.NewInstanceFactory()).get(FollowersViewModel.class);
 
-        //setData
         followersViewModel.setFollowersData(username);
 
         getData();

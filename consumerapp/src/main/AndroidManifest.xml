@@ -25,7 +25,7 @@
             android:exported="false" />
 
         <activity android:name="com.kevin.consumer.view.detail.DetailActivity" />
-        <activity android:name="com.kevin.consumer.view.setting.SetReminderActivity" />
+        <activity android:name="com.kevin.consumer.view.setting.SettingsActivity" />
         <activity
             android:name="com.kevin.consumer.view.favorite.FavoriteActivity"
             android:launchMode="singleTask" >

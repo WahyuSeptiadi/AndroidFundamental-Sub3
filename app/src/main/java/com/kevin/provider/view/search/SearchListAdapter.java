@@ -177,11 +177,11 @@ public class SearchListAdapter extends RecyclerView.Adapter<SearchListAdapter.Vi
             super(itemView);
 
             imgAvatar = itemView.findViewById(R.id.civ_search);
-            username = itemView.findViewById(R.id.usernameValue_listSearch);
-            typeUser = itemView.findViewById(R.id.typeUserValue_listSearch);
+            username = itemView.findViewById(R.id.tv_username_value_list);
+            typeUser = itemView.findViewById(R.id.tv_type_user_value_list);
             item = itemView.findViewById(R.id.cardListSearch);
-            fillFavList = itemView.findViewById(R.id.addToFavList);
-            borderFavList = itemView.findViewById(R.id.borderFavList);
+            fillFavList = itemView.findViewById(R.id.img_add_to_favorite);
+            borderFavList = itemView.findViewById(R.id.img_border_love);
         }
 
         public void bind(UserResultResponse userResultResponse) {

@@ -41,7 +41,6 @@ public class FollowingFragment extends Fragment {
         followingViewModel = new ViewModelProvider(this,
                 new ViewModelProvider.NewInstanceFactory()).get(FollowingViewModel.class);
 
-        //setData
         followingViewModel.setFollowingData(username);
 
         getData();

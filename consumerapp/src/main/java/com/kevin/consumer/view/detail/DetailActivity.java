@@ -45,15 +45,15 @@ public class DetailActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail);
 
-        ImageView btnBack = findViewById(R.id.btnBack);
-        imgAvatarDetail = findViewById(R.id.imgAvatar);
-        username = findViewById(R.id.usernameValue);
-        name = findViewById(R.id.nameValue);
-        repository = findViewById(R.id.repositoryValue);
-        follower = findViewById(R.id.followerValue);
-        following = findViewById(R.id.followingValue);
-        company = findViewById(R.id.companyValue);
-        location = findViewById(R.id.locationValue);
+        ImageView btnBack = findViewById(R.id.img_btn_back);
+        imgAvatarDetail = findViewById(R.id.img_civ_avatar);
+        username = findViewById(R.id.txt_username_value);
+        name = findViewById(R.id.txt_name_value);
+        repository = findViewById(R.id.txt_repository_value);
+        follower = findViewById(R.id.txt_follower_value);
+        following = findViewById(R.id.txt_following_value);
+        company = findViewById(R.id.txt_company_value);
+        location = findViewById(R.id.txt_location_value);
 
         mContext = getBaseContext();
 
@@ -61,14 +61,13 @@ public class DetailActivity extends AppCompatActivity {
         ViewPager mViewPager = findViewById(R.id.vp_profile);
         mViewPager.setAdapter(mSection);
 
-        TabLayout mTabLayout = findViewById(R.id.tabLayout);
+        TabLayout mTabLayout = findViewById(R.id.tab_layout);
         mTabLayout.setupWithViewPager(mViewPager);
 
         String username = getIntent().getStringExtra(BaseConst.DATA_KEY);
         detailViewModel = new ViewModelProvider(this,
                 new ViewModelProvider.NewInstanceFactory()).get(DetailViewModel.class);
         detailViewModel.setDetailUser(username);
-
 
         if (checkInternet()) {
             if (count) {

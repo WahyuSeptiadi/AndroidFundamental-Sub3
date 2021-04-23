@@ -42,9 +42,8 @@ public class FavoriteActivity extends AppCompatActivity implements FavoriteLoadC
         setContentView(R.layout.activity_favorite);
 
         progressBar = findViewById(R.id.progress_favorite);
-        ImageView btnBack = findViewById(R.id.btnBack);
+        ImageView btnBack = findViewById(R.id.img_btn_back);
 
-        // set Recyclerview
         recyclerView = findViewById(R.id.rv_favorite);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setHasFixedSize(true);
@@ -57,7 +56,6 @@ public class FavoriteActivity extends AppCompatActivity implements FavoriteLoadC
         DataObserver myObserver = new DataObserver(handler, this);
         getContentResolver().registerContentObserver(DatabaseContract.FavColumns.CONTENT_URI, true, myObserver);
 
-        // Safe OrientationState
         if (savedInstanceState == null) {
             new LoadFavAsync(this, this).execute();
         } else {

@@ -26,7 +26,7 @@ public class ImageFavoriteWidget extends AppWidgetProvider {
 
         RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.image_favorite_widget);
         views.setRemoteAdapter(R.id.stack_view, intent);
-        views.setEmptyView(R.id.stack_view, R.id.empty_view);
+        views.setEmptyView(R.id.stack_view, R.id.tv_empty_view);
 
         Intent toastIntent = new Intent(context, ImageFavoriteWidget.class);
         toastIntent.setAction(ImageFavoriteWidget.TOAST_ACTION);

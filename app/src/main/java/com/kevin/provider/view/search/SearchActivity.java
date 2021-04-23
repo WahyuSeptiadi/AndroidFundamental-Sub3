@@ -45,10 +45,10 @@ public class SearchActivity extends AppCompatActivity {
         setContentView(R.layout.activity_search);
 
         recyclerView = findViewById(R.id.rv_search);
-        etUsername = findViewById(R.id.editTextSearch);
+        etUsername = findViewById(R.id.et_search);
         message = findViewById(R.id.tv_message);
 
-        ImageView imgSettings = findViewById(R.id.imgSetting);
+        ImageView imgSettings = findViewById(R.id.img_setting);
 
         progressBar = findViewById(R.id.progress_circular);
         progressBar.setProgress(0);

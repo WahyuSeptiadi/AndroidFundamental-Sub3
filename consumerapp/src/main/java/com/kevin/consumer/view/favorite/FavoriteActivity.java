@@ -21,7 +21,7 @@ import com.kevin.consumer.R;
 import com.kevin.consumer.data.local.DatabaseContract;
 import com.kevin.consumer.data.local.FavoriteModel;
 import com.kevin.consumer.data.local.MappingHelper;
-import com.kevin.consumer.view.setting.SetReminderActivity;
+import com.kevin.consumer.view.setting.SettingsActivity;
 
 import java.lang.ref.WeakReference;
 import java.util.ArrayList;
@@ -42,7 +42,7 @@ public class FavoriteActivity extends AppCompatActivity implements LoadFavCallba
         setContentView(R.layout.activity_favorite);
 
         progressBar = findViewById(R.id.progress_favorite);
-        ImageView imgSettings = findViewById(R.id.imgSetting);
+        ImageView imgSettings = findViewById(R.id.img_setting);
 
         recyclerView = findViewById(R.id.rv_favorite);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
@@ -66,7 +66,7 @@ public class FavoriteActivity extends AppCompatActivity implements LoadFavCallba
             progressBar.setVisibility(View.GONE);
         }
 
-        imgSettings.setOnClickListener(view -> startActivity(new Intent(this, SetReminderActivity.class)));
+        imgSettings.setOnClickListener(view -> startActivity(new Intent(this, SettingsActivity.class)));
 
     }
 
