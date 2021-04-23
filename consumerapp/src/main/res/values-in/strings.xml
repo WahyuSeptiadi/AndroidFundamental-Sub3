@@ -21,7 +21,7 @@
     <string name="toast_cancel">pengingat dibatalkan</string>
     <string name="set_default_time">waktu standar</string>
     <string name="toast_turn_off_reminder">Tolong, matikan pengingat dahulu!</string>
-    <string name="msg_default">Buka aku sekarang kawan :)</string>
+    <string name="msg_default">Cek orang yang kamu sukai</string>
     <string name="input_message">Tolong, masukkan pesan!</string>
     <string name="msg_delete_user">Apakah yakin ingin menghapus item ini dari daftar pengguna kesukaan anda?</string>
     <string name="user_already">Hapus dahulu di daftar favorite</string>
@@ -35,4 +35,7 @@
     <string name="msg_internet_on">Data internetmu telah kembali :)</string>
     <string name="msg_internet_off">Tolong hidupkan data internet anda!</string>
     <string name="other_add">Pengguna telah ditambah oleh Penyedia</string>
+    <string name="change_language">Ganti Bahasa</string>
+    <string name="settings">Pengaturan</string>
+    <string name="time_set">09:00</string>
 </resources>

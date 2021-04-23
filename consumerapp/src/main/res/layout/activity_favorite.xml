@@ -23,28 +23,6 @@
         android:textSize="18sp" />
 
     <ImageView
-        android:id="@+id/imgLanguage"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
-        android:layout_marginTop="13dp"
-        android:layout_marginEnd="56dp"
-        android:contentDescription="@string/todo"
-        android:src="@drawable/ic_language"
-        android:visibility="invisible" />
-
-    <ImageView
-        android:id="@+id/imgReminder"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
-        android:layout_marginTop="13dp"
-        android:layout_marginEnd="16dp"
-        android:contentDescription="@string/todo"
-        android:src="@drawable/ic_reminder_on"
-        android:visibility="invisible" />
-
-    <ImageView
         android:id="@+id/imgSetting"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

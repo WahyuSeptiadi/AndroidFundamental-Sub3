@@ -8,10 +8,7 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.HandlerThread;
-import android.provider.Settings;
 import android.view.View;
-import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 
@@ -38,7 +35,6 @@ public class FavoriteActivity extends AppCompatActivity implements LoadFavCallba
     private ProgressBar progressBar;
 
     private static final String EXTRA_STATE = "EXTRA STATE";
-    private ImageView imgLanguage, imgSettings, imgReminder;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,22 +42,13 @@ public class FavoriteActivity extends AppCompatActivity implements LoadFavCallba
         setContentView(R.layout.activity_favorite);
 
         progressBar = findViewById(R.id.progress_favorite);
+        ImageView imgSettings = findViewById(R.id.imgSetting);
 
-        imgLanguage = findViewById(R.id.imgLanguage);
-        imgReminder = findViewById(R.id.imgReminder);
-        imgSettings = findViewById(R.id.imgSetting);
-
-        // set Recyclerview
         recyclerView = findViewById(R.id.rv_favorite);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setHasFixedSize(true);
         favoriteListAdapter = new FavoriteListAdapter(this);
         recyclerView.setAdapter(favoriteListAdapter);
-
-        //set ANIMATION
-        Animation shake = AnimationUtils.loadAnimation(this, R.anim.shake);
-        shake.setDuration(1000);
-        imgSettings.setAnimation(shake);
 
         HandlerThread handlerThread = new HandlerThread("DataObserver");
         handlerThread.start();
@@ -69,7 +56,6 @@ public class FavoriteActivity extends AppCompatActivity implements LoadFavCallba
         DataObserver myObserver = new DataObserver(handler, this);
         getContentResolver().registerContentObserver(DatabaseContract.FavColumns.CONTENT_URI, true, myObserver);
 
-        // Safe OrientationState
         if (savedInstanceState == null) {
             new LoadFavAsync(this, this).execute();
         } else {
@@ -80,28 +66,7 @@ public class FavoriteActivity extends AppCompatActivity implements LoadFavCallba
             progressBar.setVisibility(View.GONE);
         }
 
-        //SETTING
-        imgLanguage.setOnClickListener(v -> {
-            Intent mIntent = new Intent(Settings.ACTION_LOCALE_SETTINGS);
-            startActivity(mIntent);
-            imgReminder.setVisibility(View.INVISIBLE);
-            imgLanguage.setVisibility(View.INVISIBLE);
-            imgSettings.setVisibility(View.VISIBLE);
-        });
-
-        imgReminder.setOnClickListener(v -> {
-            Intent toReminder = new Intent(FavoriteActivity.this, SetReminderActivity.class);
-            startActivity(toReminder);
-            imgLanguage.setVisibility(View.INVISIBLE);
-            imgReminder.setVisibility(View.INVISIBLE);
-            imgSettings.setVisibility(View.VISIBLE);
-        });
-
-        imgSettings.setOnClickListener(view -> {
-            imgLanguage.setVisibility(View.VISIBLE);
-            imgReminder.setVisibility(View.VISIBLE);
-            imgSettings.setVisibility(View.INVISIBLE);
-        });
+        imgSettings.setOnClickListener(view -> startActivity(new Intent(this, SetReminderActivity.class)));
 
     }
 
