@@ -25,9 +25,7 @@ public class SettingsActivity extends AppCompatActivity implements View.OnClickL
     private EditText etMessageTime;
     private ImageView imgSetON, imgSetOFF;
     private AlarmReceiver alarmReceiver;
-    private TextView txtTimeAlarm;
 
-    private final String DEFAULT_ALARM_TIME = "09:00";
     private final String MESSAGE_RESET = "";
     private String repeatMessage;
 
@@ -42,7 +40,6 @@ public class SettingsActivity extends AppCompatActivity implements View.OnClickL
         ImageView btnBack = findViewById(R.id.img_btn_back);
         RelativeLayout setMessage = findViewById(R.id.relative_set_message);
         TextView txtSetLanguage = findViewById(R.id.txt_setting_language);
-        txtTimeAlarm = findViewById(R.id.txt_default_time);
 
         imgSetON.setOnClickListener(this);
         imgSetOFF.setOnClickListener(this);
@@ -59,6 +56,7 @@ public class SettingsActivity extends AppCompatActivity implements View.OnClickL
 
     @Override
     public void onClick(View view) {
+        String DEFAULT_ALARM_TIME = "09:00";
         if (view.getId() == R.id.txt_setting_language) {
             startActivity(new Intent(Settings.ACTION_LOCALE_SETTINGS));
         } else if (view.getId() == R.id.img_set_reminder_on) {
@@ -72,10 +70,8 @@ public class SettingsActivity extends AppCompatActivity implements View.OnClickL
                         .setDuration(Snacky.LENGTH_LONG)
                         .error().show();
             } else {
-                if (txtTimeAlarm.getText().equals(DEFAULT_ALARM_TIME)) {
-                    alarmReceiver.setRepeatingAlarm(this, DEFAULT_ALARM_TIME, repeatMessage);
-                    setAlarmPref(DEFAULT_ALARM_TIME, repeatMessage, true);
-                }
+                alarmReceiver.setRepeatingAlarm(this, DEFAULT_ALARM_TIME, repeatMessage);
+                setAlarmPref(DEFAULT_ALARM_TIME, repeatMessage, true);
 
                 Snacky.builder()
                         .setView(view)
@@ -89,7 +85,6 @@ public class SettingsActivity extends AppCompatActivity implements View.OnClickL
 
             alarmReceiver.cancelAlarm(this);
             setAlarmPref(DEFAULT_ALARM_TIME, repeatMessage, false);
-            txtTimeAlarm.setText(DEFAULT_ALARM_TIME);
 
             Snacky.builder()
                     .setView(view)
@@ -123,7 +118,6 @@ public class SettingsActivity extends AppCompatActivity implements View.OnClickL
 
     public void getAlarmPref() {
         SharedPreferences sharedPreferences = getApplication().getSharedPreferences("alarm", MODE_PRIVATE);
-        txtTimeAlarm.setText(sharedPreferences.getString("time", DEFAULT_ALARM_TIME));
         etMessageTime.setText(sharedPreferences.getString("message", MESSAGE_RESET));
 
         boolean activeReminder = sharedPreferences.getBoolean("button", false);
