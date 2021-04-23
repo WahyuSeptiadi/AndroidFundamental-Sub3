@@ -45,5 +45,5 @@
     <string name="other_add">Pengguna telah ditambah oleh Customer</string>
     <string name="change_language">Ganti Bahasa</string>
     <string name="settings">Pengaturan</string>
-    <string name="time_set">09:00 Pagi</string>
+    <string name="time_set">09:00</string>
 </resources>

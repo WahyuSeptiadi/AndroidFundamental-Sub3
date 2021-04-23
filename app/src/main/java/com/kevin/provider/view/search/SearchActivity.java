@@ -8,8 +8,6 @@ import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
-import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
 import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
@@ -26,7 +24,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.kevin.provider.R;
 import com.kevin.provider.view.favorite.FavoriteActivity;
-import com.kevin.provider.view.setting.SetReminderActivity;
+import com.kevin.provider.view.setting.SettingsActivity;
 
 import de.mateware.snacky.Snacky;
 
@@ -39,7 +37,6 @@ public class SearchActivity extends AppCompatActivity {
     private ProgressBar progressBar;
 
     private TextView message;
-    private ImageView imgSettings;
     private static boolean count;
 
     @Override
@@ -51,18 +48,13 @@ public class SearchActivity extends AppCompatActivity {
         etUsername = findViewById(R.id.editTextSearch);
         message = findViewById(R.id.tv_message);
 
-        imgSettings = findViewById(R.id.imgSetting);
+        ImageView imgSettings = findViewById(R.id.imgSetting);
 
         progressBar = findViewById(R.id.progress_circular);
         progressBar.setProgress(0);
         FloatingActionButton fab = findViewById(R.id.fab_favorite);
 
         setRecyclerView();
-
-        //set ANIMATION
-        Animation shake = AnimationUtils.loadAnimation(this, R.anim.shake);
-        shake.setDuration(1000);
-        imgSettings.setAnimation(shake);
 
         searchViewModel = new ViewModelProvider(this,
                 new ViewModelProvider.NewInstanceFactory()).get(SearchViewModel.class);
@@ -146,9 +138,7 @@ public class SearchActivity extends AppCompatActivity {
             return false;
         });
 
-        imgSettings.setOnClickListener(view -> {
-            startActivity(new Intent(this, SetReminderActivity.class));
-        });
+        imgSettings.setOnClickListener(view -> startActivity(new Intent(this, SettingsActivity.class)));
     }
 
     @Override
@@ -193,12 +183,6 @@ public class SearchActivity extends AppCompatActivity {
                     .warning().show();
             progressBar.setVisibility(View.GONE);
         } else {
-            Snacky.builder()
-                    .setView(recyclerView)
-                    .centerText()
-                    .setText(getResources().getString(R.string.toast_searching))
-                    .setDuration(Snacky.LENGTH_LONG)
-                    .info().show();
             searchViewModel.setSearchData(etUsername.getText().toString());
             getDataUser();
         }

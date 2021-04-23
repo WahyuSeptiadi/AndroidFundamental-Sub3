@@ -8,7 +8,6 @@ import android.text.TextUtils;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
@@ -27,54 +26,45 @@ import java.util.Locale;
 
 import de.mateware.snacky.Snacky;
 
-public class SetReminderActivity extends AppCompatActivity implements View.OnClickListener, TimePickerFragment.DialogTimeListener {
+public class SettingsActivity extends AppCompatActivity implements View.OnClickListener, TimePickerFragment.DialogTimeListener {
 
-    private TextView detailTime;
     private EditText et_messageTime;
-    private ImageView setON;
-    private ImageView setOFF;
+    private ImageView setON, setOFF;
     private AlarmReceiver alarmReceiver;
+    private TextView txtTimeAlarm;
 
     private final String TIME_PICKER_REPEAT_TAG = "TIME REPEAT TAG";
-    private final String TIME_RESET = "00:00";
+    private final String DEFAULT_ALARM_TIME = "09:00";
     private final String MESSAGE_RESET = "";
-    private String MESSAGE_DEFAULT = "";
-    private String repeatTime, repeatMessage;
+    private String repeatMessage;
 
     private SharedPreferences sharedPreferences;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_set_reminder);
+        setContentView(R.layout.activity_settings);
 
-        ImageView setTime = findViewById(R.id.setTimeReminder);
         setON = findViewById(R.id.setReminderON);
         setOFF = findViewById(R.id.setReminderOFF);
-        Button btnDefTime = findViewById(R.id.btnDefaultTime);
         et_messageTime = findViewById(R.id.et_messageTime);
-        detailTime = findViewById(R.id.tv_time);
         ImageView btnBack = findViewById(R.id.btnBack);
         RelativeLayout setMessage = findViewById(R.id.setMessage);
         TextView setLanguage = findViewById(R.id.txt_setting_language);
+        TextView setManualTime = findViewById(R.id.set_manual_time);
+        txtTimeAlarm = findViewById(R.id.txt_default_time);
 
-        setTime.setOnClickListener(this);
         setON.setOnClickListener(this);
         setOFF.setOnClickListener(this);
-        btnDefTime.setOnClickListener(this);
         btnBack.setOnClickListener(this);
         setLanguage.setOnClickListener(this);
-
-        MESSAGE_DEFAULT = getBaseContext().getResources().getString(R.string.msg_default);
+        setManualTime.setOnClickListener(this);
 
         getAlarmPref();
         alarmReceiver = new AlarmReceiver();
 
         Animation slide_left = AnimationUtils.loadAnimation(this, android.R.anim.slide_in_left);
-
         slide_left.setDuration(2000);
-
-        setTime.setAnimation(slide_left);
         setMessage.setAnimation(slide_left);
     }
 
@@ -84,7 +74,7 @@ public class SetReminderActivity extends AppCompatActivity implements View.OnCli
 
         if (view.getId() == R.id.txt_setting_language) {
             startActivity(new Intent(Settings.ACTION_LOCALE_SETTINGS));
-        } else if (view.getId() == R.id.setTimeReminder) {
+        } else if (view.getId() == R.id.set_manual_time) {
             if (activeReminder) {
                 Snacky.builder()
                         .setView(view)
@@ -95,11 +85,11 @@ public class SetReminderActivity extends AppCompatActivity implements View.OnCli
             } else {
                 TimePickerFragment timePickerFragmentRepeat = new TimePickerFragment();
                 timePickerFragmentRepeat.show(getSupportFragmentManager(), TIME_PICKER_REPEAT_TAG);
-                et_messageTime.setText(MESSAGE_DEFAULT);
+                et_messageTime.setText(getBaseContext().getResources().getString(R.string.msg_default));
             }
         } else if (view.getId() == R.id.setReminderON) {
-            repeatTime = detailTime.getText().toString();
             repeatMessage = et_messageTime.getText().toString();
+
             if (TextUtils.isEmpty(repeatMessage)) {
                 Snacky.builder()
                         .setView(view)
@@ -108,8 +98,14 @@ public class SetReminderActivity extends AppCompatActivity implements View.OnCli
                         .setDuration(Snacky.LENGTH_LONG)
                         .error().show();
             } else {
-                alarmReceiver.setRepeatingAlarm(this, repeatTime, repeatMessage);
-                setAlarmPref(repeatTime, repeatMessage, true);
+                if (txtTimeAlarm.getText().equals(DEFAULT_ALARM_TIME)) {
+                    alarmReceiver.setRepeatingAlarm(this, DEFAULT_ALARM_TIME, repeatMessage);
+                    setAlarmPref(DEFAULT_ALARM_TIME, repeatMessage, true);
+                } else {
+                    String getTime = txtTimeAlarm.getText().toString();
+                    alarmReceiver.setRepeatingAlarm(this, getTime, repeatMessage);
+                    setAlarmPref(getTime, repeatMessage, true);
+                }
 
                 Snacky.builder()
                         .setView(view)
@@ -119,11 +115,11 @@ public class SetReminderActivity extends AppCompatActivity implements View.OnCli
                         .success().show();
             }
         } else if (view.getId() == R.id.setReminderOFF) {
-            detailTime.setText(TIME_RESET);
             et_messageTime.setText(MESSAGE_RESET);
 
             alarmReceiver.cancelAlarm(this);
-            setAlarmPref(repeatTime, repeatMessage, false);
+            setAlarmPref(DEFAULT_ALARM_TIME, repeatMessage, false);
+            txtTimeAlarm.setText(DEFAULT_ALARM_TIME);
 
             Snacky.builder()
                     .setView(view)
@@ -131,22 +127,8 @@ public class SetReminderActivity extends AppCompatActivity implements View.OnCli
                     .setText(getResources().getText(R.string.toast_cancel))
                     .setDuration(Snacky.LENGTH_LONG)
                     .info().show();
-        } else if (view.getId() == R.id.btnDefaultTime) {
-            if (activeReminder) {
-                Snacky.builder()
-                        .setView(view)
-                        .centerText()
-                        .setText(getResources().getString(R.string.toast_turn_off_reminder))
-                        .setDuration(Snacky.LENGTH_LONG)
-                        .warning().show();
-            } else {
-                // DEFAULT ALARM
-                String DEFAULT_TIME = "09:00";
-                detailTime.setText(DEFAULT_TIME);
-                et_messageTime.setText(MESSAGE_DEFAULT);
-            }
         } else if (view.getId() == R.id.btnBack) {
-            startActivity(new Intent(SetReminderActivity.this, SearchActivity.class));
+            startActivity(new Intent(SettingsActivity.this, SearchActivity.class));
             finish();
         }
     }
@@ -160,7 +142,7 @@ public class SetReminderActivity extends AppCompatActivity implements View.OnCli
 
         SimpleDateFormat dateFormat = new SimpleDateFormat("HH:mm", Locale.getDefault());
         if (TIME_PICKER_REPEAT_TAG.equals(tag)) {
-            detailTime.setText(dateFormat.format(calendar.getTime()));
+            txtTimeAlarm.setText(dateFormat.format(calendar.getTime()));
         }
     }
 
@@ -184,7 +166,7 @@ public class SetReminderActivity extends AppCompatActivity implements View.OnCli
 
     public void getAlarmPref() {
         sharedPreferences = getApplication().getSharedPreferences("alarm", MODE_PRIVATE);
-        detailTime.setText(sharedPreferences.getString("time", TIME_RESET));
+        txtTimeAlarm.setText(sharedPreferences.getString("time", DEFAULT_ALARM_TIME));
         et_messageTime.setText(sharedPreferences.getString("message", MESSAGE_RESET));
 
         boolean activeReminder = sharedPreferences.getBoolean("button", false);
