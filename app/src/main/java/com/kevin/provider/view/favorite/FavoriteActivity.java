@@ -9,18 +9,16 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.HandlerThread;
 import android.view.View;
-import android.widget.ImageView;
-import android.widget.ProgressBar;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
 import com.kevin.provider.R;
 import com.kevin.provider.data.local.DatabaseContract;
 import com.kevin.provider.data.local.FavoriteModel;
 import com.kevin.provider.data.local.MappingHelper;
+import com.kevin.provider.databinding.ActivityFavoriteBinding;
 import com.kevin.provider.view.search.SearchActivity;
 
 import java.lang.ref.WeakReference;
@@ -29,26 +27,22 @@ import java.util.ArrayList;
 import de.mateware.snacky.Snacky;
 
 public class FavoriteActivity extends AppCompatActivity implements FavoriteLoadCallback, View.OnClickListener {
-
     private FavoriteListAdapter favListAdapter;
-    private RecyclerView recyclerView;
-    private ProgressBar progressBar;
+
+    private ActivityFavoriteBinding binding;
 
     private static final String EXTRA_STATE = "EXTRA STATE";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_favorite);
+        binding = ActivityFavoriteBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
 
-        progressBar = findViewById(R.id.progress_favorite);
-        ImageView btnBack = findViewById(R.id.img_btn_back);
-
-        recyclerView = findViewById(R.id.rv_favorite);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        recyclerView.setHasFixedSize(true);
+        binding.rvFavorite.setLayoutManager(new LinearLayoutManager(this));
+        binding.rvFavorite.setHasFixedSize(true);
         favListAdapter = new FavoriteListAdapter(this);
-        recyclerView.setAdapter(favListAdapter);
+        binding.rvFavorite.setAdapter(favListAdapter);
 
         HandlerThread handlerThread = new HandlerThread("DataObserver");
         handlerThread.start();
@@ -63,10 +57,10 @@ public class FavoriteActivity extends AppCompatActivity implements FavoriteLoadC
             if (favoriteModelArrayList != null) {
                 favListAdapter.setFavoriteModelArrayList(favoriteModelArrayList);
             }
-            progressBar.setVisibility(View.GONE);
+            binding.progressFavorite.setVisibility(View.GONE);
         }
 
-        btnBack.setOnClickListener(this);
+        binding.imgBtnBack.setOnClickListener(this);
     }
 
     @Override
@@ -77,19 +71,19 @@ public class FavoriteActivity extends AppCompatActivity implements FavoriteLoadC
 
     @Override
     public void preExecute() {
-        runOnUiThread(() -> progressBar.setVisibility(View.VISIBLE));
+        runOnUiThread(() -> binding.progressFavorite.setVisibility(View.VISIBLE));
     }
 
     @Override
     public void postExecute(ArrayList<FavoriteModel> favMod) {
-        progressBar.setVisibility(View.GONE);
+        binding.progressFavorite.setVisibility(View.GONE);
 
         if (favMod.size() > 0) {
             favListAdapter.setFavoriteModelArrayList(favMod);
         } else {
             favListAdapter.setFavoriteModelArrayList(new ArrayList<>());
             Snacky.builder()
-                    .setView(recyclerView)
+                    .setView(binding.rvFavorite)
                     .centerText()
                     .setText(getResources().getString(R.string.not_yet))
                     .setDuration(Snacky.LENGTH_LONG)

@@ -7,10 +7,6 @@ import android.text.TextUtils;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
-import android.widget.EditText;
-import android.widget.ImageView;
-import android.widget.ProgressBar;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -18,86 +14,74 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.kevin.provider.R;
+import com.kevin.provider.databinding.ActivitySearchBinding;
 import com.kevin.provider.view.favorite.FavoriteActivity;
 import com.kevin.provider.view.setting.SettingsActivity;
 
 import de.mateware.snacky.Snacky;
 
 public class SearchActivity extends AppCompatActivity implements View.OnClickListener {
-
-    private RecyclerView recyclerView;
     private SearchListAdapter adapter;
-    private EditText etUsername;
     private SearchViewModel searchViewModel;
-    private ProgressBar progressBar;
 
-    private TextView message;
+    private ActivitySearchBinding binding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_search);
-
-        recyclerView = findViewById(R.id.rv_search);
-        etUsername = findViewById(R.id.et_search);
-        message = findViewById(R.id.tv_message);
-
-        ImageView imgSettings = findViewById(R.id.img_setting);
-
-        progressBar = findViewById(R.id.progress_circular);
-        FloatingActionButton fab = findViewById(R.id.fab_favorite);
+        binding = ActivitySearchBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
 
         setRecyclerView();
 
-        searchViewModel = new ViewModelProvider(this,
-                new ViewModelProvider.NewInstanceFactory()).get(SearchViewModel.class);
+        searchViewModel = new ViewModelProvider(this, new ViewModelProvider.NewInstanceFactory())
+                .get(SearchViewModel.class);
 
         if (savedInstanceState != null) {
             String data = savedInstanceState.getString("key");
 
             searchViewModel.setSearchData(data);
             getDataUser();
-            progressBar.setVisibility(View.GONE);
+            binding.progressCircular.setVisibility(View.GONE);
         }
 
-        recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
+        binding.rvSearch.addOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override
             public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {
-                if (dy > 0 || dy < 0 && fab.isShown()) {
-                    fab.hide();
+                if (dy > 0 || dy < 0 && binding.fabFavorite.isShown()) {
+                    binding.fabFavorite.hide();
                 }
             }
 
             @Override
             public void onScrollStateChanged(@NonNull RecyclerView recyclerView, int newState) {
                 if (newState == RecyclerView.SCROLL_STATE_IDLE) {
-                    fab.show();
+                    binding.fabFavorite.show();
                 }
                 if (!recyclerView.canScrollVertically(1)) {
-                    fab.hide();
+                    binding.fabFavorite.hide();
                 }
 
                 super.onScrollStateChanged(recyclerView, newState);
             }
         });
 
-        etUsername.setOnEditorActionListener((v, actionId, event) -> {
+        binding.etSearch.setOnEditorActionListener((v, actionId, event) -> {
             if (actionId == EditorInfo.IME_ACTION_SEARCH) {
-                String username = etUsername.getText().toString();
+                String username = binding.etSearch.getText().toString();
 
                 if (!TextUtils.isEmpty(username)) {
                     searchViewModel.setSearchData(username);
                     searchData();
                 } else {
                     Snacky.builder()
-                            .setView(recyclerView)
+                            .setView(v)
                             .centerText()
                             .setText(getResources().getString(R.string.toast_enter_key))
                             .setDuration(Snacky.LENGTH_LONG)
                             .warning().show();
-                    progressBar.setVisibility(View.GONE);
+                    binding.progressCircular.setVisibility(View.GONE);
                 }
 
                 hideSoftKeyboard();
@@ -106,14 +90,14 @@ public class SearchActivity extends AppCompatActivity implements View.OnClickLis
             return false;
         });
 
-        imgSettings.setOnClickListener(this);
-        fab.setOnClickListener(this);
+        binding.imgSetting.setOnClickListener(this);
+        binding.fabFavorite.setOnClickListener(this);
     }
 
     @Override
     public void onSaveInstanceState(@NonNull Bundle outState) {
         super.onSaveInstanceState(outState);
-        outState.putString("key", etUsername.getText().toString());
+        outState.putString("key", binding.etSearch.getText().toString());
     }
 
     private void hideSoftKeyboard() {
@@ -126,46 +110,46 @@ public class SearchActivity extends AppCompatActivity implements View.OnClickLis
     }
 
     private void searchData() {
-        if (TextUtils.isEmpty(etUsername.getText().toString())) {
+        if (TextUtils.isEmpty(binding.etSearch.getText().toString())) {
             Snacky.builder()
-                    .setView(recyclerView)
+                    .setView(binding.rvSearch)
                     .centerText()
                     .setText(getResources().getString(R.string.toast_enter_key))
                     .setDuration(Snacky.LENGTH_LONG)
                     .warning().show();
-            progressBar.setVisibility(View.GONE);
+            binding.progressCircular.setVisibility(View.GONE);
         } else {
-            searchViewModel.setSearchData(etUsername.getText().toString());
+            searchViewModel.setSearchData(binding.etSearch.getText().toString());
             getDataUser();
         }
     }
 
     private void getDataUser() {
-        progressBar.setVisibility(View.VISIBLE);
-        message.setVisibility(View.INVISIBLE);
+        binding.progressCircular.setVisibility(View.VISIBLE);
+        binding.tvMessage.setVisibility(View.INVISIBLE);
         searchViewModel.getSearchData().observe(this, git_user -> {
             if (git_user.getTotal_count() > 0) {
                 adapter.setData(git_user.getItems());
 
-                recyclerView.setAdapter(adapter);
+                binding.rvSearch.setAdapter(adapter);
 
-                message.setVisibility(View.INVISIBLE);
-                progressBar.setVisibility(View.GONE);
+                binding.tvMessage.setVisibility(View.INVISIBLE);
+                binding.progressCircular.setVisibility(View.GONE);
             } else {
                 adapter.clearList(git_user.getItems());
 
-                progressBar.setVisibility(View.GONE);
-                message.setText(R.string.string_not_found);
-                message.setVisibility(View.VISIBLE);
+                binding.progressCircular.setVisibility(View.GONE);
+                binding.tvMessage.setText(R.string.string_not_found);
+                binding.tvMessage.setVisibility(View.VISIBLE);
             }
-            etUsername.setText("");
+            binding.etSearch.setText("");
         });
     }
 
     private void setRecyclerView() {
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        recyclerView.setHasFixedSize(true);
-        recyclerView.smoothScrollToPosition(0);
+        binding.rvSearch.setLayoutManager(new LinearLayoutManager(this));
+        binding.rvSearch.setHasFixedSize(true);
+        binding.rvSearch.smoothScrollToPosition(0);
         adapter = new SearchListAdapter(SearchActivity.this);
         adapter.notifyDataSetChanged();
     }

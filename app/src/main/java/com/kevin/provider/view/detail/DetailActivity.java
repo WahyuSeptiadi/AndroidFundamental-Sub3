@@ -6,8 +6,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.ImageView;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -19,19 +17,17 @@ import androidx.viewpager.widget.ViewPager;
 
 import com.google.android.material.tabs.TabLayout;
 import com.kevin.provider.R;
+import com.kevin.provider.databinding.ActivityDetailBinding;
 import com.kevin.provider.helper.BaseConst;
 import com.kevin.provider.view.follower.FollowersFragment;
 import com.kevin.provider.view.following.FollowingFragment;
 import com.kevin.provider.view.search.SearchActivity;
 import com.squareup.picasso.Picasso;
 
-import de.hdodenhof.circleimageview.CircleImageView;
-
 public class DetailActivity extends AppCompatActivity {
-
     private DetailViewModel detailViewModel;
-    private CircleImageView imgAvatarDetail;
-    private TextView username, name, repository, follower, following, company, location;
+
+    private ActivityDetailBinding binding;
 
     @SuppressLint("StaticFieldLeak")
     private static Context mContext;
@@ -39,17 +35,8 @@ public class DetailActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_detail);
-
-        ImageView btnBack = findViewById(R.id.img_btn_back);
-        imgAvatarDetail = findViewById(R.id.civ_img_avatar);
-        username = findViewById(R.id.txt_username_value);
-        name = findViewById(R.id.txt_name_value);
-        repository = findViewById(R.id.txt_repository_value);
-        follower = findViewById(R.id.txt_follower_value);
-        following = findViewById(R.id.txt_following_value);
-        company = findViewById(R.id.txt_company_value);
-        location = findViewById(R.id.txt_location_value);
+        binding = ActivityDetailBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
 
         mContext = getBaseContext();
 
@@ -61,13 +48,13 @@ public class DetailActivity extends AppCompatActivity {
         mTabLayout.setupWithViewPager(mViewPager);
 
         String username = getIntent().getStringExtra(BaseConst.DATA_KEY);
-        detailViewModel = new ViewModelProvider(this,
-                new ViewModelProvider.NewInstanceFactory()).get(DetailViewModel.class);
+        detailViewModel = new ViewModelProvider(this, new ViewModelProvider.NewInstanceFactory())
+                .get(DetailViewModel.class);
         detailViewModel.setDetailUser(username);
 
         getData();
 
-        btnBack.setOnClickListener(v -> {
+        binding.imgBtnBack.setOnClickListener(v -> {
             startActivity(new Intent(DetailActivity.this, SearchActivity.class));
             finish();
         });
@@ -80,32 +67,29 @@ public class DetailActivity extends AppCompatActivity {
 
     private void getData() {
         detailViewModel.getDetailUser().observe(this, git_user -> {
-            Picasso.get().load(git_user.getAvatar_url()).into(imgAvatarDetail);
-            username.setText(git_user.getLogin());
-            repository.setText(String.valueOf(git_user.getPublic_repos()));
-            follower.setText(String.valueOf(git_user.getFollowers()));
-            following.setText(String.valueOf(git_user.getFollowing()));
+            Picasso.get().load(git_user.getAvatar_url()).into(binding.civImgAvatar);
+            binding.txtUsernameValue.setText(git_user.getLogin());
+            binding.txtRepositoryValue.setText(String.valueOf(git_user.getPublic_repos()));
+            binding.txtFollowerValue.setText(String.valueOf(git_user.getFollowers()));
+            binding.txtFollowingValue.setText(String.valueOf(git_user.getFollowing()));
 
             if (git_user.getName() == null) {
-                name.setText(R.string.string_not_set);
+                binding.txtNameValue.setText(R.string.string_not_set);
             } else {
-                name.setText(git_user.getName());
+                binding.txtNameValue.setText(git_user.getName());
             }
 
-            if (git_user.getLocation() == null && git_user.getCompany() == null) {
-                location.setText(R.string.string_not_set);
-                company.setText(R.string.string_not_set);
-            } else if (git_user.getCompany() == null || git_user.getLocation() == null) {
-                if (git_user.getCompany() == null) {
-                    company.setText(R.string.string_not_set);
-                    location.setText(git_user.getLocation());
-                } else if (git_user.getLocation() == null) {
-                    location.setText(R.string.string_not_set);
-                    company.setText(git_user.getCompany());
-                }
+            if (git_user.getLocation() != null && git_user.getCompany() != null) {
+                binding.txtCompanyValue.setText(git_user.getCompany());
+                binding.txtLocationValue.setText(git_user.getLocation());
             } else {
-                company.setText(git_user.getCompany());
-                location.setText(git_user.getLocation());
+                if (git_user.getCompany() == null) {
+                    binding.txtCompanyValue.setText(R.string.string_not_set);
+                    binding.txtLocationValue.setText(git_user.getLocation());
+                } else if (git_user.getLocation() == null) {
+                    binding.txtLocationValue.setText(R.string.string_not_set);
+                    binding.txtCompanyValue.setText(git_user.getCompany());
+                }
             }
         });
     }

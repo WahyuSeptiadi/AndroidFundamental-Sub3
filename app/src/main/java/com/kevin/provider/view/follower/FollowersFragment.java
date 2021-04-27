@@ -4,36 +4,29 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ProgressBar;
-import android.widget.TextView;
 
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
 import com.kevin.provider.R;
+import com.kevin.provider.databinding.FragmentFollowersBinding;
 import com.kevin.provider.helper.BaseConst;
+
+import org.jetbrains.annotations.NotNull;
 
 import java.util.Objects;
 
 public class FollowersFragment extends Fragment {
-
-    private RecyclerView recyclerView;
     private FollowersListAdapter adapter;
     private FollowersViewModel followersViewModel;
-    private ProgressBar progressBar;
 
-    private TextView message;
+    private FragmentFollowersBinding binding;
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(@NotNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_followers, container, false);
-
-        recyclerView = view.findViewById(R.id.rv_followers);
-        progressBar = view.findViewById(R.id.progress_circular_followers);
-        message = view.findViewById(R.id.tv_message_followers);
+        binding = FragmentFollowersBinding.inflate(inflater, container, false);
 
         setRecyclerView();
 
@@ -45,7 +38,7 @@ public class FollowersFragment extends Fragment {
 
         getData();
 
-        return view;
+        return binding.getRoot();
     }
 
     private void getData() {
@@ -53,22 +46,22 @@ public class FollowersFragment extends Fragment {
             if (git_user.isEmpty()) {
                 adapter.clearList(git_user);
 
-                progressBar.setVisibility(View.GONE);
-                message.setText(R.string.string_follower_null);
-                message.setVisibility(View.VISIBLE);
+                binding.progressCircularFollowers.setVisibility(View.GONE);
+                binding.tvMessageFollowers.setText(R.string.string_follower_null);
+                binding.tvMessageFollowers.setVisibility(View.VISIBLE);
             } else {
                 adapter.setData(git_user);
-                recyclerView.setAdapter(adapter);
+                binding.rvFollowers.setAdapter(adapter);
 
-                progressBar.setVisibility(View.GONE);
+                binding.progressCircularFollowers.setVisibility(View.GONE);
             }
         });
     }
 
     private void setRecyclerView() {
-        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-        recyclerView.setHasFixedSize(true);
-        recyclerView.smoothScrollToPosition(0);
+        binding.rvFollowers.setLayoutManager(new LinearLayoutManager(getContext()));
+        binding.rvFollowers.setHasFixedSize(true);
+        binding.rvFollowers.smoothScrollToPosition(0);
         adapter = new FollowersListAdapter(getActivity());
         adapter.notifyDataSetChanged();
     }
