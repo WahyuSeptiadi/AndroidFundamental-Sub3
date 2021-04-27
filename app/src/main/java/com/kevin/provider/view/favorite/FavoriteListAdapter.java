@@ -118,7 +118,7 @@ public class FavoriteListAdapter extends RecyclerView.Adapter<FavoriteListAdapte
 
     private void showAlertDialogDELETE(String idUserDel) {
         String dialogMessage = activity.getResources().getString(R.string.msg_delete_user);
-        String dialogTitle = activity.getResources().getString(R.string.ttl_delete_user);
+        String dialogTitle = activity.getResources().getString(R.string.title_delete_user);
 
         AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(activity);
         alertDialogBuilder.setTitle(dialogTitle);
@@ -131,7 +131,7 @@ public class FavoriteListAdapter extends RecyclerView.Adapter<FavoriteListAdapte
                     Snacky.builder()
                             .setActivity(activity)
                             .centerText()
-                            .setText(activity.getResources().getString(R.string.success_delete))
+                            .setText(activity.getResources().getString(R.string.delete_successful))
                             .setDuration(Snacky.LENGTH_LONG)
                             .success().show();
                 })

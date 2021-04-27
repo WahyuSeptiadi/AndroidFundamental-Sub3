@@ -29,7 +29,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
             android:layout_marginTop="20dp"
-            android:text="@string/str_username"
+            android:text="@string/string_username"
             android:textColor="#000"
             android:textSize="18sp"
             android:textStyle="bold"
@@ -42,7 +42,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
             android:layout_marginTop="5dp"
-            android:text="@string/str_type_user"
+            android:text="@string/string_type_user"
             android:textColor="#000"
             app:layout_constraintStart_toEndOf="@+id/civ_search"
             app:layout_constraintTop_toBottomOf="@+id/tv_username_value_list" />

@@ -3,8 +3,6 @@ package com.kevin.provider.view.detail;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
-import android.net.ConnectivityManager;
-import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -28,7 +26,6 @@ import com.kevin.provider.view.search.SearchActivity;
 import com.squareup.picasso.Picasso;
 
 import de.hdodenhof.circleimageview.CircleImageView;
-import de.mateware.snacky.Snacky;
 
 public class DetailActivity extends AppCompatActivity {
 
@@ -38,7 +35,6 @@ public class DetailActivity extends AppCompatActivity {
 
     @SuppressLint("StaticFieldLeak")
     private static Context mContext;
-    private static boolean count;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,43 +65,17 @@ public class DetailActivity extends AppCompatActivity {
                 new ViewModelProvider.NewInstanceFactory()).get(DetailViewModel.class);
         detailViewModel.setDetailUser(username);
 
-        if (checkInternet()) {
-            if (count) {
-                Snacky.builder()
-                        .setView(mViewPager)
-                        .setIcon(R.drawable.ic_signal_on)
-                        .centerText()
-                        .setText(getResources().getString(R.string.msg_internet_on))
-                        .setDuration(Snacky.LENGTH_LONG)
-                        .success().show();
-                getData();
-                count = false;
-            } else {
-                getData();
-            }
-        } else {
-            Snacky.builder()
-                    .setView(mViewPager)
-                    .setIcon(R.drawable.ic_signal_on)
-                    .centerText()
-                    .setText(getResources().getString(R.string.msg_internet_off))
-                    .setDuration(Snacky.LENGTH_LONG)
-                    .error().show();
-            count = true;
-        }
+        getData();
 
         btnBack.setOnClickListener(v -> {
-            Intent toSearch = new Intent(DetailActivity.this, SearchActivity.class);
-            startActivity(toSearch);
-
+            startActivity(new Intent(DetailActivity.this, SearchActivity.class));
             finish();
         });
     }
 
     @Override
     public void onBackPressed() {
-        Intent toHome = new Intent(this, SearchActivity.class);
-        startActivity(toHome);
+        startActivity(new Intent(this, SearchActivity.class));
     }
 
     private void getData() {
@@ -117,20 +87,20 @@ public class DetailActivity extends AppCompatActivity {
             following.setText(String.valueOf(git_user.getFollowing()));
 
             if (git_user.getName() == null) {
-                name.setText(R.string.str_null);
+                name.setText(R.string.string_not_set);
             } else {
                 name.setText(git_user.getName());
             }
 
             if (git_user.getLocation() == null && git_user.getCompany() == null) {
-                location.setText(R.string.str_null);
-                company.setText(R.string.str_null);
+                location.setText(R.string.string_not_set);
+                company.setText(R.string.string_not_set);
             } else if (git_user.getCompany() == null || git_user.getLocation() == null) {
                 if (git_user.getCompany() == null) {
-                    company.setText(R.string.str_null);
+                    company.setText(R.string.string_not_set);
                     location.setText(git_user.getLocation());
                 } else if (git_user.getLocation() == null) {
-                    location.setText(R.string.str_null);
+                    location.setText(R.string.string_not_set);
                     company.setText(git_user.getCompany());
                 }
             } else {
@@ -188,14 +158,5 @@ public class DetailActivity extends AppCompatActivity {
             }
             return null;
         }
-    }
-
-    public boolean checkInternet() {
-        boolean connectStatus;
-        ConnectivityManager ConnectionManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
-        NetworkInfo networkInfo = ConnectionManager.getActiveNetworkInfo();
-        connectStatus = networkInfo != null && networkInfo.isConnected();
-
-        return connectStatus;
     }
 }

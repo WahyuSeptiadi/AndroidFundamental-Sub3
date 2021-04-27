@@ -53,7 +53,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="13dp"
-                    android:text="@string/detail"
+                    android:text="@string/detail_title"
                     android:textAlignment="center"
                     android:textColor="#fff"
                     android:textSize="18sp"
@@ -126,7 +126,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/str_repository"
+                        android:text="@string/string_repository"
                         android:textColor="#fff" />
 
                     <TextView
@@ -143,7 +143,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/str_followers"
+                        android:text="@string/string_followers"
                         android:textColor="#fff" />
 
                     <TextView
@@ -160,7 +160,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/str_following"
+                        android:text="@string/string_following"
                         android:textColor="#fff" />
 
                     <TextView

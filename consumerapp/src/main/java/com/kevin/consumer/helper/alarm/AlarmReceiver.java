@@ -28,7 +28,7 @@ import java.util.Locale;
 import static android.content.Context.MODE_PRIVATE;
 
 public class AlarmReceiver extends BroadcastReceiver {
-    public static final String EXTRA_MESSAGE = "message";
+    public static final String EXTRA_MESSAGE = "kev_msg";
     private final int ID_REPEATING = 1;
 
     @Override

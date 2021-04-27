@@ -109,7 +109,6 @@ class StackRemoteViewsFactory implements RemoteViewsService.RemoteViewsFactory {
 
             return BitmapFactory.decodeStream(input);
         } catch (IOException e) {
-            // Log exception
             return null;
         }
     }

@@ -155,7 +155,7 @@ public class SearchActivity extends AppCompatActivity implements View.OnClickLis
                 adapter.clearList(git_user.getItems());
 
                 progressBar.setVisibility(View.GONE);
-                message.setText(R.string.str_message);
+                message.setText(R.string.string_not_found);
                 message.setVisibility(View.VISIBLE);
             }
             etUsername.setText("");

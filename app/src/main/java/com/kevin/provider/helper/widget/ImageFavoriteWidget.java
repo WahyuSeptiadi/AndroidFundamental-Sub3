@@ -45,7 +45,7 @@ public class ImageFavoriteWidget extends AppWidgetProvider {
         if (intent.getAction() != null) {
             if (intent.getAction().equals(TOAST_ACTION)) {
                 int viewIndex = intent.getIntExtra(EXTRA_ITEM, 0);
-                Toast.makeText(context, context.getResources().getString(R.string.user_favorite) +viewIndex, Toast.LENGTH_SHORT).show();
+                Toast.makeText(context, context.getResources().getString(R.string.string_index) + " " + viewIndex, Toast.LENGTH_SHORT).show();
             }
         }
     }

@@ -112,7 +112,7 @@ public class SearchListAdapter extends RecyclerView.Adapter<SearchListAdapter.Vi
                     Snacky.builder()
                             .setActivity(activity)
                             .centerText()
-                            .setText(activity.getResources().getString(R.string.other_add))
+                            .setText(activity.getResources().getString(R.string.add_by_other))
                             .setDuration(Snacky.LENGTH_LONG)
                             .warning().show();
                     holder.borderFavList.setVisibility(View.VISIBLE);
@@ -130,14 +130,14 @@ public class SearchListAdapter extends RecyclerView.Adapter<SearchListAdapter.Vi
                     Snacky.builder()
                             .setActivity(activity)
                             .centerText()
-                            .setText(activity.getResources().getString(R.string.add_again))
+                            .setText(activity.getResources().getString(R.string.add_user_again))
                             .setDuration(Snacky.LENGTH_LONG)
                             .success().show();
                 } else if (holder.borderFavList.getVisibility() == View.VISIBLE && holder.fillFavList.getVisibility() == View.GONE) {
                     Snacky.builder()
                             .setView(view)
                             .centerText()
-                            .setText(activity.getResources().getString(R.string.success_add))
+                            .setText(activity.getResources().getString(R.string.add_successful))
                             .setDuration(Snacky.LENGTH_SHORT)
                             .success().show();
                 }

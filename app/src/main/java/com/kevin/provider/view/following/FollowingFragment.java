@@ -54,7 +54,7 @@ public class FollowingFragment extends Fragment {
                 adapter.clearList(git_user);
 
                 progressBar.setVisibility(View.GONE);
-                message.setText(R.string.str_following_null);
+                message.setText(R.string.string_following_null);
                 message.setVisibility(View.VISIBLE);
             }else{
                 adapter.setData(git_user);
