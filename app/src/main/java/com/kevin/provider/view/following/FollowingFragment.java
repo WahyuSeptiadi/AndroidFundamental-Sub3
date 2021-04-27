@@ -45,14 +45,13 @@ public class FollowingFragment extends Fragment {
             if (git_user.isEmpty()) {
                 adapter.clearList(git_user);
 
-                binding.progressCircularFollowing.setVisibility(View.GONE);
                 binding.tvMessageFollowing.setText(R.string.string_following_null);
                 binding.tvMessageFollowing.setVisibility(View.VISIBLE);
             } else {
                 adapter.setData(git_user);
                 binding.rvFollowing.setAdapter(adapter);
-                binding.progressCircularFollowing.setVisibility(View.GONE);
             }
+            binding.progressCircularFollowing.setVisibility(View.GONE);
         });
     }
 

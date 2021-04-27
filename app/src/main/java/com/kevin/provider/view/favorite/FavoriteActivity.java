@@ -118,9 +118,9 @@ public class FavoriteActivity extends AppCompatActivity implements FavoriteLoadC
 
         @Override
         protected ArrayList<FavoriteModel> doInBackground(Void... voids) {
-
             Context context = weakContext.get();
-            Cursor dataCursor = context.getContentResolver().query(DatabaseContract.FavColumns.CONTENT_URI, null, null, null, null);
+            Cursor dataCursor = context.getContentResolver()
+                    .query(DatabaseContract.FavColumns.CONTENT_URI, null, null, null, null);
             assert dataCursor != null;
 
             return MappingHelper.mapCursorToArrayList(dataCursor);

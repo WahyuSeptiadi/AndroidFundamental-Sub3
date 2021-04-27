@@ -8,50 +8,40 @@ import android.text.TextUtils;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
-import android.widget.EditText;
-import android.widget.ImageView;
-import android.widget.RelativeLayout;
-import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.kevin.consumer.R;
+import com.kevin.consumer.databinding.ActivitySettingsBinding;
 import com.kevin.consumer.helper.alarm.AlarmReceiver;
 import com.kevin.consumer.view.favorite.FavoriteActivity;
 
 import de.mateware.snacky.Snacky;
 
 public class SettingsActivity extends AppCompatActivity implements View.OnClickListener {
-    private EditText etMessageTime;
-    private ImageView imgSetON, imgSetOFF;
-    private AlarmReceiver alarmReceiver;
+    private ActivitySettingsBinding binding;
 
+    private AlarmReceiver alarmReceiver;
     private final String MESSAGE_RESET = "";
     private String repeatMessage;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_settings);
+        binding = ActivitySettingsBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
 
-        imgSetON = findViewById(R.id.img_set_reminder_on);
-        imgSetOFF = findViewById(R.id.img_set_reminder_off);
-        etMessageTime = findViewById(R.id.et_message_time);
-        ImageView btnBack = findViewById(R.id.img_btn_back);
-        RelativeLayout setMessage = findViewById(R.id.relative_set_message);
-        TextView txtSetLanguage = findViewById(R.id.txt_setting_language);
-
-        imgSetON.setOnClickListener(this);
-        imgSetOFF.setOnClickListener(this);
-        btnBack.setOnClickListener(this);
-        txtSetLanguage.setOnClickListener(this);
+        binding.imgSetReminderOn.setOnClickListener(this);
+        binding.imgSetReminderOff.setOnClickListener(this);
+        binding.imgBtnBack.setOnClickListener(this);
+        binding.txtSettingLanguage.setOnClickListener(this);
 
         getAlarmPref();
         alarmReceiver = new AlarmReceiver();
 
         Animation slide_left = AnimationUtils.loadAnimation(this, android.R.anim.slide_in_left);
         slide_left.setDuration(2000);
-        setMessage.setAnimation(slide_left);
+        binding.relativeSetMessage.setAnimation(slide_left);
     }
 
     @Override
@@ -60,7 +50,7 @@ public class SettingsActivity extends AppCompatActivity implements View.OnClickL
         if (view.getId() == R.id.txt_setting_language) {
             startActivity(new Intent(Settings.ACTION_LOCALE_SETTINGS));
         } else if (view.getId() == R.id.img_set_reminder_on) {
-            repeatMessage = etMessageTime.getText().toString();
+            repeatMessage = binding.etMessageTime.getText().toString();
 
             if (TextUtils.isEmpty(repeatMessage)) {
                 Snacky.builder()
@@ -81,7 +71,7 @@ public class SettingsActivity extends AppCompatActivity implements View.OnClickL
                         .success().show();
             }
         } else if (view.getId() == R.id.img_set_reminder_off) {
-            etMessageTime.setText(MESSAGE_RESET);
+            binding.etMessageTime.setText(MESSAGE_RESET);
 
             alarmReceiver.cancelAlarm(this);
             setAlarmPref(DEFAULT_ALARM_TIME, repeatMessage, false);
@@ -106,29 +96,29 @@ public class SettingsActivity extends AppCompatActivity implements View.OnClickL
         editor.apply();
 
         if (repeat) {
-            imgSetON.setVisibility(View.INVISIBLE);
-            imgSetOFF.setVisibility(View.VISIBLE);
-            etMessageTime.setEnabled(false);
+            binding.imgSetReminderOn.setVisibility(View.INVISIBLE);
+            binding.imgSetReminderOff.setVisibility(View.VISIBLE);
+            binding.etMessageTime.setEnabled(false);
         } else {
-            imgSetON.setVisibility(View.VISIBLE);
-            imgSetOFF.setVisibility(View.INVISIBLE);
-            etMessageTime.setEnabled(true);
+            binding.imgSetReminderOn.setVisibility(View.VISIBLE);
+            binding.imgSetReminderOff.setVisibility(View.INVISIBLE);
+            binding.etMessageTime.setEnabled(true);
         }
     }
 
     public void getAlarmPref() {
         SharedPreferences sharedPreferences = getApplication().getSharedPreferences("alarm", MODE_PRIVATE);
-        etMessageTime.setText(sharedPreferences.getString("message", MESSAGE_RESET));
+        binding.etMessageTime.setText(sharedPreferences.getString("message", MESSAGE_RESET));
 
         boolean activeReminder = sharedPreferences.getBoolean("button", false);
         if (activeReminder) {
-            imgSetON.setVisibility(View.INVISIBLE);
-            imgSetOFF.setVisibility(View.VISIBLE);
-            etMessageTime.setEnabled(false);
+            binding.imgSetReminderOn.setVisibility(View.INVISIBLE);
+            binding.imgSetReminderOff.setVisibility(View.VISIBLE);
+            binding.etMessageTime.setEnabled(false);
         } else {
-            imgSetON.setVisibility(View.VISIBLE);
-            imgSetOFF.setVisibility(View.INVISIBLE);
-            etMessageTime.setEnabled(true);
+            binding.imgSetReminderOn.setVisibility(View.VISIBLE);
+            binding.imgSetReminderOff.setVisibility(View.INVISIBLE);
+            binding.etMessageTime.setEnabled(true);
         }
     }
 }

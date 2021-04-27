@@ -9,18 +9,16 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.HandlerThread;
 import android.view.View;
-import android.widget.ImageView;
-import android.widget.ProgressBar;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
 import com.kevin.consumer.R;
 import com.kevin.consumer.data.local.DatabaseContract;
 import com.kevin.consumer.data.local.FavoriteModel;
 import com.kevin.consumer.data.local.MappingHelper;
+import com.kevin.consumer.databinding.ActivityFavoriteBinding;
 import com.kevin.consumer.view.setting.SettingsActivity;
 
 import java.lang.ref.WeakReference;
@@ -29,26 +27,22 @@ import java.util.ArrayList;
 import de.mateware.snacky.Snacky;
 
 public class FavoriteActivity extends AppCompatActivity implements LoadFavCallback, View.OnClickListener {
-
     private FavoriteListAdapter favoriteListAdapter;
-    private RecyclerView recyclerView;
-    private ProgressBar progressBar;
+
+    private ActivityFavoriteBinding binding;
 
     private static final String EXTRA_STATE = "EXTRA STATE";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_favorite);
+        binding = ActivityFavoriteBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
 
-        progressBar = findViewById(R.id.progress_favorite);
-        ImageView imgSettings = findViewById(R.id.img_setting);
-
-        recyclerView = findViewById(R.id.rv_favorite);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        recyclerView.setHasFixedSize(true);
+        binding.rvFavorite.setLayoutManager(new LinearLayoutManager(this));
+        binding.rvFavorite.setHasFixedSize(true);
         favoriteListAdapter = new FavoriteListAdapter(this);
-        recyclerView.setAdapter(favoriteListAdapter);
+        binding.rvFavorite.setAdapter(favoriteListAdapter);
 
         HandlerThread handlerThread = new HandlerThread("DataObserver");
         handlerThread.start();
@@ -63,10 +57,10 @@ public class FavoriteActivity extends AppCompatActivity implements LoadFavCallba
             if (favoriteModelArrayList != null) {
                 favoriteListAdapter.setFavoriteModelArrayList(favoriteModelArrayList);
             }
-            progressBar.setVisibility(View.GONE);
+            binding.progressFavorite.setVisibility(View.GONE);
         }
 
-        imgSettings.setOnClickListener(this);
+        binding.imgSetting.setOnClickListener(this);
     }
 
     @Override
@@ -77,19 +71,19 @@ public class FavoriteActivity extends AppCompatActivity implements LoadFavCallba
 
     @Override
     public void preExecute() {
-        runOnUiThread(() -> progressBar.setVisibility(View.VISIBLE));
+        runOnUiThread(() -> binding.progressFavorite.setVisibility(View.VISIBLE));
     }
 
     @Override
     public void postExecute(ArrayList<FavoriteModel> favMod) {
-        progressBar.setVisibility(View.GONE);
+        binding.progressFavorite.setVisibility(View.GONE);
 
         if (favMod.size() > 0) {
             favoriteListAdapter.setFavoriteModelArrayList(favMod);
         } else {
             favoriteListAdapter.setFavoriteModelArrayList(new ArrayList<>());
             Snacky.builder()
-                    .setView(recyclerView)
+                    .setView(binding.rvFavorite)
                     .centerText()
                     .setText(getResources().getString(R.string.not_yet))
                     .setDuration(Snacky.LENGTH_LONG)
@@ -123,9 +117,9 @@ public class FavoriteActivity extends AppCompatActivity implements LoadFavCallba
 
         @Override
         protected ArrayList<FavoriteModel> doInBackground(Void... voids) {
-
             Context context = weakContext.get();
-            Cursor dataCursor = context.getContentResolver().query(DatabaseContract.FavColumns.CONTENT_URI, null, null, null, null);
+            Cursor dataCursor = context.getContentResolver().
+                    query(DatabaseContract.FavColumns.CONTENT_URI, null, null, null, null);
             assert dataCursor != null;
 
             return MappingHelper.mapCursorToArrayList(dataCursor);
