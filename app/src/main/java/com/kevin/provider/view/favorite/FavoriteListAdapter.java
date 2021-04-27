@@ -126,8 +126,6 @@ public class FavoriteListAdapter extends RecyclerView.Adapter<FavoriteListAdapte
                 .setMessage(dialogMessage)
                 .setCancelable(false)
                 .setPositiveButton(activity.getResources().getString(R.string.positive_btn), (dialog, id) -> {
-
-                    //DELETE form FavoriteList
                     uriWithId = Uri.parse(CONTENT_URI + "/" + idUserDel);
                     activity.getContentResolver().delete(uriWithId, null, null);
                     Snacky.builder()
@@ -136,7 +134,6 @@ public class FavoriteListAdapter extends RecyclerView.Adapter<FavoriteListAdapte
                             .setText(activity.getResources().getString(R.string.success_delete))
                             .setDuration(Snacky.LENGTH_LONG)
                             .success().show();
-
                 })
                 .setNegativeButton(activity.getResources().getString(R.string.negative_btn), (dialog, id) -> dialog.cancel());
         AlertDialog alertDialog = alertDialogBuilder.create();

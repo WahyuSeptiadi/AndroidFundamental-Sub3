@@ -28,7 +28,7 @@ import java.util.ArrayList;
 
 import de.mateware.snacky.Snacky;
 
-public class FavoriteActivity extends AppCompatActivity implements LoadFavCallback {
+public class FavoriteActivity extends AppCompatActivity implements LoadFavCallback, View.OnClickListener {
 
     private FavoriteListAdapter favoriteListAdapter;
     private RecyclerView recyclerView;
@@ -66,8 +66,7 @@ public class FavoriteActivity extends AppCompatActivity implements LoadFavCallba
             progressBar.setVisibility(View.GONE);
         }
 
-        imgSettings.setOnClickListener(view -> startActivity(new Intent(this, SettingsActivity.class)));
-
+        imgSettings.setOnClickListener(this);
     }
 
     @Override
@@ -95,6 +94,13 @@ public class FavoriteActivity extends AppCompatActivity implements LoadFavCallba
                     .setText(getResources().getString(R.string.not_yet))
                     .setDuration(Snacky.LENGTH_LONG)
                     .info().show();
+        }
+    }
+
+    @Override
+    public void onClick(View view) {
+        if (view.getId() == R.id.img_setting) {
+            startActivity(new Intent(this, SettingsActivity.class));
         }
     }
 

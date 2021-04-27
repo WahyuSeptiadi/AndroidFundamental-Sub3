@@ -28,7 +28,7 @@ import java.util.ArrayList;
 
 import de.mateware.snacky.Snacky;
 
-public class FavoriteActivity extends AppCompatActivity implements FavoriteLoadCallback {
+public class FavoriteActivity extends AppCompatActivity implements FavoriteLoadCallback, View.OnClickListener {
 
     private FavoriteListAdapter favListAdapter;
     private RecyclerView recyclerView;
@@ -66,12 +66,7 @@ public class FavoriteActivity extends AppCompatActivity implements FavoriteLoadC
             progressBar.setVisibility(View.GONE);
         }
 
-        btnBack.setOnClickListener(view -> {
-            Intent toHome = new Intent(FavoriteActivity.this, SearchActivity.class);
-            startActivity(toHome);
-            finish();
-        });
-
+        btnBack.setOnClickListener(this);
     }
 
     @Override
@@ -87,7 +82,6 @@ public class FavoriteActivity extends AppCompatActivity implements FavoriteLoadC
 
     @Override
     public void postExecute(ArrayList<FavoriteModel> favMod) {
-
         progressBar.setVisibility(View.GONE);
 
         if (favMod.size() > 0) {
@@ -100,6 +94,14 @@ public class FavoriteActivity extends AppCompatActivity implements FavoriteLoadC
                     .setText(getResources().getString(R.string.not_yet))
                     .setDuration(Snacky.LENGTH_LONG)
                     .info().show();
+        }
+    }
+
+    @Override
+    public void onClick(View view) {
+        if (view.getId() == R.id.img_btn_back) {
+            startActivity(new Intent(FavoriteActivity.this, SearchActivity.class));
+            finish();
         }
     }
 

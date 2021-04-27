@@ -1,10 +1,7 @@
 package com.kevin.provider.view.search;
 
 import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
-import android.net.ConnectivityManager;
-import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
@@ -28,7 +25,7 @@ import com.kevin.provider.view.setting.SettingsActivity;
 
 import de.mateware.snacky.Snacky;
 
-public class SearchActivity extends AppCompatActivity {
+public class SearchActivity extends AppCompatActivity implements View.OnClickListener {
 
     private RecyclerView recyclerView;
     private SearchListAdapter adapter;
@@ -37,7 +34,6 @@ public class SearchActivity extends AppCompatActivity {
     private ProgressBar progressBar;
 
     private TextView message;
-    private static boolean count;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,7 +47,6 @@ public class SearchActivity extends AppCompatActivity {
         ImageView imgSettings = findViewById(R.id.img_setting);
 
         progressBar = findViewById(R.id.progress_circular);
-        progressBar.setProgress(0);
         FloatingActionButton fab = findViewById(R.id.fab_favorite);
 
         setRecyclerView();
@@ -66,11 +61,6 @@ public class SearchActivity extends AppCompatActivity {
             getDataUser();
             progressBar.setVisibility(View.GONE);
         }
-
-        fab.setOnClickListener(view -> {
-            Intent toFavorite = new Intent(SearchActivity.this, FavoriteActivity.class);
-            startActivity(toFavorite);
-        });
 
         recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override
@@ -97,7 +87,10 @@ public class SearchActivity extends AppCompatActivity {
             if (actionId == EditorInfo.IME_ACTION_SEARCH) {
                 String username = etUsername.getText().toString();
 
-                if (TextUtils.isEmpty(username)) {
+                if (!TextUtils.isEmpty(username)) {
+                    searchViewModel.setSearchData(username);
+                    searchData();
+                } else {
                     Snacky.builder()
                             .setView(recyclerView)
                             .centerText()
@@ -105,31 +98,6 @@ public class SearchActivity extends AppCompatActivity {
                             .setDuration(Snacky.LENGTH_LONG)
                             .warning().show();
                     progressBar.setVisibility(View.GONE);
-                } else {
-                    searchViewModel.setSearchData(username);
-                    if (checkInternet()) {
-                        if (count) {
-                            Snacky.builder()
-                                    .setView(recyclerView)
-                                    .setIcon(R.drawable.ic_signal_on)
-                                    .centerText()
-                                    .setText(getResources().getString(R.string.msg_internet_on))
-                                    .setDuration(Snacky.LENGTH_LONG)
-                                    .success().show();
-                            count = false;
-                        } else {
-                            searchData();
-                        }
-                    } else {
-                        Snacky.builder()
-                                .setView(recyclerView)
-                                .setIcon(R.drawable.ic_signal_off)
-                                .centerText()
-                                .setText(getResources().getString(R.string.msg_internet_off))
-                                .setDuration(Snacky.LENGTH_LONG)
-                                .error().show();
-                        count = true;
-                    }
                 }
 
                 hideSoftKeyboard();
@@ -138,30 +106,14 @@ public class SearchActivity extends AppCompatActivity {
             return false;
         });
 
-        imgSettings.setOnClickListener(view -> startActivity(new Intent(this, SettingsActivity.class)));
+        imgSettings.setOnClickListener(this);
+        fab.setOnClickListener(this);
     }
 
     @Override
     public void onSaveInstanceState(@NonNull Bundle outState) {
         super.onSaveInstanceState(outState);
         outState.putString("key", etUsername.getText().toString());
-    }
-
-    @Override
-    protected void onRestart() {
-        super.onRestart();
-        if (checkInternet()) {
-            getDataUser();
-            progressBar.setVisibility(View.GONE);
-        } else {
-            Snacky.builder()
-                    .setView(recyclerView)
-                    .setIcon(R.drawable.ic_signal_on)
-                    .centerText()
-                    .setText(getResources().getString(R.string.msg_internet_off))
-                    .setDuration(Snacky.LENGTH_LONG)
-                    .error().show();
-        }
     }
 
     private void hideSoftKeyboard() {
@@ -218,13 +170,12 @@ public class SearchActivity extends AppCompatActivity {
         adapter.notifyDataSetChanged();
     }
 
-    public boolean checkInternet() {
-        boolean connectStatus;
-        ConnectivityManager ConnectionManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
-        NetworkInfo networkInfo = ConnectionManager.getActiveNetworkInfo();
-        connectStatus = networkInfo != null && networkInfo.isConnected();
-
-        return connectStatus;
+    @Override
+    public void onClick(View view) {
+        if (view.getId() == R.id.img_setting) {
+            startActivity(new Intent(this, SettingsActivity.class));
+        } else if (view.getId() == R.id.fab_favorite) {
+            startActivity(new Intent(SearchActivity.this, FavoriteActivity.class));
+        }
     }
-
 }

@@ -134,7 +134,6 @@ public class FavoriteListAdapter extends RecyclerView.Adapter<FavoriteListAdapte
                             .setText(activity.getResources().getText(R.string.success_delete))
                             .setDuration(Snacky.LENGTH_LONG)
                             .success().show();
-
                 })
                 .setNegativeButton(activity.getResources().getString(R.string.negative_btn), (dialog, id) -> dialog.cancel());
         AlertDialog alertDialog = alertDialogBuilder.create();
