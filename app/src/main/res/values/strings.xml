@@ -18,7 +18,6 @@
     <string name="string_not_set">Not Set</string>
     <string name="string_favorite_user">My Favorite</string>
     <string name="string_set_reminder_at">Set Reminder at</string>
-    <string name="string_index">No.</string>
     <string name="toast_enter_key">Please, input keyword!</string>
     <string name="toast_input_msg_notification">input message notification</string>
     <string name="toast_repeat">Repeating alarm set up</string>
@@ -33,8 +32,6 @@
     <string name="not_yet">No users have been added</string>
     <string name="user_already">Delete it first in the favorites list</string>
     <string name="add_user_again">User successfully added again</string>
-    <string name="appwidget_text">MY IDOL\'S</string>
-    <string name="blank">Blank</string>
     <string name="add_by_other">User have been added by Consumer</string>
     <string name="change_language">Change Language</string>
     <string name="settings">Settings</string>

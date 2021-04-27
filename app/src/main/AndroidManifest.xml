@@ -23,20 +23,6 @@
         android:theme="@style/AppTheme"
         tools:ignore="AllowBackup">
 
-        <service
-            android:name=".helper.widget.StackWidgetService"
-            android:permission="android.permission.BIND_REMOTEVIEWS" />
-
-        <receiver android:name=".helper.widget.ImageFavoriteWidget">
-            <intent-filter>
-                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
-            </intent-filter>
-
-            <meta-data
-                android:name="android.appwidget.provider"
-                android:resource="@xml/image_favorite_widget_info" />
-        </receiver>
-
         <provider
             android:name=".helper.provider.MyContentProvider"
             android:authorities="com.kevin.provider"

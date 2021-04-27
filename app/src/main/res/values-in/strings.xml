@@ -18,7 +18,6 @@
     <string name="string_not_set">belum diatur</string>
     <string name="string_favorite_user">Favorit saya</string>
     <string name="string_set_reminder_at">Atur Pengingat pada</string>
-    <string name="string_index">No.</string>
     <string name="toast_enter_key">Tolong, masukkan kata kunci!</string>
     <string name="toast_input_msg_notification">masukkan pesan pengingat</string>
     <string name="toast_repeat">pengingat telah diatur</string>
@@ -33,8 +32,6 @@
     <string name="not_yet">Belum ada pengguna yang ditambahkan</string>
     <string name="user_already">Hapus dahulu di daftar favorite</string>
     <string name="add_user_again">Pengguna berhasil ditambahkan kembali</string>
-    <string name="appwidget_text">MY IDOL\'S</string>
-    <string name="blank">kosong</string>
     <string name="add_by_other">Pengguna telah ditambah oleh Customer</string>
     <string name="change_language">Ganti Bahasa</string>
     <string name="settings">Pengaturan</string>
