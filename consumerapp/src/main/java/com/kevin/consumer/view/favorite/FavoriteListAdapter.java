@@ -7,25 +7,23 @@ import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
-import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.kevin.consumer.R;
 import com.kevin.consumer.data.local.FavoriteModel;
+import com.kevin.consumer.databinding.ItemFavoriteListBinding;
 import com.kevin.consumer.helper.BaseConst;
 import com.kevin.consumer.helper.CustomOnItemClickListener;
 import com.kevin.consumer.view.detail.DetailActivity;
 import com.squareup.picasso.Picasso;
 
+import org.jetbrains.annotations.NotNull;
+
 import java.util.ArrayList;
 
-import de.hdodenhof.circleimageview.CircleImageView;
 import de.mateware.snacky.Snacky;
 
 import static android.content.Context.MODE_PRIVATE;
@@ -38,8 +36,8 @@ public class FavoriteListAdapter extends RecyclerView.Adapter<FavoriteListAdapte
 
     private Uri uriWithId;
 
-    public FavoriteListAdapter(Activity activity1) {
-        this.activity = activity1;
+    public FavoriteListAdapter(Activity activity) {
+        this.activity = activity;
     }
 
     public ArrayList<FavoriteModel> getFavoriteModelArrayList() {
@@ -48,35 +46,17 @@ public class FavoriteListAdapter extends RecyclerView.Adapter<FavoriteListAdapte
 
     @NonNull
     @Override
-    public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_favorite_list, parent, false);
+    public ViewHolder onCreateViewHolder(@NotNull ViewGroup parent, int viewType) {
+        ItemFavoriteListBinding binding = ItemFavoriteListBinding.inflate(
+                LayoutInflater.from(parent.getContext()), parent, false
+        );
 
-        return new ViewHolder(view);
+        return new ViewHolder(binding);
     }
 
     @Override
     public void onBindViewHolder(FavoriteListAdapter.ViewHolder holder, int position) {
-
         holder.bind(favoriteModelArrayList.get(position));
-        holder.item.setOnClickListener(new CustomOnItemClickListener(position, (view, position1) -> {
-            Intent toDetail = new Intent(activity, DetailActivity.class);
-            toDetail.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-
-            Bundle bundle = new Bundle();
-            bundle.putString(BaseConst.DATA_KEY, favoriteModelArrayList.get(position1).getUsername());
-            toDetail.putExtras(bundle);
-
-            activity.startActivity(toDetail);
-        }));
-
-        holder.deleteFromFavList.setOnClickListener(view -> {
-            String idUserDelete = favoriteModelArrayList.get(position).getUserId();
-            showAlertDialogDELETE(idUserDelete);
-
-            SharedPreferences.Editor editor = activity.getSharedPreferences("fav", MODE_PRIVATE).edit();
-            editor.putBoolean("fav" + favoriteModelArrayList.get(position).getUserId(), false);
-            editor.apply();
-        });
     }
 
     @Override
@@ -84,29 +64,40 @@ public class FavoriteListAdapter extends RecyclerView.Adapter<FavoriteListAdapte
         return favoriteModelArrayList.size();
     }
 
-    public static class ViewHolder extends RecyclerView.ViewHolder {
-        private final CircleImageView imgAvatar;
-        private final TextView username;
-        private final TextView typeUser;
-        private final ImageView deleteFromFavList;
-        private final CardView item;
+    class ViewHolder extends RecyclerView.ViewHolder {
+        final ItemFavoriteListBinding binding;
 
-        public ViewHolder(View itemView) {
-            super(itemView);
-
-            imgAvatar = itemView.findViewById(R.id.civ_search);
-            username = itemView.findViewById(R.id.tv_username_value_list);
-            typeUser = itemView.findViewById(R.id.tv_type_user_value_list);
-            item = itemView.findViewById(R.id.cardListSearch);
-            deleteFromFavList = itemView.findViewById(R.id.img_delete_from_favorite);
+        public ViewHolder(ItemFavoriteListBinding binding) {
+            super(binding.getRoot());
+            this.binding = binding;
         }
 
-        public void bind(FavoriteModel bind) {
-            Picasso.get().load(bind.getAvatar())
+        public void bind(FavoriteModel favoriteModel) {
+            Picasso.get().load(favoriteModel.getAvatar())
                     .placeholder(R.drawable.ic_profile)
-                    .into(imgAvatar);
-            username.setText(bind.getUsername());
-            typeUser.setText(String.valueOf(bind.getUserType()));
+                    .into(binding.civAvatar);
+            binding.tvUsernameValueList.setText(favoriteModel.getUsername());
+            binding.tvTypeUserValueList.setText(String.valueOf(favoriteModel.getUserType()));
+
+            binding.cardListFavorite.setOnClickListener(new CustomOnItemClickListener((view) -> {
+                Intent toDetail = new Intent(activity, DetailActivity.class);
+                toDetail.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+
+                Bundle bundle = new Bundle();
+                bundle.putString(BaseConst.DATA_KEY, favoriteModel.getUsername());
+                toDetail.putExtras(bundle);
+
+                activity.startActivity(toDetail);
+            }));
+
+            binding.imgDeleteFromFavorite.setOnClickListener(view -> {
+                String idUserDelete = favoriteModel.getUserId();
+                showAlertDialogDELETE(idUserDelete);
+
+                SharedPreferences.Editor editor = activity.getSharedPreferences("fav", MODE_PRIVATE).edit();
+                editor.putBoolean("fav" + favoriteModel.getUserId(), false);
+                editor.apply();
+            });
         }
     }
 

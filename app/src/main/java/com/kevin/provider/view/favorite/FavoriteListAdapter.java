@@ -36,8 +36,8 @@ public class FavoriteListAdapter extends RecyclerView.Adapter<FavoriteListAdapte
 
     private Uri uriWithId;
 
-    public FavoriteListAdapter(Activity activity1) {
-        this.activity = activity1;
+    public FavoriteListAdapter(Activity activity) {
+        this.activity = activity;
     }
 
     public ArrayList<FavoriteModel> getFavoriteModelArrayList() {

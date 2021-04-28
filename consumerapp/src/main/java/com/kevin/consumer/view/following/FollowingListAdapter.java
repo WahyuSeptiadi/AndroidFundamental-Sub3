@@ -9,27 +9,26 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.kevin.consumer.R;
 import com.kevin.consumer.data.local.FavoriteModel;
 import com.kevin.consumer.data.local.MappingHelper;
 import com.kevin.consumer.data.remote.response.UserResultResponse;
+import com.kevin.consumer.databinding.ItemUserListBinding;
 import com.kevin.consumer.helper.BaseConst;
 import com.kevin.consumer.helper.CustomOnItemClickListener;
 import com.kevin.consumer.view.detail.DetailActivity;
 import com.squareup.picasso.Picasso;
 
+import org.jetbrains.annotations.NotNull;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-import de.hdodenhof.circleimageview.CircleImageView;
 import de.mateware.snacky.Snacky;
 
 import static android.content.Context.MODE_PRIVATE;
@@ -40,165 +39,156 @@ import static com.kevin.consumer.data.local.DatabaseContract.FavColumns.TYPE_USE
 import static com.kevin.consumer.data.local.DatabaseContract.FavColumns.USERNAME;
 
 public class FollowingListAdapter extends RecyclerView.Adapter<FollowingListAdapter.ViewHolder> {
-    private List<UserResultResponse> mInfo_Users;
+    private List<UserResultResponse> mInfoUsers;
     private final Activity activity;
 
     private Cursor cursor;
     private boolean cekIdUser;
 
-    public FollowingListAdapter(Activity activity1) {
-        this.activity = activity1;
+    public FollowingListAdapter(Activity activity) {
+        this.activity = activity;
     }
 
     @NonNull
     @Override
-    public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_user_list, parent, false);
+    public ViewHolder onCreateViewHolder(@NotNull ViewGroup parent, int viewType) {
+        ItemUserListBinding binding = ItemUserListBinding.inflate(
+                LayoutInflater.from(parent.getContext()), parent, false
+        );
 
-        return new ViewHolder(view);
+        return new ViewHolder(binding);
     }
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-
-        holder.bind(mInfo_Users.get(position));
-        holder.item.setOnClickListener(new CustomOnItemClickListener(position, (view, position1) -> {
-            Intent toDetail = new Intent(activity, DetailActivity.class);
-            toDetail.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-
-            Bundle bundle = new Bundle();
-            bundle.putString(BaseConst.DATA_KEY, mInfo_Users.get(position1).getLogin());
-            toDetail.putExtras(bundle);
-
-            activity.startActivity(toDetail);
-        }));
-
-        SharedPreferences sharedPreferences = activity.getSharedPreferences("fav", MODE_PRIVATE);
-        boolean cek = sharedPreferences.getBoolean("fav" + mInfo_Users.get(position).getId(), false);
-        holder.borderFavList.setVisibility(View.VISIBLE);
-        if (cek) {
-            holder.fillFavList.setVisibility(View.VISIBLE);
-        } else {
-            holder.fillFavList.setVisibility(View.GONE);
-        }
-
-        holder.borderFavList.setOnClickListener(new CustomOnItemClickListener(position, (view, position1) -> {
-            if (cursor != null) {
-                cursor.close();
-            }
-
-            cursor = activity.getContentResolver().query(CONTENT_URI, null, null, null, null);
-            ArrayList<FavoriteModel> list = MappingHelper.mapCursorToArrayList(Objects.requireNonNull(cursor));
-
-            String now = String.valueOf(mInfo_Users.get(position).getId());
-
-            for (FavoriteModel favList : list) {
-                cekIdUser = favList.getUserId().equals(now);
-                if (cekIdUser) {
-                    break;
-                }
-            }
-
-            if (cekIdUser) {
-                if (holder.borderFavList.getVisibility() == View.VISIBLE && holder.fillFavList.getVisibility() == View.VISIBLE) {
-                    Snacky.builder()
-                            .setActivity(activity)
-                            .centerText()
-                            .setText(activity.getResources().getText(R.string.user_already))
-                            .setDuration(Snacky.LENGTH_LONG)
-                            .error().show();
-                } else if (holder.borderFavList.getVisibility() == View.VISIBLE) {
-                    Snacky.builder()
-                            .setActivity(activity)
-                            .centerText()
-                            .setText(activity.getResources().getText(R.string.add_by_other))
-                            .setDuration(Snacky.LENGTH_LONG)
-                            .warning().show();
-                    holder.fillFavList.setVisibility(View.VISIBLE);
-                } else if (holder.fillFavList.getVisibility() == View.GONE) {
-                    holder.fillFavList.setVisibility(View.VISIBLE);
-                } else {
-                    holder.fillFavList.setVisibility(View.VISIBLE);
-                }
-                SharedPreferences.Editor editor = activity.getSharedPreferences("fav", MODE_PRIVATE).edit();
-                editor.putBoolean("fav" + mInfo_Users.get(position).getId(), true);
-                editor.apply();
-            } else {
-                if (holder.borderFavList.getVisibility() == View.VISIBLE && holder.fillFavList.getVisibility() == View.VISIBLE) {
-                    Snacky.builder()
-                            .setActivity(activity)
-                            .centerText()
-                            .setText(activity.getResources().getText(R.string.add_again))
-                            .setDuration(Snacky.LENGTH_LONG)
-                            .success().show();
-                } else if (holder.borderFavList.getVisibility() == View.VISIBLE && holder.fillFavList.getVisibility() == View.GONE) {
-                    Snacky.builder()
-                            .setView(view)
-                            .centerText()
-                            .setText(activity.getResources().getString(R.string.add_successful))
-                            .setDuration(Snacky.LENGTH_SHORT)
-                            .success().show();
-                }
-
-                ContentValues values = new ContentValues();
-                values.put(AVATAR, mInfo_Users.get(position).getAvatarUrl());
-                values.put(USERNAME, mInfo_Users.get(position).getLogin());
-                values.put(TYPE_USER, mInfo_Users.get(position).getType());
-                values.put(ID_USER, mInfo_Users.get(position).getId());
-
-                activity.getContentResolver().insert(CONTENT_URI, values);
-
-                //set pref love
-                SharedPreferences.Editor editor = activity.getSharedPreferences("fav", MODE_PRIVATE).edit();
-                editor.putBoolean("fav" + mInfo_Users.get(position).getId(), true);
-                editor.apply();
-
-                holder.fillFavList.setVisibility(View.VISIBLE);
-            }
-        }));
+        holder.bind(mInfoUsers.get(position));
     }
 
     @Override
     public int getItemCount() {
-        return mInfo_Users.size();
+        return mInfoUsers.size();
     }
 
-    public static class ViewHolder extends RecyclerView.ViewHolder {
-        private final CircleImageView imgAvatar;
-        private final TextView username;
-        private final TextView typeUser;
-        private final ImageView fillFavList;
-        private final ImageView borderFavList;
-        private final CardView item;
+    class ViewHolder extends RecyclerView.ViewHolder {
+        final ItemUserListBinding binding;
 
-        public ViewHolder(View itemView) {
-            super(itemView);
-
-            imgAvatar = itemView.findViewById(R.id.civ_search);
-            username = itemView.findViewById(R.id.tv_username_value_list);
-            typeUser = itemView.findViewById(R.id.tv_type_user_value_list);
-            item = itemView.findViewById(R.id.cardListSearch);
-            fillFavList = itemView.findViewById(R.id.img_add_to_favorite);
-            borderFavList = itemView.findViewById(R.id.img_border_love);
+        public ViewHolder(ItemUserListBinding binding) {
+            super(binding.getRoot());
+            this.binding = binding;
         }
 
         public void bind(UserResultResponse userResultResponse) {
             Picasso.get().load(userResultResponse.getAvatarUrl())
                     .placeholder(R.drawable.ic_profile)
-                    .into(imgAvatar);
-            username.setText(userResultResponse.getLogin());
-            typeUser.setText(String.valueOf(userResultResponse.getType()));
+                    .into(binding.civAvatar);
+            binding.tvUsernameValueList.setText(userResultResponse.getLogin());
+            binding.tvTypeUserValueList.setText(String.valueOf(userResultResponse.getType()));
+
+            binding.cardListSearch.setOnClickListener(new CustomOnItemClickListener((view) -> {
+                Intent toDetail = new Intent(activity, DetailActivity.class);
+                toDetail.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+
+                Bundle bundle = new Bundle();
+                bundle.putString(BaseConst.DATA_KEY, userResultResponse.getLogin());
+                toDetail.putExtras(bundle);
+
+                activity.startActivity(toDetail);
+            }));
+
+            SharedPreferences sharedPreferences = activity.getSharedPreferences("fav", MODE_PRIVATE);
+            boolean cek = sharedPreferences.getBoolean("fav" + userResultResponse.getId(), false);
+            binding.imgBorderLove.setVisibility(View.VISIBLE);
+            if (cek) {
+                binding.imgAddToFavorite.setVisibility(View.VISIBLE);
+            } else {
+                binding.imgAddToFavorite.setVisibility(View.GONE);
+            }
+
+            binding.imgBorderLove.setOnClickListener(new CustomOnItemClickListener((view) -> {
+                if (cursor != null) {
+                    cursor.close();
+                }
+
+                cursor = activity.getContentResolver().query(CONTENT_URI, null, null, null, null);
+                ArrayList<FavoriteModel> list = MappingHelper.mapCursorToArrayList(Objects.requireNonNull(cursor));
+
+                String now = String.valueOf(userResultResponse.getId());
+
+                for (FavoriteModel favList : list) {
+                    cekIdUser = favList.getUserId().equals(now);
+                    if (cekIdUser) {
+                        break;
+                    }
+                }
+
+                if (cekIdUser) {
+                    if (binding.imgBorderLove.getVisibility() == View.VISIBLE && binding.imgAddToFavorite.getVisibility() == View.VISIBLE) {
+                        Snacky.builder()
+                                .setActivity(activity)
+                                .centerText()
+                                .setText(activity.getResources().getText(R.string.user_already))
+                                .setDuration(Snacky.LENGTH_LONG)
+                                .error().show();
+                    } else if (binding.imgBorderLove.getVisibility() == View.VISIBLE) {
+                        Snacky.builder()
+                                .setActivity(activity)
+                                .centerText()
+                                .setText(activity.getResources().getText(R.string.add_by_other))
+                                .setDuration(Snacky.LENGTH_LONG)
+                                .warning().show();
+                        binding.imgAddToFavorite.setVisibility(View.VISIBLE);
+                    } else if (binding.imgAddToFavorite.getVisibility() == View.GONE) {
+                        binding.imgAddToFavorite.setVisibility(View.VISIBLE);
+                    } else {
+                        binding.imgAddToFavorite.setVisibility(View.VISIBLE);
+                    }
+                    SharedPreferences.Editor editor = activity.getSharedPreferences("fav", MODE_PRIVATE).edit();
+                    editor.putBoolean("fav" + userResultResponse, true);
+                    editor.apply();
+                } else {
+                    if (binding.imgBorderLove.getVisibility() == View.VISIBLE && binding.imgAddToFavorite.getVisibility() == View.VISIBLE) {
+                        Snacky.builder()
+                                .setActivity(activity)
+                                .centerText()
+                                .setText(activity.getResources().getText(R.string.add_again))
+                                .setDuration(Snacky.LENGTH_LONG)
+                                .success().show();
+                    } else if (binding.imgBorderLove.getVisibility() == View.VISIBLE && binding.imgAddToFavorite.getVisibility() == View.GONE) {
+                        Snacky.builder()
+                                .setView(view)
+                                .centerText()
+                                .setText(activity.getResources().getString(R.string.add_successful))
+                                .setDuration(Snacky.LENGTH_SHORT)
+                                .success().show();
+                    }
+
+                    ContentValues values = new ContentValues();
+                    values.put(AVATAR, userResultResponse.getAvatarUrl());
+                    values.put(USERNAME, userResultResponse.getLogin());
+                    values.put(TYPE_USER, userResultResponse.getType());
+                    values.put(ID_USER, userResultResponse.getId());
+
+                    activity.getContentResolver().insert(CONTENT_URI, values);
+
+                    //set pref love
+                    SharedPreferences.Editor editor = activity.getSharedPreferences("fav", MODE_PRIVATE).edit();
+                    editor.putBoolean("fav" + userResultResponse.getId(), true);
+                    editor.apply();
+
+                    binding.imgAddToFavorite.setVisibility(View.VISIBLE);
+                }
+            }));
         }
     }
 
     public void setData(List<UserResultResponse> infoUser) {
-        this.mInfo_Users = infoUser;
+        this.mInfoUsers = infoUser;
         notifyDataSetChanged();
     }
 
     public void clearList(List<UserResultResponse> clearListUser) {
-        this.mInfo_Users = clearListUser;
-        this.mInfo_Users.clear();
+        this.mInfoUsers = clearListUser;
+        this.mInfoUsers.clear();
         notifyDataSetChanged();
     }
 }

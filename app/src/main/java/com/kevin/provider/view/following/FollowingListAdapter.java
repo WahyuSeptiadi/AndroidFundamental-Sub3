@@ -46,8 +46,8 @@ public class FollowingListAdapter extends RecyclerView.Adapter<FollowingListAdap
     private Cursor cursor;
     private boolean cekIdUser;
 
-    public FollowingListAdapter(Activity activity1) {
-        this.activity = activity1;
+    public FollowingListAdapter(Activity activity) {
+        this.activity = activity;
     }
 
     @NonNull

@@ -45,8 +45,8 @@ public class SearchListAdapter extends RecyclerView.Adapter<SearchListAdapter.Vi
     private Cursor cursor;
     private boolean cekIdUser;
 
-    public SearchListAdapter(Activity activity1) {
-        this.activity = activity1;
+    public SearchListAdapter(Activity activity) {
+        this.activity = activity;
     }
 
     @NonNull
