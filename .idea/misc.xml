@@ -38,6 +38,56 @@
       <entry_point TYPE="field" FQNAME="com.kevin.consumer.data.remote.response.UserListResponse total_count" />
       <entry_point TYPE="field" FQNAME="com.kevin.provider.data.local.FavoriteModel CREATOR" />
       <entry_point TYPE="field" FQNAME="com.kevin.consumer.data.local.FavoriteModel CREATOR" />
+      <entry_point TYPE="field" FQNAME="com.kevin.provider.view.follower.FollowersFragment adapter" />
+      <entry_point TYPE="field" FQNAME="com.kevin.consumer.view.follower.FollowersFragment adapter" />
+      <entry_point TYPE="field" FQNAME="com.kevin.provider.view.following.FollowingFragment adapter" />
+      <entry_point TYPE="field" FQNAME="com.kevin.consumer.view.following.FollowingFragment adapter" />
+      <entry_point TYPE="field" FQNAME="com.kevin.provider.view.search.SearchActivity adapter" />
+      <entry_point TYPE="field" FQNAME="com.kevin.provider.view.setting.SettingsActivity alarmReceiver" />
+      <entry_point TYPE="field" FQNAME="com.kevin.consumer.view.setting.SettingsActivity alarmReceiver" />
+      <entry_point TYPE="field" FQNAME="com.kevin.provider.view.detail.DetailActivity binding" />
+      <entry_point TYPE="field" FQNAME="com.kevin.consumer.view.detail.DetailActivity binding" />
+      <entry_point TYPE="field" FQNAME="com.kevin.provider.view.favorite.FavoriteActivity binding" />
+      <entry_point TYPE="field" FQNAME="com.kevin.consumer.view.favorite.FavoriteActivity binding" />
+      <entry_point TYPE="field" FQNAME="com.kevin.provider.view.follower.FollowersFragment binding" />
+      <entry_point TYPE="field" FQNAME="com.kevin.consumer.view.follower.FollowersFragment binding" />
+      <entry_point TYPE="field" FQNAME="com.kevin.provider.view.following.FollowingFragment binding" />
+      <entry_point TYPE="field" FQNAME="com.kevin.consumer.view.following.FollowingFragment binding" />
+      <entry_point TYPE="field" FQNAME="com.kevin.provider.view.search.SearchActivity binding" />
+      <entry_point TYPE="field" FQNAME="com.kevin.provider.view.setting.SettingsActivity binding" />
+      <entry_point TYPE="field" FQNAME="com.kevin.consumer.view.setting.SettingsActivity binding" />
+      <entry_point TYPE="field" FQNAME="com.kevin.provider.view.detail.DetailActivity detailViewModel" />
+      <entry_point TYPE="field" FQNAME="com.kevin.consumer.view.detail.DetailActivity detailViewModel" />
+      <entry_point TYPE="field" FQNAME="com.kevin.provider.view.favorite.FavoriteActivity EXTRA_STATE" />
+      <entry_point TYPE="field" FQNAME="com.kevin.consumer.view.favorite.FavoriteActivity EXTRA_STATE" />
+      <entry_point TYPE="field" FQNAME="com.kevin.provider.view.favorite.FavoriteActivity favListAdapter" />
+      <entry_point TYPE="field" FQNAME="com.kevin.consumer.view.favorite.FavoriteActivity favoriteListAdapter" />
+      <entry_point TYPE="field" FQNAME="com.kevin.provider.view.follower.FollowersFragment followersViewModel" />
+      <entry_point TYPE="field" FQNAME="com.kevin.consumer.view.follower.FollowersFragment followersViewModel" />
+      <entry_point TYPE="field" FQNAME="com.kevin.provider.view.following.FollowingFragment followingViewModel" />
+      <entry_point TYPE="field" FQNAME="com.kevin.consumer.view.following.FollowingFragment followingViewModel" />
+      <entry_point TYPE="field" FQNAME="com.kevin.provider.view.detail.DetailActivity mContext" />
+      <entry_point TYPE="field" FQNAME="com.kevin.consumer.view.detail.DetailActivity mContext" />
+      <entry_point TYPE="field" FQNAME="com.kevin.provider.view.setting.SettingsActivity MESSAGE_RESET" />
+      <entry_point TYPE="field" FQNAME="com.kevin.consumer.view.setting.SettingsActivity MESSAGE_RESET" />
+      <entry_point TYPE="field" FQNAME="com.kevin.provider.view.setting.SettingsActivity repeatMessage" />
+      <entry_point TYPE="field" FQNAME="com.kevin.consumer.view.setting.SettingsActivity repeatMessage" />
+      <entry_point TYPE="field" FQNAME="com.kevin.provider.view.search.SearchActivity searchViewModel" />
+      <entry_point TYPE="field" FQNAME="com.kevin.provider.view.favorite.FavoriteListAdapter activity" />
+      <entry_point TYPE="field" FQNAME="com.kevin.provider.view.follower.FollowersListAdapter activity" />
+      <entry_point TYPE="field" FQNAME="com.kevin.provider.view.following.FollowingListAdapter activity" />
+      <entry_point TYPE="field" FQNAME="com.kevin.provider.view.search.SearchListAdapter activity" />
+      <entry_point TYPE="field" FQNAME="com.kevin.provider.view.follower.FollowersListAdapter cekIdUser" />
+      <entry_point TYPE="field" FQNAME="com.kevin.provider.view.following.FollowingListAdapter cekIdUser" />
+      <entry_point TYPE="field" FQNAME="com.kevin.provider.view.search.SearchListAdapter cekIdUser" />
+      <entry_point TYPE="field" FQNAME="com.kevin.provider.view.follower.FollowersListAdapter cursor" />
+      <entry_point TYPE="field" FQNAME="com.kevin.provider.view.following.FollowingListAdapter cursor" />
+      <entry_point TYPE="field" FQNAME="com.kevin.provider.view.search.SearchListAdapter cursor" />
+      <entry_point TYPE="field" FQNAME="com.kevin.provider.helper.BaseConst DATA_KEY" />
+      <entry_point TYPE="field" FQNAME="com.kevin.provider.view.follower.FollowersListAdapter mInfoUsers" />
+      <entry_point TYPE="field" FQNAME="com.kevin.provider.view.following.FollowingListAdapter mInfoUsers" />
+      <entry_point TYPE="field" FQNAME="com.kevin.provider.view.search.SearchListAdapter mInfoUsers" />
+      <entry_point TYPE="field" FQNAME="com.kevin.provider.view.favorite.FavoriteListAdapter uriWithId" />
     </entry_points>
     <pattern value="com.wahyu.githubapi.ExampleUnitTest" method="addition_isCorrect" />
     <pattern value="com.wahyu.consumerapp.ExampleUnitTest" method="addition_isCorrect" />
@@ -150,6 +200,142 @@
     <pattern value="com.kevin.provider.ExampleInstrumentedTest" method="useAppContext" />
     <pattern value="com.kevin.consumer.data.remote.response.UserDetailResponse" />
     <pattern value="com.kevin.provider.data.remote.response.UserDetailResponse" method="UserDetailResponse" />
+    <pattern value="com.kevin.provider.helper.alarm.AlarmReceiver" method="cancelAlarm" />
+    <pattern value="com.kevin.consumer.helper.alarm.AlarmReceiver" method="cancelAlarm" />
+    <pattern value="com.kevin.provider.view.follower.FollowersListAdapter" method="clearList" />
+    <pattern value="com.kevin.consumer.view.follower.FollowersListAdapter" method="clearList" />
+    <pattern value="com.kevin.provider.view.following.FollowingListAdapter" method="clearList" />
+    <pattern value="com.kevin.consumer.view.following.FollowingListAdapter" method="clearList" />
+    <pattern value="com.kevin.provider.view.search.SearchListAdapter" method="clearList" />
+    <pattern value="com.kevin.consumer.helper.CustomOnItemClickListener" />
+    <pattern value="com.kevin.provider.helper.CustomOnItemClickListener" />
+    <pattern value="com.kevin.provider.helper.CustomOnItemClickListener" method="CustomOnItemClickListener" />
+    <pattern value="com.kevin.consumer.helper.CustomOnItemClickListener" method="CustomOnItemClickListener" />
+    <pattern value="com.kevin.consumer.view.detail.DetailViewModel" />
+    <pattern value="com.kevin.provider.view.detail.DetailViewModel" />
+    <pattern value="com.kevin.consumer.data.local.DatabaseContract.FavColumns" />
+    <pattern value="com.kevin.consumer.view.favorite.FavoriteListAdapter" />
+    <pattern value="com.kevin.provider.view.favorite.FavoriteListAdapter" />
+    <pattern value="com.kevin.provider.view.favorite.FavoriteListAdapter" method="FavoriteListAdapter" />
+    <pattern value="com.kevin.consumer.view.favorite.FavoriteListAdapter" method="FavoriteListAdapter" />
+    <pattern value="com.kevin.provider.view.favorite.FavoriteLoadCallback" />
+    <pattern value="com.kevin.consumer.view.follower.FollowersFragment" />
+    <pattern value="com.kevin.provider.view.follower.FollowersFragment" />
+    <pattern value="com.kevin.consumer.view.follower.FollowersListAdapter" />
+    <pattern value="com.kevin.provider.view.follower.FollowersListAdapter" />
+    <pattern value="com.kevin.provider.view.follower.FollowersListAdapter" method="FollowersListAdapter" />
+    <pattern value="com.kevin.consumer.view.follower.FollowersListAdapter" method="FollowersListAdapter" />
+    <pattern value="com.kevin.consumer.view.follower.FollowersViewModel" />
+    <pattern value="com.kevin.provider.view.follower.FollowersViewModel" />
+    <pattern value="com.kevin.consumer.view.following.FollowingFragment" />
+    <pattern value="com.kevin.provider.view.following.FollowingFragment" />
+    <pattern value="com.kevin.consumer.view.following.FollowingListAdapter" />
+    <pattern value="com.kevin.provider.view.following.FollowingListAdapter" />
+    <pattern value="com.kevin.provider.view.following.FollowingListAdapter" method="FollowingListAdapter" />
+    <pattern value="com.kevin.consumer.view.following.FollowingListAdapter" method="FollowingListAdapter" />
+    <pattern value="com.kevin.consumer.view.following.FollowingViewModel" />
+    <pattern value="com.kevin.provider.view.following.FollowingViewModel" />
+    <pattern value="com.kevin.provider.view.setting.SettingsActivity" method="getAlarmPref" />
+    <pattern value="com.kevin.consumer.view.setting.SettingsActivity" method="getAlarmPref" />
+    <pattern value="com.kevin.provider.data.remote.response.UserDetailResponse" method="getAvatar_url" />
+    <pattern value="com.kevin.consumer.data.remote.response.UserDetailResponse" method="getAvatar_url" />
+    <pattern value="com.kevin.provider.data.remote.response.UserDetailResponse" method="getCompany" />
+    <pattern value="com.kevin.consumer.data.remote.response.UserDetailResponse" method="getCompany" />
+    <pattern value="com.kevin.provider.view.detail.DetailActivity" method="getData" />
+    <pattern value="com.kevin.consumer.view.detail.DetailActivity" method="getData" />
+    <pattern value="com.kevin.provider.view.follower.FollowersFragment" method="getData" />
+    <pattern value="com.kevin.provider.view.following.FollowingFragment" method="getData" />
+    <pattern value="com.kevin.consumer.view.following.FollowingFragment" method="getDataFollowing" />
+    <pattern value="com.kevin.consumer.view.follower.FollowersFragment" method="getDataUser" />
+    <pattern value="com.kevin.provider.view.search.SearchActivity" method="getDataUser" />
+    <pattern value="com.kevin.provider.view.detail.DetailViewModel" method="getDetailUser" />
+    <pattern value="com.kevin.consumer.view.detail.DetailViewModel" method="getDetailUser" />
+    <pattern value="com.kevin.provider.view.favorite.FavoriteListAdapter" method="getFavoriteModelArrayList" />
+    <pattern value="com.kevin.consumer.view.favorite.FavoriteListAdapter" method="getFavoriteModelArrayList" />
+    <pattern value="com.kevin.provider.data.remote.response.UserDetailResponse" method="getFollowers" />
+    <pattern value="com.kevin.consumer.data.remote.response.UserDetailResponse" method="getFollowers" />
+    <pattern value="com.kevin.provider.view.follower.FollowersViewModel" method="getFollowersData" />
+    <pattern value="com.kevin.consumer.view.follower.FollowersViewModel" method="getFollowersData" />
+    <pattern value="com.kevin.provider.data.remote.response.UserDetailResponse" method="getFollowing" />
+    <pattern value="com.kevin.consumer.data.remote.response.UserDetailResponse" method="getFollowing" />
+    <pattern value="com.kevin.provider.view.following.FollowingViewModel" method="getFollowingData" />
+    <pattern value="com.kevin.consumer.view.following.FollowingViewModel" method="getFollowingData" />
+    <pattern value="com.kevin.provider.data.remote.response.UserListResponse" method="getItems" />
+    <pattern value="com.kevin.provider.data.remote.response.UserDetailResponse" method="getLocation" />
+    <pattern value="com.kevin.consumer.data.remote.response.UserDetailResponse" method="getLocation" />
+    <pattern value="com.kevin.provider.data.remote.response.UserDetailResponse" method="getLogin" />
+    <pattern value="com.kevin.consumer.data.remote.response.UserDetailResponse" method="getLogin" />
+    <pattern value="com.kevin.provider.data.remote.response.UserDetailResponse" method="getName" />
+    <pattern value="com.kevin.consumer.data.remote.response.UserDetailResponse" method="getName" />
+    <pattern value="com.kevin.provider.data.remote.response.UserDetailResponse" method="getPublic_repos" />
+    <pattern value="com.kevin.consumer.data.remote.response.UserDetailResponse" method="getPublic_repos" />
+    <pattern value="com.kevin.provider.view.search.SearchViewModel" method="getSearchData" />
+    <pattern value="com.kevin.provider.data.remote.response.UserListResponse" method="getTotal_count" />
+    <pattern value="com.kevin.provider.view.search.SearchActivity" method="hideSoftKeyboard" />
+    <pattern value="com.kevin.provider.view.search.SearchViewModel" />
+    <pattern value="com.kevin.provider.view.setting.SettingsActivity" />
+    <pattern value="com.kevin.consumer.view.setting.SettingsActivity" />
+    <pattern value="com.kevin.consumer.view.favorite.LoadFavCallback" />
+    <pattern value="com.kevin.provider.view.favorite.FavoriteLoadCallback" method="postExecute" />
+    <pattern value="com.kevin.consumer.view.favorite.LoadFavCallback" method="postExecute" />
+    <pattern value="com.kevin.provider.view.favorite.FavoriteLoadCallback" method="preExecute" />
+    <pattern value="com.kevin.consumer.view.favorite.LoadFavCallback" method="preExecute" />
+    <pattern value="com.kevin.provider.view.search.SearchActivity" method="searchData" />
+    <pattern value="com.kevin.provider.view.search.SearchListAdapter" />
+    <pattern value="com.kevin.provider.view.search.SearchListAdapter" method="SearchListAdapter" />
+    <pattern value="com.kevin.provider.view.setting.SettingsActivity" method="setAlarmPref" />
+    <pattern value="com.kevin.consumer.view.setting.SettingsActivity" method="setAlarmPref" />
+    <pattern value="com.kevin.provider.view.follower.FollowersListAdapter" method="setData" />
+    <pattern value="com.kevin.consumer.view.follower.FollowersListAdapter" method="setData" />
+    <pattern value="com.kevin.provider.view.following.FollowingListAdapter" method="setData" />
+    <pattern value="com.kevin.consumer.view.following.FollowingListAdapter" method="setData" />
+    <pattern value="com.kevin.provider.view.search.SearchListAdapter" method="setData" />
+    <pattern value="com.kevin.provider.view.detail.DetailViewModel" method="setDetailUser" />
+    <pattern value="com.kevin.consumer.view.detail.DetailViewModel" method="setDetailUser" />
+    <pattern value="com.kevin.provider.view.favorite.FavoriteListAdapter" method="setFavoriteModelArrayList" />
+    <pattern value="com.kevin.consumer.view.favorite.FavoriteListAdapter" method="setFavoriteModelArrayList" />
+    <pattern value="com.kevin.provider.view.follower.FollowersViewModel" method="setFollowersData" />
+    <pattern value="com.kevin.consumer.view.follower.FollowersViewModel" method="setFollowersData" />
+    <pattern value="com.kevin.provider.view.following.FollowingViewModel" method="setFollowingData" />
+    <pattern value="com.kevin.consumer.view.following.FollowingViewModel" method="setFollowingData" />
+    <pattern value="com.kevin.provider.view.follower.FollowersFragment" method="setRecyclerView" />
+    <pattern value="com.kevin.consumer.view.follower.FollowersFragment" method="setRecyclerView" />
+    <pattern value="com.kevin.provider.view.following.FollowingFragment" method="setRecyclerView" />
+    <pattern value="com.kevin.consumer.view.following.FollowingFragment" method="setRecyclerView" />
+    <pattern value="com.kevin.provider.view.search.SearchActivity" method="setRecyclerView" />
+    <pattern value="com.kevin.provider.helper.alarm.AlarmReceiver" method="setRepeatingAlarm" />
+    <pattern value="com.kevin.consumer.helper.alarm.AlarmReceiver" method="setRepeatingAlarm" />
+    <pattern value="com.kevin.provider.view.search.SearchViewModel" method="setSearchData" />
+    <pattern value="com.kevin.consumer.view.favorite.FavoriteListAdapter.ViewHolder" />
+    <pattern value="com.kevin.consumer.view.follower.FollowersListAdapter.ViewHolder" />
+    <pattern value="com.kevin.consumer.view.following.FollowingListAdapter.ViewHolder" />
+    <pattern value="com.kevin.provider.view.favorite.FavoriteListAdapter.ViewHolder" />
+    <pattern value="com.kevin.provider.view.follower.FollowersListAdapter.ViewHolder" />
+    <pattern value="com.kevin.provider.view.following.FollowingListAdapter.ViewHolder" />
+    <pattern value="com.kevin.provider.view.search.SearchListAdapter.ViewHolder" />
+    <pattern value="com.kevin.provider.view.favorite.FavoriteListAdapter.ViewHolder" method="ViewHolder" />
+    <pattern value="com.kevin.consumer.view.favorite.FavoriteListAdapter.ViewHolder" method="ViewHolder" />
+    <pattern value="com.kevin.provider.view.follower.FollowersListAdapter.ViewHolder" method="ViewHolder" />
+    <pattern value="com.kevin.consumer.view.follower.FollowersListAdapter.ViewHolder" method="ViewHolder" />
+    <pattern value="com.kevin.provider.view.following.FollowingListAdapter.ViewHolder" method="ViewHolder" />
+    <pattern value="com.kevin.consumer.view.following.FollowingListAdapter.ViewHolder" method="ViewHolder" />
+    <pattern value="com.kevin.provider.view.search.SearchListAdapter.ViewHolder" method="ViewHolder" />
+    <pattern value="com.kevin.consumer.view.favorite.FavoriteActivity" method="postExecute" />
+    <pattern value="com.kevin.consumer.view.favorite.FavoriteActivity" method="preExecute" />
+    <pattern value="com.kevin.provider.view.favorite.FavoriteActivity" method="postExecute" />
+    <pattern value="com.kevin.provider.view.favorite.FavoriteActivity" method="preExecute" />
+    <pattern value="com.kevin.provider.helper.BaseConst" />
+    <pattern value="com.kevin.provider.data.local.FavoriteModel" method="getAvatar" />
+    <pattern value="com.kevin.provider.data.remote.response.UserResultResponse" method="getAvatarUrl" />
+    <pattern value="com.kevin.provider.data.remote.response.UserResultResponse" method="getId" />
+    <pattern value="com.kevin.provider.data.remote.response.UserResultResponse" method="getLogin" />
+    <pattern value="com.kevin.provider.data.remote.response.UserResultResponse" method="getType" />
+    <pattern value="com.kevin.provider.data.local.FavoriteModel" method="getUserId" />
+    <pattern value="com.kevin.provider.data.local.FavoriteModel" method="getUsername" />
+    <pattern value="com.kevin.provider.data.local.FavoriteModel" method="getUserType" />
+    <pattern value="com.kevin.provider.data.local.MappingHelper" method="mapCursorToArrayList" />
+    <pattern value="com.kevin.provider.data.local.MappingHelper" />
+    <pattern value="com.kevin.provider.view.favorite.FavoriteListAdapter" method="showAlertDialogDELETE" />
   </component>
   <component name="ProjectRootManager" version="2" languageLevel="JDK_1_8" default="true" project-jdk-name="1.8" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
