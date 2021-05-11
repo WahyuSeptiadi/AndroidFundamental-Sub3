@@ -88,6 +88,18 @@
       <entry_point TYPE="field" FQNAME="com.kevin.provider.view.following.FollowingListAdapter mInfoUsers" />
       <entry_point TYPE="field" FQNAME="com.kevin.provider.view.search.SearchListAdapter mInfoUsers" />
       <entry_point TYPE="field" FQNAME="com.kevin.provider.view.favorite.FavoriteListAdapter uriWithId" />
+      <entry_point TYPE="field" FQNAME="com.kevin.consumer.view.favorite.FavoriteListAdapter activity" />
+      <entry_point TYPE="field" FQNAME="com.kevin.consumer.view.follower.FollowersListAdapter activity" />
+      <entry_point TYPE="field" FQNAME="com.kevin.consumer.view.following.FollowingListAdapter activity" />
+      <entry_point TYPE="field" FQNAME="com.kevin.consumer.view.follower.FollowersListAdapter cekIdUser" />
+      <entry_point TYPE="field" FQNAME="com.kevin.consumer.view.following.FollowingListAdapter cekIdUser" />
+      <entry_point TYPE="field" FQNAME="com.kevin.consumer.data.local.DatabaseContract.FavColumns CONTENT_URI" />
+      <entry_point TYPE="field" FQNAME="com.kevin.consumer.view.follower.FollowersListAdapter cursor" />
+      <entry_point TYPE="field" FQNAME="com.kevin.consumer.view.following.FollowingListAdapter cursor" />
+      <entry_point TYPE="field" FQNAME="com.kevin.consumer.helper.BaseConst DATA_KEY" />
+      <entry_point TYPE="field" FQNAME="com.kevin.consumer.view.follower.FollowersListAdapter mInfoUsers" />
+      <entry_point TYPE="field" FQNAME="com.kevin.consumer.view.following.FollowingListAdapter mInfoUsers" />
+      <entry_point TYPE="field" FQNAME="com.kevin.consumer.view.favorite.FavoriteListAdapter uriWithId" />
     </entry_points>
     <pattern value="com.wahyu.githubapi.ExampleUnitTest" method="addition_isCorrect" />
     <pattern value="com.wahyu.consumerapp.ExampleUnitTest" method="addition_isCorrect" />
@@ -336,6 +348,18 @@
     <pattern value="com.kevin.provider.data.local.MappingHelper" method="mapCursorToArrayList" />
     <pattern value="com.kevin.provider.data.local.MappingHelper" />
     <pattern value="com.kevin.provider.view.favorite.FavoriteListAdapter" method="showAlertDialogDELETE" />
+    <pattern value="com.kevin.consumer.helper.BaseConst" />
+    <pattern value="com.kevin.consumer.data.local.FavoriteModel" method="getAvatar" />
+    <pattern value="com.kevin.consumer.data.remote.response.UserResultResponse" method="getAvatarUrl" />
+    <pattern value="com.kevin.consumer.data.remote.response.UserResultResponse" method="getId" />
+    <pattern value="com.kevin.consumer.data.remote.response.UserResultResponse" method="getLogin" />
+    <pattern value="com.kevin.consumer.data.remote.response.UserResultResponse" method="getType" />
+    <pattern value="com.kevin.consumer.data.local.FavoriteModel" method="getUserId" />
+    <pattern value="com.kevin.consumer.data.local.FavoriteModel" method="getUsername" />
+    <pattern value="com.kevin.consumer.data.local.FavoriteModel" method="getUserType" />
+    <pattern value="com.kevin.consumer.data.local.MappingHelper" method="mapCursorToArrayList" />
+    <pattern value="com.kevin.consumer.data.local.MappingHelper" />
+    <pattern value="com.kevin.consumer.view.favorite.FavoriteListAdapter" method="showAlertDialogDELETE" />
   </component>
   <component name="ProjectRootManager" version="2" languageLevel="JDK_1_8" default="true" project-jdk-name="1.8" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
